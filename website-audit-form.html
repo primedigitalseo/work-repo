@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- THIS LINE is the single most important fix for "big and zoomed in" on mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Website Audit Form</title>
+
+  <style>
+    /* Responsive wrapper: full width on phones, capped width on desktop, centered */
+    .lc-form-wrap {
+      width: 100%;
+      max-width: 560px;   /* keeps the form a comfortable width on big screens */
+      margin: 0 auto;     /* centers it */
+      padding: 0 16px;    /* small side gutter so it never touches screen edges */
+      box-sizing: border-box;
+    }
+
+    .lc-form-wrap iframe {
+      width: 100%;
+      /* No fixed height fight: form_embed.js auto-resizes the height to fit the
+         form's content. min-height just prevents a flash of collapsed height
+         before the script runs. */
+      min-height: 676px;
+      border: none;
+      border-radius: 4px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="lc-form-wrap">
+    <iframe
+      src="https://api.leadconnectorhq.com/widget/form/NObAkZCGDwPeYt3s1nrN"
+      id="inline-NObAkZCGDwPeYt3s1nrN"
+      data-layout="{'id':'INLINE'}"
+      data-trigger-type="alwaysShow"
+      data-trigger-value=""
+      data-activation-type="alwaysActivated"
+      data-activation-value=""
+      data-deactivation-type="neverDeactivate"
+      data-deactivation-value=""
+      data-form-name="Website Audit Form"
+      data-height="676"
+      data-layout-iframe-id="inline-NObAkZCGDwPeYt3s1nrN"
+      data-form-id="NObAkZCGDwPeYt3s1nrN"
+      title="Website Audit Form">
+    </iframe>
+  </div>
+
+  <!-- This script handles the automatic height resizing. Keep it. -->
+  <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+
+</body>
+</html>
