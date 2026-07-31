@@ -33,7 +33,8 @@ page; if it does not → 301 to the category hub (Plumbing / AC / Heating / Sept
 
 | File | Use |
 |---|---|
-| **`callpowells-redirects-import.csv`** | **Give this to Viktor.** 2-column `source,target` (relative paths), ready to import into the **Redirection** plugin. 106 rows. |
+| **`callpowells-redirects-import.csv`** | **Give this to Viktor.** 2-column `source,target` (relative paths), ready to import into the **Redirection** plugin. 116 rows. |
+| **`wilmington-plumbing-consolidation.csv`** | Delta file — just the 10 new Wilmington plumbing folds (below). Use if Viktor already imported the earlier 106. |
 | **`callpowells-redirect-map.csv`** | Review copy — full URLs + `backlinks`, `internal_links`, a `type` column (`404-fix` vs `wh-consolidation`), and a `notes` column explaining each target. |
 | **`broken-assets-fix.csv`** + **`broken-assets-fix.md`** | Fix for the ~141-page broken-JavaScript / redirected-image issue. Root cause + row-by-row offending resources and actions. |
 | **`content/norfolk-water-heater-services.md`** | Merged Norfolk water-heater hub copy (absorbs tankless + installation). |
@@ -117,6 +118,30 @@ Winchester is already hub-only — nothing to consolidate there.
 3. Remove dead internal links pointing at the old 404 slugs.
 4. Re-crawl in Ahrefs to confirm 404s cleared and health score recovered.
 
+## Tier 3 — service depth matched to each market's focus
+
+Page depth should follow what each location actually leads with, not a uniform template:
+
+| City | Focus | Plumbing | HVAC | Septic |
+|---|---|---|---|---|
+| **Norfolk** | Plumbing-heavy | Keep full depth | Hub-only (children 301 to hubs) | Keep |
+| **Winchester** | Mixed | Keep (balanced) | Keep (balanced) | Keep |
+| **Wilmington** | HVAC-primary | **Core only** — fold 10 thin pages | Keep full depth | Leave as-is |
+
+**Wilmington plumbing — kept as core:** Plumbing hub, Water Heater Services, Drain Cleaning,
+Sewer Line Repair, Repiping, Water Leak Detection, Plumbing Repair.
+
+**Wilmington plumbing — folded via 301 (10 pages, tagged `wilmington-plumbing-consolidation`):**
+bathroom-fixtures, faucets, garbage-disposals, toilet-repair, backflow-testing, radiators,
+slab-leak-repairs-a-detection, water-treatment, burst-pipe-repair → plumbing hub;
+drain-clogs → drain-cleaning.
+
+**Alongside these 10 redirects:** remove the folded items from the Wilmington nav menu, and add a
+short "Plumbing services we provide" list on the plumbing hub so the folded services are still
+mentioned (light touch — these are thin pages, no full content merge needed).
+
+Norfolk HVAC stays hub-only and Wilmington septic is left intact per direction.
+
 ## Optimization roadmap (Tiers 1–4)
 
 Focused on technical + on-page + entity work (GBP/reviews/links deferred).
@@ -132,7 +157,7 @@ Focused on technical + on-page + entity work (GBP/reviews/links deferred).
 | 2 | 174 missing alt-text list | (pending) | ⏳ Needs Ahrefs pull |
 | 2 | IndexNow submission (~84 URLs) | note in `metadata-formulas.md` | ✅ Documented |
 | 2 | Noindex (17) + orphan (5) review | (pending) | ⏳ Needs Ahrefs pull |
-| 3 | Over-split service consolidation (beyond WH) | (proposed workbook) | ⏳ Awaiting your go-ahead + traffic data |
+| 3 | Wilmington plumbing consolidation (core-only) | 10 redirects in the CSVs | ✅ Ready for Viktor |
 | 3 | Duplicate content across the 3 cities | content plan | ⏳ Scoping |
 | 4 | LocalBusiness schema (3 locations) | `schema/localbusiness-schema-template.md` | ✅ Templates ready |
 | 4 | sameAs / citation collection | `schema/sameas-citation-worksheet.csv` | ✅ Worksheet ready |
