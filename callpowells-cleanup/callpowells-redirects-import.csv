@@ -34,7 +34,7 @@ source,target
 /winchester/septic/septic-installation/,/winchester/septic/
 /winchester/septic/septic-tank-inspections/,/winchester/septic/
 /winchester/septic/water-lines/,/winchester/septic/
-/wilmington/heating/water-heater-repair/,/wilmington/plumbing/water-heater-repair/
+/wilmington/heating/water-heater-repair/,/wilmington/plumbing/water-heater-services/
 /wilmington/plumbing/boiler-repair/,/wilmington/plumbing/
 /wilmington/plumbing/gas-line-installation/,/wilmington/plumbing/
 /wilmington/plumbing/boiler-and-radiator-services/,/wilmington/plumbing/
@@ -99,3 +99,9 @@ source,target
 /wilmington/plumbing/sewer-line-repair/montague/,/wilmington/plumbing/sewer-line-repair/
 /wilmington/plumbing/sewer-line-repair/willard/,/wilmington/plumbing/sewer-line-repair/
 /wilmington/plumbing/sewer-line-repair/kure-beach/,/wilmington/plumbing/sewer-line-repair/
+/norfolk/plumbing/tankless-water-heaters/,/norfolk/plumbing/water-heater-services/
+/norfolk/plumbing/water-heater-installation/,/norfolk/plumbing/water-heater-services/
+/wilmington/plumbing/tankless-water-heaters/,/wilmington/plumbing/water-heater-services/
+/wilmington/plumbing/water-heater-repair/,/wilmington/plumbing/water-heater-services/
+/wilmington/plumbing/water-heater-installation/,/wilmington/plumbing/water-heater-services/
+/wilmington/plumbing/water-heater-replacement/,/wilmington/plumbing/water-heater-services/

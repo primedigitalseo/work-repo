@@ -33,8 +33,12 @@ page; if it does not → 301 to the category hub (Plumbing / AC / Heating / Sept
 
 | File | Use |
 |---|---|
-| **`callpowells-redirects-import.csv`** | **Give this to Viktor.** 2-column `source,target` (relative paths), ready to import into the **Redirection** plugin. 100 rows. |
-| **`callpowells-redirect-map.csv`** | Review copy — full URLs + `backlinks`, `internal_links`, and a `notes` column explaining each target. |
+| **`callpowells-redirects-import.csv`** | **Give this to Viktor.** 2-column `source,target` (relative paths), ready to import into the **Redirection** plugin. 106 rows. |
+| **`callpowells-redirect-map.csv`** | Review copy — full URLs + `backlinks`, `internal_links`, a `type` column (`404-fix` vs `wh-consolidation`), and a `notes` column explaining each target. |
+
+**106 rows = 100 broken-page (404) fixes + 6 water-heater consolidation redirects** (see below).
+The two types are tagged in the `type` column of the review map. Verified: no redirect target is
+itself the source of another redirect (no chains).
 
 ## Three nav links to repoint (not just redirect)
 
@@ -80,10 +84,25 @@ Why:
   page if ranking data later shows the hub can't rank for that term alone. Right now there's no
   such data, so consolidate.
 
-**Net:** Winchester is already correct (hub only). Standardize Norfolk and Wilmington down to
-the single hub. This is a separate change from the 404 cleanup (it removes *live* nav pages), so
-those consolidation redirects are **not** in the import file yet — say the word and I'll add the
-water-heater consolidation rows and write the merged hub content.
+**These consolidation redirects are now IN the CSVs** (tagged `wh-consolidation`), 6 rows:
+
+| Source (live page, remove from nav) | 301 target |
+|---|---|
+| /norfolk/plumbing/tankless-water-heaters/ | /norfolk/plumbing/water-heater-services/ |
+| /norfolk/plumbing/water-heater-installation/ | /norfolk/plumbing/water-heater-services/ |
+| /wilmington/plumbing/tankless-water-heaters/ | /wilmington/plumbing/water-heater-services/ |
+| /wilmington/plumbing/water-heater-repair/ | /wilmington/plumbing/water-heater-services/ |
+| /wilmington/plumbing/water-heater-installation/ | /wilmington/plumbing/water-heater-services/ |
+| /wilmington/plumbing/water-heater-replacement/ | /wilmington/plumbing/water-heater-services/ |
+
+Winchester is already hub-only — nothing to consolidate there.
+
+**Two things for Viktor to do alongside these 6 redirects:**
+1. **Remove those 6 items from the city nav menus** (they'll be redirects, so they shouldn't sit
+   in the menu firing 301s).
+2. **Merge the unique content** from each folded page into the `water-heater-services` hub as an
+   H3 section (Tankless / Installation / Repair / Replacement) so no content is lost. I can draft
+   the merged hub copy on request (page-content-writer).
 
 ---
 
