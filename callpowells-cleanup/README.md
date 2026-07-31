@@ -35,6 +35,9 @@ page; if it does not → 301 to the category hub (Plumbing / AC / Heating / Sept
 |---|---|
 | **`callpowells-redirects-import.csv`** | **Give this to Viktor.** 2-column `source,target` (relative paths), ready to import into the **Redirection** plugin. 106 rows. |
 | **`callpowells-redirect-map.csv`** | Review copy — full URLs + `backlinks`, `internal_links`, a `type` column (`404-fix` vs `wh-consolidation`), and a `notes` column explaining each target. |
+| **`broken-assets-fix.csv`** + **`broken-assets-fix.md`** | Fix for the ~141-page broken-JavaScript / redirected-image issue. Root cause + row-by-row offending resources and actions. |
+| **`content/norfolk-water-heater-services.md`** | Merged Norfolk water-heater hub copy (absorbs tankless + installation). |
+| **`content/wilmington-water-heater-services.md`** | Merged Wilmington water-heater hub copy (absorbs tankless + repair + installation + replacement). |
 
 **106 rows = 100 broken-page (404) fixes + 6 water-heater consolidation redirects** (see below).
 The two types are tagged in the `type` column of the review map. Verified: no redirect target is

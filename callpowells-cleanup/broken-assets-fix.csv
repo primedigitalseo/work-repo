@@ -1,0 +1,7 @@
+resource_url,type,likely_issue,affected_pages,recommended_action
+https://s.ksrndkehqnwntyxlhgto.com/154310.js,script,Broken/blocked third-party JS (unrecognized data-broker domain),~141,"Remove unless a known active retargeting vendor; confirm with client"
+https://s.ksrndkehqnwntyxlhgto.com/154061.js,script,Broken/blocked third-party JS (unrecognized data-broker domain),~141,"Remove unless a known active retargeting vendor; confirm with client"
+https://s.ksrndkehqnwntyxlhgto.com/154311.js,script,Broken/blocked third-party JS (unrecognized data-broker domain),~141,"Remove unless a known active retargeting vendor; confirm with client"
+https://cnv.event.prod.bidr.io/log/cnv,image,Tracking pixel that returns a redirect (flagged as redirected image),~141,"Remove with the scripts above (same vendor stack)"
+https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js,script,Externally-hosted jQuery (render/consent risk; version pinned old),n/a,"Optional: serve locally or rely on WP core jQuery"
+https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js,script,Externally-hosted library,n/a,"Optional: serve locally"
