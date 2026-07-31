@@ -117,6 +117,30 @@ Winchester is already hub-only — nothing to consolidate there.
 3. Remove dead internal links pointing at the old 404 slugs.
 4. Re-crawl in Ahrefs to confirm 404s cleared and health score recovered.
 
+## Optimization roadmap (Tiers 1–4)
+
+Focused on technical + on-page + entity work (GBP/reviews/links deferred).
+
+| Tier | Item | Deliverable | Status |
+|---|---|---|---|
+| 1 | 106 redirects | `callpowells-redirects-import.csv` | ✅ Ready for Viktor |
+| 1 | Nav menus link to 404s | 3 fixes in this README | ✅ Documented |
+| 1 | Broken-JS / redirected-image (~141 pp) | `broken-assets-fix.*` | ✅ Diagnosed |
+| 1 | Water-heater consolidation | 6 redirects + `content/*` | ✅ Ready |
+| 2 | Title/meta/H1 standards | `metadata-formulas.md` | ✅ Formulas ready |
+| 2 | Per-URL metadata rewrite CSV | (pending) | ⏳ Needs Ahrefs pull (units rate-limited) |
+| 2 | 174 missing alt-text list | (pending) | ⏳ Needs Ahrefs pull |
+| 2 | IndexNow submission (~84 URLs) | note in `metadata-formulas.md` | ✅ Documented |
+| 2 | Noindex (17) + orphan (5) review | (pending) | ⏳ Needs Ahrefs pull |
+| 3 | Over-split service consolidation (beyond WH) | (proposed workbook) | ⏳ Awaiting your go-ahead + traffic data |
+| 3 | Duplicate content across the 3 cities | content plan | ⏳ Scoping |
+| 4 | LocalBusiness schema (3 locations) | `schema/localbusiness-schema-template.md` | ✅ Templates ready |
+| 4 | sameAs / citation collection | `schema/sameas-citation-worksheet.csv` | ✅ Worksheet ready |
+| 4 | ID page per location | `schema/id-page-spec.md` | ✅ Spec ready |
+
+Items marked ⏳ "Needs Ahrefs pull" are blocked only by API rate limits and will be produced when
+units reset.
+
 ## Other issues in the same audit (not in this file)
 
 - 141 pages with broken/redirected JavaScript + 141 with redirected images (likely one
