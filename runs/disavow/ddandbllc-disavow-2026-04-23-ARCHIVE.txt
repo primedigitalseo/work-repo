@@ -1,0 +1,50 @@
+# Google Disavow File
+# Client: DD&B Custom Home & Pool Builders
+# Domain: ddandbllc.com
+# Generated: 2026-04-23
+# Source: Ahrefs MCP via Claude
+# Total domains disavowed: 34
+
+# --- High-DR Spam (DR 50+, Ahrefs spam-flagged) ---
+domain:buybacklinks.agency
+domain:rank-your.site
+domain:find-us-here.com
+domain:rankyour.website
+domain:freelistingusa.com
+domain:zenwriting.net
+domain:supplyautonomy.com
+domain:sparltech.com
+domain:trueen.com
+domain:seodaro.com
+domain:prolinkbox.com
+domain:quero.party
+domain:bye.fyi
+domain:creativeposts.top
+domain:analyticshaven.top
+domain:atomizelink.icu
+domain:trexgame.net
+domain:blogsphere.top
+domain:screenshots.wiki
+domain:metamagic.top
+domain:byteshort.xyz
+
+# --- Mid-DR Spam (DR 10-49, Ahrefs spam-flagged) ---
+domain:jake.eu
+domain:optimizeflow.top
+
+# --- Wiki Farms / Spammy TLDs ---
+domain:wiki-book.win
+domain:touch-wiki.win
+domain:sierra-wiki.win
+domain:victor-wiki.win
+domain:fair-wiki.win
+
+# --- Low-DR PBN Pattern (DR <30, zero traffic, dofollow) ---
+domain:heettiffany.com
+domain:redbridgepavingcontractors.com
+domain:pease-ae.com
+domain:cementizillo.com
+domain:jafriqradio.com
+
+# --- Foreign Language Spam ---
+domain:wspomozycielka-lodz.pl
