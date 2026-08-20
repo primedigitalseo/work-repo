@@ -115,6 +115,11 @@ commission. One URL per cluster. Below 4 variants it stays in the backlog.
 Backlog output per cluster: head question, variant list, head-term volume,
 currently-cited domains, fan-out phrasings, displacement flag.
 
+The backlog lives on the client's Q&A Content Calendar (LLM/GEO) sheet, which
+today carries volume but no gate evidence. The columns to add, and a worked
+audit of the current Care Roofing calendar against this spec, are in
+`references/content-calendar.md`.
+
 ## The weekly write (per client)
 
 ### 1. Take the next cluster
@@ -162,21 +167,24 @@ Every line is a failure mode we have already paid for. See
 - [ ] No geo modifier in the slug or H1
 
 ### 5. Ship it
-The Make scenario reads the client's `[Client] New Q&A blogs` Drive folder,
-exports each Doc to HTML, and POSTs it to WordPress as a **draft**, using the
-**Drive file name as the post title**. WordPress then derives the slug from that
-title.
+Save the draft into the client's Q&A blog Drive folder and update its row on the
+client's **Q&A Content Calendar (LLM/GEO)** sheet. Approval runs through the
+client's Slack channel and then the client's recurring ClickUp approval task.
+Calendar structure and the gate columns it needs: `references/content-calendar.md`.
 
-**So the Google Doc filename is the slug.** Name the Doc exactly the head
-question, interrogative, no geo modifier, no client name, no "Blog -" prefix. A
-trailing question mark is fine, WordPress drops it from the slug.
+**The slug rule binds wherever the handoff happens.** Whatever carries the draft
+into WordPress, the published title is the head question verbatim and the slug
+matches it: interrogative, hyphenated, no geo modifier, no "(2026 Price Guide)"
+style suffix. Where the handoff reads a Google Doc filename, the filename
+becomes the title and therefore the slug, so name the Doc the head question and
+nothing else.
 
-The scenario has no move-or-archive step, so any Doc left in the folder gets
-posted again on the next run. **Move the Doc out of the folder once the draft
-lands** or the client collects duplicate drafts.
-
-Then: internal review (KCM), client approval via the client's recurring ClickUp
-task, publish.
+**Legacy note.** The per-client "[Client] Q&A Blogs to Wordpress" Make scenarios
+are not the current path. Five of seven are deactivated; the two still flagged
+active (EverClear, Rembrandt) have not been edited since Dec 2025 and carry no
+execution history, and none of the Tier 1 or Tier 2 rollout clients has one. If
+one is ever revived: it posts the Drive filename as the WordPress title and has
+no move-or-archive step, so any Doc left in the folder reposts on the next run.
 
 ### 6. Register it for verification
 On publish, add the URL to the client's verification log with its five poll

@@ -37,12 +37,15 @@ Run it before the Doc goes into the client's `New Q&A blogs` folder.
 
 ## Handoff
 
-- [ ] **Doc filename is exactly the head question**, interrogative. No client
-      name, no "Blog -" prefix, no date. This filename becomes the WordPress
-      title and the slug.
-- [ ] **Doc is in the client's `New Q&A blogs` folder.**
-- [ ] **Previously posted Docs have been moved out of that folder.** The Make
-      scenario has no archive step and reposts anything it still finds.
+- [ ] **Title and Doc filename are exactly the head question**, interrogative.
+      No client name, no "Blog -" prefix, no date, no geo modifier, no "(2026
+      Price Guide)" style suffix. Wherever the handoff reads a filename, that
+      filename becomes the WordPress title and therefore the slug.
+- [ ] **Draft is in the client's Q&A blog Drive folder.**
+- [ ] **Calendar row updated** on the client's Q&A Content Calendar (LLM/GEO):
+      status, published URL when it lands.
+- [ ] **Sent for approval** in the client's Slack channel and tracked on the
+      client's recurring ClickUp approval task.
 
 ## Post-publish
 

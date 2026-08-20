@@ -75,11 +75,12 @@ Then the body with H2s.
 
 ## After generation
 
-**Filename.** Save the Google Doc named exactly the head question. The Make
-scenario posts the Drive filename as the WordPress title, and WordPress derives
-the slug from that title. The filename is the slug. No client name, no "Blog -"
-prefix, no date, no geo modifier. A trailing question mark is fine, WordPress
-drops it from the slug.
+**Filename and title.** Save the Google Doc named exactly the head question.
+Where the handoff into WordPress reads a Doc filename, that filename becomes the
+post title and WordPress derives the slug from it, so the filename is the slug.
+No client name, no "Blog -" prefix, no date, no geo modifier, no "(2026 Price
+Guide)" style suffix. A trailing question mark is fine, WordPress drops it from
+the slug.
 
 **Em dash sweep.** Google Docs autocorrects a double hyphen into an em dash as
 you type, so a prompt instruction alone does not hold. Search the doc for the
