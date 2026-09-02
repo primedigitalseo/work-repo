@@ -1,0 +1,7 @@
+state,metro,postal_code,service,monthly_volume,fill_rate
+TX,Dallas-Fort Worth,75201,roofing,140,0.35
+TX,Dallas-Fort Worth,75204,roofing,95,0.20
+TX,Houston,77002,hvac,210,0.60
+FL,Tampa,33602,restoration,80,0.10
+FL,Orlando,32801,pest,160,0.75
+AZ,Phoenix,85004,hvac,180,0.45

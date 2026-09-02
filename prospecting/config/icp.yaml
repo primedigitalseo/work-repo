@@ -1,0 +1,104 @@
+# Local Avenue ICP definition.
+# Everything the sourcing scripts target lives here. Edit this, not the code.
+
+verticals:
+  roofing:
+    keywords: [roofing, roofer, roof replacement, exteriors, storm restoration]
+    naics: ["23816"]
+    ticket: high          # avg job value drives what a lead is worth
+    lead_value: 250       # what you can charge per exclusive lead, USD
+  restoration:
+    keywords: [water damage restoration, fire damage, mold remediation, disaster restoration]
+    naics: ["56179"]
+    ticket: high
+    lead_value: 300
+  hvac:
+    keywords: [hvac, heating and air, air conditioning, furnace]
+    naics: ["23822"]
+    ticket: high
+    lead_value: 180
+  plumbing:
+    keywords: [plumbing, plumber, drain cleaning, sewer]
+    naics: ["23822"]
+    ticket: medium
+    lead_value: 150
+  electrical:
+    keywords: [electrical contractor, electrician, residential electrical]
+    naics: ["23821"]
+    ticket: medium
+    lead_value: 140
+  pest:
+    keywords: [pest control, exterminator, termite, mosquito control]
+    naics: ["56171"]
+    ticket: low
+    lead_value: 90
+  remodeling:
+    keywords: [bath remodeling, window replacement, home improvement, siding, gutters]
+    naics: ["23611", "23835"]
+    ticket: high
+    lead_value: 220
+
+# Employee count is the sizing proxy. Private home-service revenue is not published;
+# headcount is. Industry benchmark runs ~$150-250k revenue per employee, so:
+#   15-25 employees  ~ $3-6M     -> owner / GM sells
+#   26-75 employees  ~ $6-18M    -> GM or first marketing hire
+#   76-200 employees ~ $18-50M   -> real marketing function, best fit
+#   201-500          ~ $50-125M  -> platform, longer cycle, bigger prize
+size_bands:
+  emerging:   {range: "11,20",  est_revenue: "$2-5M",    priority: 3}
+  core:       {range: "21,50",  est_revenue: "$5-12M",   priority: 1}
+  sweet_spot: {range: "51,200", est_revenue: "$12-50M",  priority: 0}
+  platform:   {range: "201,500", est_revenue: "$50-125M", priority: 2}
+
+# Who to contact, by company size. Small companies have no marketing director —
+# the owner buys. That flips around 50-75 employees.
+title_ladder:
+  emerging:
+    - {titles: [owner, president, ceo], tier: 1}
+    - {titles: [general manager, operations manager], tier: 2}
+  core:
+    - {titles: [marketing manager, marketing director, director of marketing], tier: 1}
+    - {titles: [general manager, operations manager], tier: 1}
+    - {titles: [owner, president], tier: 2}
+  sweet_spot:
+    - {titles: [director of marketing, marketing director, vp marketing, vice president of marketing], tier: 1}
+    - {titles: [chief marketing officer, cmo, head of growth, demand generation manager], tier: 1}
+    - {titles: [general manager, director of operations], tier: 2}
+    - {titles: [marketing manager, digital marketing manager], tier: 2}
+  platform:
+    - {titles: [chief marketing officer, vp marketing, vice president of marketing], tier: 1}
+    - {titles: [director of marketing, head of demand generation, director of growth], tier: 1}
+    - {titles: [regional marketing manager, brand marketing director], tier: 2}
+
+# Max contacts pulled per company, by band. More than this is spam, not coverage.
+contacts_per_company:
+  emerging: 1
+  core: 2
+  sweet_spot: 3
+  platform: 4
+
+geo:
+  country: United States
+  # Leave states empty to source nationally, then let coverage.csv do the filtering.
+  # Populate to hard-restrict sourcing to markets you can actually serve.
+  states: []
+
+# Capacity signals — companies hiring field staff need demand to feed them.
+capacity_signals:
+  job_titles:
+    - hvac technician
+    - hvac installer
+    - service technician
+    - roofing sales
+    - sales representative
+    - pest control technician
+    - plumber
+    - restoration technician
+    - install crew
+  window_days: 60
+
+exclusions:
+  # Franchise brands where the franchisee buys, not corporate. Sourced separately.
+  company_name_contains: []
+  # Never contact — competitors, existing customers, past bad fits.
+  domains: []
