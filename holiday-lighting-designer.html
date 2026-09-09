@@ -1,0 +1,1182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Holiday Lighting Designer</title>
+<style>
+  :root{
+    --bg:#0e1116; --panel:#151a22; --panel2:#1b212b; --line:#28303c;
+    --txt:#e6ebf2; --dim:#8b97a8; --accent:#ffb020; --accent2:#3b82f6;
+    --ok:#31d158; --danger:#ff453a;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{background:var(--bg);color:var(--txt);font:13px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;overflow:hidden}
+  button,input,select{font:inherit;color:inherit}
+  button{background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:6px 10px;cursor:pointer}
+  button:hover{border-color:#3b4553;background:#212936}
+  button.on{background:var(--accent);border-color:var(--accent);color:#181203;font-weight:600}
+  button.ghost{background:transparent}
+  input[type=text],input[type=number],select{background:#0f1420;border:1px solid var(--line);border-radius:6px;padding:5px 7px;width:100%}
+  input:focus,select:focus{outline:none;border-color:var(--accent2)}
+  label{display:block;color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin:10px 0 4px}
+
+  header{height:46px;display:flex;align-items:center;gap:8px;padding:0 12px;background:var(--panel);border-bottom:1px solid var(--line)}
+  .brand{font-weight:700;letter-spacing:.02em;margin-right:auto}
+  .brand span{color:var(--accent)}
+  .badge{font-size:11px;padding:3px 8px;border-radius:20px;background:#3a2a06;color:var(--accent);border:1px solid #55400a}
+  .badge.good{background:#0d2c16;color:var(--ok);border-color:#1d5230}
+
+  main{display:grid;grid-template-columns:56px 1fr 330px;height:calc(100% - 46px)}
+  .tools{background:var(--panel);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:6px;padding:8px 6px}
+  .tools button{width:100%;padding:8px 0;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9px;color:var(--dim);text-transform:uppercase}
+  .tools button.on{color:#181203}
+  .tools .ico{font-size:16px;line-height:1}
+  .tools hr{border:0;border-top:1px solid var(--line);margin:4px 0;width:100%}
+
+  .stage{position:relative;overflow:hidden;background:#0a0d12}
+  canvas{display:block;position:absolute;inset:0}
+  #drop{position:absolute;inset:24px;border:2px dashed #2c3542;border-radius:12px;display:flex;flex-direction:column;
+        align-items:center;justify-content:center;gap:10px;color:var(--dim);pointer-events:none;text-align:center}
+  #drop b{color:var(--txt);font-size:16px}
+  #hint{position:absolute;left:12px;bottom:12px;background:rgba(10,13,18,.85);border:1px solid var(--line);
+        border-radius:6px;padding:6px 10px;color:var(--dim);font-size:12px;pointer-events:none}
+  #zoomctl{position:absolute;right:12px;bottom:12px;display:flex;gap:6px}
+
+  .panel{background:var(--panel);border-left:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden}
+  .tabs{display:flex;border-bottom:1px solid var(--line)}
+  .tabs button{flex:1;border:0;border-radius:0;background:transparent;color:var(--dim);padding:10px 0;border-bottom:2px solid transparent}
+  .tabs button.on{color:var(--txt);border-bottom-color:var(--accent);background:transparent;font-weight:600}
+  .tabbody{padding:12px;overflow-y:auto;flex:1}
+  .tabbody[hidden]{display:none}
+
+  .row{display:flex;gap:8px;align-items:center}
+  .row>*{flex:1}
+  .sw{width:22px;height:22px;border-radius:50%;border:2px solid #0f1420;cursor:pointer;flex:none;box-shadow:0 0 0 1px #333c49}
+  .sw.on{box-shadow:0 0 0 2px var(--accent)}
+  .swrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+  .pattern{display:flex;flex-wrap:wrap;gap:3px;align-items:center;min-height:26px;background:#0f1420;border:1px solid var(--line);border-radius:6px;padding:4px}
+  .pattern .dot{width:16px;height:16px;border-radius:50%;cursor:pointer}
+  .pattern .empty{color:var(--dim);font-size:11px;padding:0 4px}
+
+  .runlist{margin-top:6px;display:flex;flex-direction:column;gap:4px}
+  .run{background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:7px 8px;cursor:pointer}
+  .run.on{border-color:var(--accent)}
+  .run .top{display:flex;justify-content:space-between;gap:8px;align-items:center}
+  .run .nm{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .run .ft{color:var(--accent);font-variant-numeric:tabular-nums;flex:none}
+  .run .sub{color:var(--dim);font-size:11px;display:flex;align-items:center;gap:5px;margin-top:3px}
+  .run .dots{display:flex;gap:2px}
+  .run .dots i{width:8px;height:8px;border-radius:50%;display:block}
+  .empty-note{color:var(--dim);padding:14px;text-align:center;border:1px dashed var(--line);border-radius:8px}
+
+  table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+  th{text-align:left;color:var(--dim);font-size:10px;text-transform:uppercase;letter-spacing:.04em;padding:6px 4px;border-bottom:1px solid var(--line)}
+  td{padding:6px 4px;border-bottom:1px solid #1e242e;vertical-align:middle}
+  td.n{text-align:right}
+  tfoot td{border:0;padding-top:8px}
+  .total{font-size:18px;font-weight:700;color:var(--accent)}
+  .mini{color:var(--dim);font-size:11px}
+  .catrow input{padding:4px 6px}
+  h4{margin:16px 0 6px;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--dim)}
+  h4:first-child{margin-top:0}
+  .warn{background:#2a1408;border:1px solid #5b2c0c;color:#ffb884;border-radius:6px;padding:8px;font-size:12px;margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Holiday Lighting <span>Designer</span></div>
+  <span id="calibBadge" class="badge">Not calibrated</span>
+  <button id="btnNight">🌙 Night view</button>
+  <button id="btnPhoto">Photo…</button>
+  <button id="btnOpen">Open</button>
+  <button id="btnSave">Save</button>
+  <button id="btnPng">Export PNG</button>
+  <button id="btnPrint" class="on">Proposal</button>
+</header>
+
+<main>
+  <div class="tools">
+    <button id="tSelect" class="on" title="Select / move (V)"><span class="ico">➤</span>Select</button>
+    <button id="tDraw" title="Draw a light run (D)"><span class="ico">✎</span>Draw</button>
+    <button id="tCalib" title="Set the scale (C)"><span class="ico">📏</span>Scale</button>
+    <hr>
+    <button id="tUndo" title="Undo (Ctrl+Z)"><span class="ico">↶</span>Undo</button>
+    <button id="tDel" title="Delete selected (Del)"><span class="ico">🗑</span>Delete</button>
+    <hr>
+    <button id="tFit" title="Fit to window"><span class="ico">⛶</span>Fit</button>
+  </div>
+
+  <div class="stage" id="stage">
+    <canvas id="cv"></canvas>
+    <div id="drop"><b>Drop a photo of the house here</b><span>or click “Photo…” above · JPG or PNG</span></div>
+    <div id="hint"></div>
+    <div id="zoomctl">
+      <button id="zOut">−</button><button id="zIn">+</button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="tabs">
+      <button id="tabDesign" class="on">Design</button>
+      <button id="tabQuote">Quote</button>
+      <button id="tabPrice">Pricing</button>
+    </div>
+
+    <div class="tabbody" id="bodyDesign">
+      <div id="calibBox">
+        <h4>Scale reference</h4>
+        <div id="calibNote" class="warn">Pick the <b>Scale</b> tool and drag a line across something you know the size of — a single garage door is 8 ft, a double is 16 ft, a front door is 6.7 ft.</div>
+        <label>Reference length (feet)</label>
+        <input type="number" id="calibFt" step="0.1" min="0.5" value="16">
+        <div class="mini" id="calibOut"></div>
+      </div>
+
+      <h4>New run defaults</h4>
+      <label>Run type</label>
+      <select id="newType"></select>
+      <label>Product</label>
+      <select id="newProduct"></select>
+      <label>Color pattern (repeats along the run)</label>
+      <div class="pattern" id="newPattern"></div>
+      <div class="swrow" id="newSwatches"></div>
+      <div class="row" style="margin-top:8px">
+        <button id="patClear" class="ghost">Clear pattern</button>
+        <button id="startDraw">Start drawing</button>
+      </div>
+
+      <h4>Runs on this photo</h4>
+      <div class="runlist" id="runlist"></div>
+
+      <div id="selBox" hidden>
+        <h4>Selected run</h4>
+        <label>Run type</label>
+        <select id="selType"></select>
+        <label>Product</label>
+        <select id="selProduct"></select>
+        <label>Height / access</label>
+        <select id="selStory"></select>
+        <label>Color pattern</label>
+        <div class="pattern" id="selPattern"></div>
+        <div class="swrow" id="selSwatches"></div>
+        <div class="row" style="margin-top:8px">
+          <button id="selClosed" class="ghost">Toggle closed loop</button>
+          <button id="selDel" class="ghost">Delete run</button>
+        </div>
+        <div class="mini" style="margin-top:8px">Drag the square handles to reshape. Alt-click a handle to remove that point. Click a segment to add one.</div>
+      </div>
+    </div>
+
+    <div class="tabbody" id="bodyQuote" hidden></div>
+    <div class="tabbody" id="bodyPrice" hidden></div>
+  </div>
+</main>
+
+<input type="file" id="filePhoto" accept="image/*" hidden>
+<input type="file" id="fileOpen" accept="application/json,.json" hidden>
+
+<script>
+"use strict";
+/* ---------------------------------------------------------------------------
+   Holiday Lighting Designer — internal design + quoting tool.
+   Single file, no server, no dependencies. Everything lives in the browser.
+   Save a job with "Save" (a .json file that embeds the photo) and reopen it
+   later with "Open".
+--------------------------------------------------------------------------- */
+
+const COLORS = {
+  ww : {name:'Warm white', hex:'#ffcf8a'},
+  cw : {name:'Cool white', hex:'#e8f1ff'},
+  red: {name:'Red',        hex:'#ff3b30'},
+  grn: {name:'Green',      hex:'#31d158'},
+  blu: {name:'Blue',       hex:'#3b82f6'},
+  amb: {name:'Amber',      hex:'#ffb020'},
+  pur: {name:'Purple',     hex:'#a855f7'},
+  pnk: {name:'Pink',       hex:'#ff6fae'}
+};
+
+const RUN_TYPES = [
+  {id:'roofline',  label:'Roofline',        product:'c9-12'},
+  {id:'window',    label:'Window / trim',   product:'mini-6'},
+  {id:'column',    label:'Column / post',   product:'mini-6'},
+  {id:'walkway',   label:'Walkway / fence', product:'c9-12'},
+  {id:'tree',      label:'Tree wrap',       product:'mini-6'},
+  {id:'permanent', label:'Permanent track', product:'perm-4'}
+];
+
+const STORIES = [
+  {id:'s1', label:'Ground level / 1st story', mult:1.00},
+  {id:'s2', label:'2nd story',                mult:1.25},
+  {id:'s3', label:'3rd story / steep pitch',  mult:1.60}
+];
+
+/* Placeholder prices — set your real numbers on the Pricing tab. They are
+   stored in this browser, so each machine needs it done once. */
+const DEFAULT_CATALOG = [
+  {id:'c9-12',  name:'C9 · 12" spacing',   spacingIn:12, bulbIn:2.4, pricePerFt:3.75},
+  {id:'c9-8',   name:'C9 · 8" spacing',    spacingIn:8,  bulbIn:2.4, pricePerFt:4.25},
+  {id:'c7-12',  name:'C7 · 12" spacing',   spacingIn:12, bulbIn:1.8, pricePerFt:3.25},
+  {id:'mini-6', name:'Mini · 6" spacing',  spacingIn:6,  bulbIn:0.8, pricePerFt:2.75},
+  {id:'mini-4', name:'Mini · 4" spacing',  spacingIn:4,  bulbIn:0.8, pricePerFt:3.10},
+  {id:'perm-4', name:'Permanent track · 4"',spacingIn:4, bulbIn:0.9, pricePerFt:11.00}
+];
+
+const DEFAULT_ADDONS = [
+  {id:'wreath',   name:'Lit wreath',        unit:'each', price:145},
+  {id:'garland',  name:'Lit garland',       unit:'ft',   price:22},
+  {id:'minitree', name:'Mini tree',         unit:'each', price:85},
+  {id:'bow',      name:'Bow',               unit:'each', price:28},
+  {id:'timer',    name:'Timer / stake kit', unit:'each', price:35}
+];
+
+const DEFAULT_SETTINGS = {minimum:650, taxPct:0, company:'', phone:''};
+
+/* ---------- persisted shop settings ---------------------------------- */
+function loadShop(){
+  try{
+    const raw = localStorage.getItem('hld.shop');
+    if(raw){
+      const s = JSON.parse(raw);
+      return {
+        catalog : Array.isArray(s.catalog) && s.catalog.length ? s.catalog : structuredClone(DEFAULT_CATALOG),
+        addons  : Array.isArray(s.addons)  && s.addons.length  ? s.addons  : structuredClone(DEFAULT_ADDONS),
+        settings: Object.assign({}, DEFAULT_SETTINGS, s.settings || {})
+      };
+    }
+  }catch(e){ console.warn('shop settings reset', e); }
+  return {catalog:structuredClone(DEFAULT_CATALOG), addons:structuredClone(DEFAULT_ADDONS), settings:structuredClone(DEFAULT_SETTINGS)};
+}
+function saveShop(){
+  try{ localStorage.setItem('hld.shop', JSON.stringify(shop)); }catch(e){}
+}
+const shop = loadShop();
+
+/* ---------- job state ------------------------------------------------- */
+const state = {
+  photoDataUrl : null,
+  photoName    : '',
+  calib        : null,          // {a:{x,y}, b:{x,y}, feet}
+  runs         : [],            // {id,type,productId,pattern[],story,closed,points[]}
+  addons       : {},            // addonId -> qty
+  customer     : {name:'', address:'', date:new Date().toISOString().slice(0,10), notes:''},
+  night        : false
+};
+
+const ui = {
+  tool: 'select',               // select | draw | calib
+  sel: null,                    // selected run id
+  draft: null,                  // {points:[]} while drawing
+  calibDraft: null,             // {a, b} while dragging the scale line
+  newType: 'roofline',
+  newProduct: 'c9-12',
+  newPattern: ['ww'],
+  tab: 'design'
+};
+
+let img = null;                 // HTMLImageElement
+const view = {scale:1, ox:0, oy:0};
+const undoStack = [];
+
+const $ = id => document.getElementById(id);
+const cv = $('cv'), ctx = cv.getContext('2d');
+const stage = $('stage');
+const uid = () => Math.random().toString(36).slice(2,9);
+const money = n => '$' + (Math.round(n*100)/100).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2});
+const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
+const product = id => shop.catalog.find(p => p.id === id) || shop.catalog[0];
+const runType = id => RUN_TYPES.find(t => t.id === id) || RUN_TYPES[0];
+const story = id => STORIES.find(s => s.id === id) || STORIES[0];
+
+/* ---------- geometry -------------------------------------------------- */
+function segments(pts, closed){
+  const out = [];
+  for(let i=0;i<pts.length-1;i++) out.push([pts[i], pts[i+1]]);
+  if(closed && pts.length > 2) out.push([pts[pts.length-1], pts[0]]);
+  return out;
+}
+function pathLengthPx(pts, closed){
+  let d = 0;
+  for(const [a,b] of segments(pts, closed)) d += Math.hypot(b.x-a.x, b.y-a.y);
+  return d;
+}
+/* Walk the path and drop a point every `step` pixels of arc length. */
+function sampleAlong(pts, closed, step){
+  const out = [];
+  const segs = segments(pts, closed);
+  if(!segs.length || step <= 0) return pts.length ? [{x:pts[0].x, y:pts[0].y}] : out;
+  let carry = 0;
+  out.push({x:segs[0][0].x, y:segs[0][0].y});
+  for(const [a,b] of segs){
+    const len = Math.hypot(b.x-a.x, b.y-a.y);
+    if(len < 1e-6) continue;
+    const ux = (b.x-a.x)/len, uy = (b.y-a.y)/len;
+    let d = step - carry;
+    while(d <= len){
+      out.push({x:a.x + ux*d, y:a.y + uy*d});
+      d += step;
+    }
+    carry = (carry + len) % step;
+  }
+  return out;
+}
+function distToSegment(p, a, b){
+  const vx = b.x-a.x, vy = b.y-a.y;
+  const L2 = vx*vx + vy*vy;
+  if(L2 < 1e-9) return {d:Math.hypot(p.x-a.x, p.y-a.y), t:0};
+  let t = ((p.x-a.x)*vx + (p.y-a.y)*vy) / L2;
+  t = clamp(t, 0, 1);
+  return {d:Math.hypot(p.x-(a.x+vx*t), p.y-(a.y+vy*t)), t};
+}
+
+/* pixels per foot, from the calibration line. Falls back to a guess so the
+   tool still draws something before the scale is set. */
+function pxPerFt(){
+  if(state.calib && state.calib.feet > 0){
+    const {a,b} = state.calib;
+    const px = Math.hypot(b.x-a.x, b.y-a.y);
+    if(px > 4) return px / state.calib.feet;
+  }
+  return img ? img.width / 60 : 20;   // assume a ~60 ft wide photo
+}
+const isCalibrated = () => !!(state.calib && state.calib.feet > 0 &&
+                              Math.hypot(state.calib.b.x-state.calib.a.x, state.calib.b.y-state.calib.a.y) > 4);
+
+function runFeet(run){
+  return pathLengthPx(run.points, run.closed) / pxPerFt();
+}
+function runBulbs(run){
+  const spacingFt = product(run.productId).spacingIn / 12;
+  const ft = runFeet(run);
+  return ft > 0 ? Math.max(1, Math.round(ft / spacingFt) + 1) : 0;
+}
+
+/* ---------- view ------------------------------------------------------ */
+function resizeCanvas(){
+  const dpr = window.devicePixelRatio || 1;
+  const w = stage.clientWidth, h = stage.clientHeight;
+  cv.width = Math.round(w*dpr); cv.height = Math.round(h*dpr);
+  cv.style.width = w+'px'; cv.style.height = h+'px';
+  draw();
+}
+function fitView(){
+  if(!img) return;
+  const w = stage.clientWidth, h = stage.clientHeight;
+  view.scale = Math.min(w/img.width, h/img.height) * 0.94;
+  view.ox = img.width/2  - w/(2*view.scale);
+  view.oy = img.height/2 - h/(2*view.scale);
+  draw();
+}
+function toImage(sx, sy){ return {x: sx/view.scale + view.ox, y: sy/view.scale + view.oy}; }
+function zoomAt(sx, sy, factor){
+  const before = toImage(sx, sy);
+  view.scale = clamp(view.scale * factor, 0.05, 20);
+  const after = toImage(sx, sy);
+  view.ox += before.x - after.x;
+  view.oy += before.y - after.y;
+  draw();
+}
+
+/* ---------- rendering ------------------------------------------------- */
+function bulbRadius(run){
+  const r = (product(run.productId).bulbIn / 12) * pxPerFt() * 0.62;
+  return clamp(r, 1.8, 40);
+}
+function bulbColors(run, n){
+  const pat = (run.pattern && run.pattern.length) ? run.pattern : ['ww'];
+  const out = [];
+  for(let i=0;i<n;i++) out.push(COLORS[pat[i % pat.length]] || COLORS.ww);
+  return out;
+}
+
+/* Draws the whole scene in IMAGE coordinates. The caller sets the transform,
+   so the same code serves the screen and the full-resolution PNG export. */
+function drawScene(c, opts){
+  const o = Object.assign({night:state.night, chrome:true}, opts||{});
+  if(img) c.drawImage(img, 0, 0);
+
+  if(o.night && img){
+    c.save();
+    c.globalCompositeOperation = 'multiply';
+    c.fillStyle = '#2b3352';
+    c.fillRect(0,0,img.width,img.height);
+    c.restore();
+    c.fillStyle = 'rgba(6,10,26,0.55)';
+    c.fillRect(0,0,img.width,img.height);
+  }
+
+  for(const run of state.runs) drawRun(c, run, o);
+  if(o.chrome && ui.draft && ui.draft.points.length) drawDraft(c, o);
+
+  if(o.chrome){
+    drawCalib(c);
+    if(ui.sel){
+      const run = state.runs.find(r => r.id === ui.sel);
+      if(run) drawHandles(c, run);
+    }
+  }
+}
+
+function drawRun(c, run, o){
+  const pts = run.points;
+  if(pts.length < 2){
+    if(pts.length === 1){ c.fillStyle='#ffcf8a'; c.beginPath(); c.arc(pts[0].x,pts[0].y,3/view.scale,0,7); c.fill(); }
+    return;
+  }
+  const spacingPx = (product(run.productId).spacingIn / 12) * pxPerFt();
+  const samples = sampleAlong(pts, run.closed, Math.max(spacingPx, 1.5));
+  const cols = bulbColors(run, samples.length);
+  const r = bulbRadius(run);
+
+  // the wire
+  c.save();
+  c.lineWidth = Math.max(0.6, r*0.28);
+  c.strokeStyle = o.night ? 'rgba(20,24,34,0.55)' : 'rgba(28,32,40,0.75)';
+  c.beginPath();
+  c.moveTo(pts[0].x, pts[0].y);
+  for(let i=1;i<pts.length;i++) c.lineTo(pts[i].x, pts[i].y);
+  if(run.closed && pts.length > 2) c.closePath();
+  c.stroke();
+  c.restore();
+
+  if(o.night){
+    // wide halo, added on top of whatever is behind it
+    c.save();
+    c.globalCompositeOperation = 'lighter';
+    for(let i=0;i<samples.length;i++){
+      const p = samples[i], col = cols[i], R = r*9;
+      const g = c.createRadialGradient(p.x, p.y, 0, p.x, p.y, R);
+      g.addColorStop(0,   hexA(col.hex, 0.62));
+      g.addColorStop(0.25,hexA(col.hex, 0.20));
+      g.addColorStop(1,   hexA(col.hex, 0));
+      c.fillStyle = g;
+      c.beginPath(); c.arc(p.x, p.y, R, 0, 7); c.fill();
+    }
+    // hot core
+    for(let i=0;i<samples.length;i++){
+      const p = samples[i], col = cols[i];
+      const g = c.createRadialGradient(p.x, p.y, 0, p.x, p.y, r*1.6);
+      g.addColorStop(0, 'rgba(255,255,255,0.95)');
+      g.addColorStop(0.45, hexA(col.hex, 0.95));
+      g.addColorStop(1, hexA(col.hex, 0));
+      c.fillStyle = g;
+      c.beginPath(); c.arc(p.x, p.y, r*1.6, 0, 7); c.fill();
+    }
+    c.restore();
+  }else{
+    for(let i=0;i<samples.length;i++){
+      const p = samples[i], col = cols[i];
+      c.fillStyle = col.hex;
+      c.strokeStyle = 'rgba(0,0,0,0.45)';
+      c.lineWidth = Math.max(0.4, r*0.18);
+      c.beginPath(); c.arc(p.x, p.y, r, 0, 7); c.fill(); c.stroke();
+      c.fillStyle = 'rgba(255,255,255,0.55)';
+      c.beginPath(); c.arc(p.x - r*0.28, p.y - r*0.3, r*0.32, 0, 7); c.fill();
+    }
+  }
+}
+
+function drawDraft(c, o){
+  const pts = ui.draft.points;
+  c.save();
+  c.setLineDash([6/view.scale, 4/view.scale]);
+  c.lineWidth = 1.6/view.scale;
+  c.strokeStyle = '#ffb020';
+  c.beginPath();
+  c.moveTo(pts[0].x, pts[0].y);
+  for(let i=1;i<pts.length;i++) c.lineTo(pts[i].x, pts[i].y);
+  if(ui.draft.cursor) c.lineTo(ui.draft.cursor.x, ui.draft.cursor.y);
+  c.stroke();
+  c.setLineDash([]);
+  c.fillStyle = '#ffb020';
+  for(const p of pts){ c.beginPath(); c.arc(p.x, p.y, 3.5/view.scale, 0, 7); c.fill(); }
+  c.restore();
+}
+
+function drawCalib(c){
+  const cal = ui.calibDraft || state.calib;
+  if(!cal || !cal.a || !cal.b) return;
+  const s = 1/view.scale;
+  c.save();
+  c.strokeStyle = '#3b82f6';
+  c.lineWidth = 2*s;
+  c.beginPath(); c.moveTo(cal.a.x, cal.a.y); c.lineTo(cal.b.x, cal.b.y); c.stroke();
+  for(const p of [cal.a, cal.b]){
+    c.fillStyle = '#3b82f6';
+    c.beginPath(); c.arc(p.x, p.y, 5*s, 0, 7); c.fill();
+    c.strokeStyle = '#fff'; c.lineWidth = 1.5*s; c.stroke();
+  }
+  const feet = (state.calib && state.calib.feet) || parseFloat($('calibFt').value) || 0;
+  const mid = {x:(cal.a.x+cal.b.x)/2, y:(cal.a.y+cal.b.y)/2};
+  c.font = `${13*s}px -apple-system,Segoe UI,Roboto,sans-serif`;
+  const label = feet ? feet + ' ft' : 'set length →';
+  const w = c.measureText(label).width + 10*s;
+  c.fillStyle = 'rgba(59,130,246,0.92)';
+  c.fillRect(mid.x - w/2, mid.y - 22*s, w, 18*s);
+  c.fillStyle = '#fff';
+  c.textAlign = 'center'; c.textBaseline = 'middle';
+  c.fillText(label, mid.x, mid.y - 13*s);
+  c.restore();
+}
+
+function drawHandles(c, run){
+  const s = 1/view.scale, h = 4.5*s;
+  c.save();
+  c.strokeStyle = '#ffb020'; c.lineWidth = 1.4*s;
+  c.setLineDash([5*s, 4*s]);
+  c.beginPath();
+  c.moveTo(run.points[0].x, run.points[0].y);
+  for(let i=1;i<run.points.length;i++) c.lineTo(run.points[i].x, run.points[i].y);
+  if(run.closed && run.points.length > 2) c.closePath();
+  c.stroke();
+  c.setLineDash([]);
+  for(const p of run.points){
+    c.fillStyle = '#0e1116';
+    c.fillRect(p.x-h, p.y-h, h*2, h*2);
+    c.strokeRect(p.x-h, p.y-h, h*2, h*2);
+  }
+  c.restore();
+}
+
+function hexA(hex, a){
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n>>16)&255},${(n>>8)&255},${n&255},${a})`;
+}
+
+function draw(){
+  const dpr = window.devicePixelRatio || 1;
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.clearRect(0,0,cv.width,cv.height);
+  ctx.fillStyle = state.night ? '#05070c' : '#0a0d12';
+  ctx.fillRect(0,0,cv.width,cv.height);
+  if(!img){ $('drop').style.display='flex'; return; }
+  $('drop').style.display='none';
+  ctx.save();
+  ctx.scale(dpr, dpr);
+  ctx.translate(-view.ox*view.scale, -view.oy*view.scale);
+  ctx.scale(view.scale, view.scale);
+  drawScene(ctx, {});
+  ctx.restore();
+}
+
+/* ---------- undo ------------------------------------------------------ */
+function snapshot(){
+  undoStack.push(JSON.stringify({runs:state.runs, calib:state.calib}));
+  if(undoStack.length > 60) undoStack.shift();
+}
+function undo(){
+  const s = undoStack.pop();
+  if(!s) return;
+  const prev = JSON.parse(s);
+  state.runs = prev.runs; state.calib = prev.calib;
+  if(!state.runs.some(r => r.id === ui.sel)) ui.sel = null;
+  refresh();
+}
+
+/* ---------- tools ----------------------------------------------------- */
+function setTool(t){
+  ui.tool = t;
+  if(t !== 'draw') commitDraft();
+  for(const [id,name] of [['tSelect','select'],['tDraw','draw'],['tCalib','calib']])
+    $(id).classList.toggle('on', ui.tool === name);
+  stage.style.cursor = t === 'select' ? 'default' : 'crosshair';
+  updateHint();
+  draw();
+}
+function updateHint(){
+  const h = $('hint');
+  if(!img){ h.textContent = 'Load a photo to start.'; return; }
+  if(ui.tool === 'draw')  h.innerHTML = 'Click to drop points along the run · <b>Enter</b> or double-click to finish · <b>Esc</b> cancels · <b>Backspace</b> removes the last point';
+  else if(ui.tool === 'calib') h.innerHTML = 'Drag a line across something of known length, then type the length in the panel';
+  else h.innerHTML = 'Click a run to select · drag handles to reshape · scroll to zoom · drag the background to pan';
+}
+
+function commitDraft(){
+  if(ui.draft && ui.draft.points.length >= 2){
+    snapshot();
+    const run = {
+      id: uid(),
+      type: ui.newType,
+      productId: ui.newProduct,
+      pattern: ui.newPattern.slice(),
+      story: 's1',
+      closed: false,
+      points: ui.draft.points
+    };
+    state.runs.push(run);
+    ui.sel = run.id;
+  }
+  ui.draft = null;
+  refresh();
+}
+
+/* ---------- pointer handling ------------------------------------------ */
+let drag = null;
+const HIT = 9;   // screen pixels
+
+function evPos(e){
+  const r = cv.getBoundingClientRect();
+  return toImage(e.clientX - r.left, e.clientY - r.top);
+}
+function hitRun(p, tol){
+  for(let i=state.runs.length-1;i>=0;i--){
+    const run = state.runs[i];
+    for(const [a,b] of segments(run.points, run.closed)){
+      const {d,t} = distToSegment(p, a, b);
+      if(d <= tol) return {run, seg:[a,b], t};
+    }
+  }
+  return null;
+}
+function hitVertex(run, p, tol){
+  for(let i=0;i<run.points.length;i++)
+    if(Math.hypot(run.points[i].x-p.x, run.points[i].y-p.y) <= tol) return i;
+  return -1;
+}
+
+cv.addEventListener('pointerdown', e => {
+  if(!img) return;
+  cv.setPointerCapture(e.pointerId);
+  const p = evPos(e), tol = HIT/view.scale;
+
+  if(e.button === 1 || e.altKey && ui.tool !== 'select'){
+    drag = {kind:'pan', sx:e.clientX, sy:e.clientY, ox:view.ox, oy:view.oy};
+    return;
+  }
+
+  if(ui.tool === 'calib'){
+    ui.calibDraft = {a:p, b:p};
+    drag = {kind:'calibNew'};
+    draw();
+    return;
+  }
+
+  if(ui.tool === 'draw'){
+    if(!ui.draft) ui.draft = {points:[]};
+    ui.draft.points.push(p);
+    draw();
+    return;
+  }
+
+  // select tool
+  if(state.calib){
+    for(const key of ['a','b']){
+      if(Math.hypot(state.calib[key].x-p.x, state.calib[key].y-p.y) <= tol){
+        snapshot();
+        drag = {kind:'calibPt', key};
+        return;
+      }
+    }
+  }
+  const sel = state.runs.find(r => r.id === ui.sel);
+  if(sel){
+    const vi = hitVertex(sel, p, tol);
+    if(vi >= 0){
+      if(e.altKey && sel.points.length > 2){
+        snapshot(); sel.points.splice(vi,1); refresh(); return;
+      }
+      snapshot();
+      drag = {kind:'vertex', run:sel, i:vi};
+      return;
+    }
+  }
+  const hit = hitRun(p, tol);
+  if(hit){
+    if(hit.run.id === ui.sel){
+      // click on a segment of the selected run inserts a point there
+      snapshot();
+      const idx = hit.run.points.indexOf(hit.seg[0]);
+      hit.run.points.splice(idx+1, 0, p);
+      drag = {kind:'vertex', run:hit.run, i:idx+1};
+      refresh();
+      return;
+    }
+    ui.sel = hit.run.id;
+    refresh();
+    return;
+  }
+  ui.sel = null;
+  drag = {kind:'pan', sx:e.clientX, sy:e.clientY, ox:view.ox, oy:view.oy};
+  refresh();
+});
+
+cv.addEventListener('pointermove', e => {
+  if(!img) return;
+  if(ui.tool === 'draw' && ui.draft){
+    ui.draft.cursor = evPos(e);
+    draw();
+  }
+  if(!drag) return;
+  if(drag.kind === 'pan'){
+    view.ox = drag.ox - (e.clientX - drag.sx)/view.scale;
+    view.oy = drag.oy - (e.clientY - drag.sy)/view.scale;
+    draw();
+  }else if(drag.kind === 'calibNew'){
+    ui.calibDraft.b = evPos(e);
+    draw();
+  }else if(drag.kind === 'calibPt'){
+    state.calib[drag.key] = evPos(e);
+    refresh();
+  }else if(drag.kind === 'vertex'){
+    drag.run.points[drag.i] = evPos(e);
+    refresh();
+  }
+});
+
+cv.addEventListener('pointerup', e => {
+  if(drag && drag.kind === 'calibNew'){
+    const d = ui.calibDraft;
+    if(Math.hypot(d.b.x-d.a.x, d.b.y-d.a.y) > 5){
+      snapshot();
+      state.calib = {a:d.a, b:d.b, feet: parseFloat($('calibFt').value) || 16};
+      setTool('select');
+    }
+    ui.calibDraft = null;
+    refresh();
+  }
+  drag = null;
+});
+
+cv.addEventListener('dblclick', () => { if(ui.tool === 'draw') commitDraft(); });
+
+stage.addEventListener('wheel', e => {
+  if(!img) return;
+  e.preventDefault();
+  const r = cv.getBoundingClientRect();
+  zoomAt(e.clientX - r.left, e.clientY - r.top, e.deltaY < 0 ? 1.12 : 1/1.12);
+}, {passive:false});
+
+window.addEventListener('keydown', e => {
+  const typing = /input|select|textarea/i.test((e.target.tagName||''));
+  if(typing) return;
+  if(e.key === 'Enter' && ui.tool === 'draw') commitDraft();
+  else if(e.key === 'Escape'){ ui.draft = null; ui.calibDraft = null; draw(); }
+  else if(e.key === 'Backspace' && ui.draft){ ui.draft.points.pop(); draw(); e.preventDefault(); }
+  else if((e.key === 'Delete' || e.key === 'Backspace') && ui.sel){ deleteSelected(); e.preventDefault(); }
+  else if(e.key.toLowerCase() === 'v') setTool('select');
+  else if(e.key.toLowerCase() === 'd') setTool('draw');
+  else if(e.key.toLowerCase() === 'c') setTool('calib');
+  else if(e.key.toLowerCase() === 'n') toggleNight();
+  else if((e.ctrlKey||e.metaKey) && e.key.toLowerCase() === 'z'){ undo(); e.preventDefault(); }
+});
+
+function deleteSelected(){
+  if(!ui.sel) return;
+  snapshot();
+  state.runs = state.runs.filter(r => r.id !== ui.sel);
+  ui.sel = null;
+  refresh();
+}
+function toggleNight(){
+  state.night = !state.night;
+  $('btnNight').classList.toggle('on', state.night);
+  $('btnNight').innerHTML = state.night ? '☀️ Day view' : '🌙 Night view';
+  draw();
+}
+
+/* ---------- photo loading --------------------------------------------- */
+function loadPhoto(file){
+  const fr = new FileReader();
+  fr.onload = () => setPhoto(fr.result, file.name);
+  fr.readAsDataURL(file);
+}
+function setPhoto(dataUrl, name, keepView){
+  const im = new Image();
+  im.onload = () => {
+    img = im;
+    state.photoDataUrl = dataUrl;
+    state.photoName = name || '';
+    if(!keepView) fitView();
+    refresh();
+  };
+  im.src = dataUrl;
+}
+stage.addEventListener('dragover', e => { e.preventDefault(); });
+stage.addEventListener('drop', e => {
+  e.preventDefault();
+  const f = e.dataTransfer.files && e.dataTransfer.files[0];
+  if(f && /^image\//.test(f.type)) loadPhoto(f);
+});
+
+/* ---------- quote math ------------------------------------------------ */
+function quote(){
+  const lines = [];
+  for(const run of state.runs){
+    const p = product(run.productId), st = story(run.story);
+    const ft = runFeet(run);
+    if(ft <= 0) continue;
+    const price = ft * p.pricePerFt * st.mult;
+    lines.push({
+      desc: runType(run.type).label + ' — ' + p.name + (st.mult !== 1 ? ' (' + st.label + ')' : ''),
+      qty: ft, unit: 'ft', bulbs: runBulbs(run), price
+    });
+  }
+  const addonLines = [];
+  for(const a of shop.addons){
+    const q = parseFloat(state.addons[a.id]) || 0;
+    if(q > 0) addonLines.push({desc:a.name, qty:q, unit:a.unit, bulbs:0, price:q*a.price});
+  }
+  const runsTotal = lines.reduce((s,l) => s+l.price, 0);
+  const addonTotal = addonLines.reduce((s,l) => s+l.price, 0);
+  let subtotal = runsTotal + addonTotal;
+  let minAdj = 0;
+  if(shop.settings.minimum > 0 && subtotal > 0 && subtotal < shop.settings.minimum){
+    minAdj = shop.settings.minimum - subtotal;
+    subtotal = shop.settings.minimum;
+  }
+  const tax = subtotal * (parseFloat(shop.settings.taxPct)||0)/100;
+  return {
+    lines, addonLines, minAdj, subtotal, tax, total: subtotal + tax,
+    totalFeet: lines.reduce((s,l) => s + (l.unit === 'ft' ? l.qty : 0), 0),
+    totalBulbs: lines.reduce((s,l) => s + l.bulbs, 0),
+    totalClips: lines.reduce((s,l) => s + l.bulbs, 0)
+  };
+}
+
+/* ---------- panels ---------------------------------------------------- */
+function optionHtml(list, sel, val, lab){
+  return list.map(o => `<option value="${o[val]}"${o[val]===sel?' selected':''}>${o[lab]}</option>`).join('');
+}
+function swatchRow(el, onPick){
+  el.innerHTML = '';
+  for(const [k,c] of Object.entries(COLORS)){
+    const b = document.createElement('div');
+    b.className = 'sw'; b.style.background = c.hex; b.title = c.name;
+    b.onclick = () => onPick(k);
+    el.appendChild(b);
+  }
+}
+function patternRow(el, pattern, onChange){
+  el.innerHTML = '';
+  if(!pattern.length){ el.innerHTML = '<span class="empty">click a color below</span>'; return; }
+  pattern.forEach((k, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot';
+    d.style.background = (COLORS[k]||COLORS.ww).hex;
+    d.title = (COLORS[k]||COLORS.ww).name + ' — click to remove';
+    d.onclick = () => { pattern.splice(i,1); onChange(); };
+    el.appendChild(d);
+  });
+}
+
+function renderDesign(){
+  $('newType').innerHTML = optionHtml(RUN_TYPES, ui.newType, 'id', 'label');
+  $('newProduct').innerHTML = optionHtml(shop.catalog, ui.newProduct, 'id', 'name');
+  patternRow($('newPattern'), ui.newPattern, renderDesign);
+  swatchRow($('newSwatches'), k => { ui.newPattern.push(k); renderDesign(); });
+
+  const cal = isCalibrated();
+  $('calibBadge').textContent = cal ? pxPerFt().toFixed(1) + ' px per ft' : 'Not calibrated';
+  $('calibBadge').className = 'badge' + (cal ? ' good' : '');
+  $('calibNote').hidden = cal;
+  $('calibOut').textContent = cal
+    ? 'Measurements below are scaled from this reference.'
+    : 'Footage is a rough guess until you set the scale.';
+
+  const list = $('runlist');
+  list.innerHTML = '';
+  if(!state.runs.length){
+    list.innerHTML = '<div class="empty-note">No runs yet. Pick <b>Draw</b> and trace a roofline.</div>';
+  }
+  for(const run of state.runs){
+    const el = document.createElement('div');
+    el.className = 'run' + (run.id === ui.sel ? ' on' : '');
+    const dots = (run.pattern.length?run.pattern:['ww'])
+      .map(k => `<i style="background:${(COLORS[k]||COLORS.ww).hex}"></i>`).join('');
+    el.innerHTML =
+      `<div class="top"><span class="nm">${runType(run.type).label}</span>
+       <span class="ft">${runFeet(run).toFixed(1)} ft</span></div>
+       <div class="sub"><span class="dots">${dots}</span>${product(run.productId).name} · ${runBulbs(run)} bulbs</div>`;
+    el.onclick = () => { ui.sel = run.id; setTool('select'); refresh(); };
+    list.appendChild(el);
+  }
+
+  const run = state.runs.find(r => r.id === ui.sel);
+  $('selBox').hidden = !run;
+  if(run){
+    $('selType').innerHTML = optionHtml(RUN_TYPES, run.type, 'id', 'label');
+    $('selProduct').innerHTML = optionHtml(shop.catalog, run.productId, 'id', 'name');
+    $('selStory').innerHTML = optionHtml(STORIES, run.story, 'id', 'label');
+    patternRow($('selPattern'), run.pattern, () => refresh());
+    swatchRow($('selSwatches'), k => { run.pattern.push(k); refresh(); });
+  }
+}
+
+function renderQuote(){
+  const q = quote();
+  const rows = [...q.lines, ...q.addonLines].map(l =>
+    `<tr><td>${l.desc}</td><td class="n">${l.qty.toFixed(l.unit==='ft'?1:0)} ${l.unit}</td><td class="n">${money(l.price)}</td></tr>`
+  ).join('') || '<tr><td colspan="3" class="mini">Nothing drawn yet.</td></tr>';
+
+  $('bodyQuote').innerHTML = `
+    <h4>Customer</h4>
+    <label>Name</label><input type="text" id="cName" value="${esc(state.customer.name)}">
+    <label>Address</label><input type="text" id="cAddr" value="${esc(state.customer.address)}">
+    <label>Date</label><input type="text" id="cDate" value="${esc(state.customer.date)}">
+
+    <h4>Add-ons</h4>
+    ${shop.addons.map(a => `
+      <div class="row" style="margin-bottom:6px">
+        <span>${a.name} <span class="mini">${money(a.price)}/${a.unit}</span></span>
+        <input type="number" min="0" step="1" data-addon="${a.id}" value="${state.addons[a.id]||0}" style="max-width:80px">
+      </div>`).join('')}
+
+    <h4>Estimate</h4>
+    <table>
+      <thead><tr><th>Item</th><th class="n">Qty</th><th class="n">Price</th></tr></thead>
+      <tbody>${rows}</tbody>
+      <tfoot>
+        ${q.minAdj > 0 ? `<tr><td colspan="2" class="mini">Minimum job adjustment</td><td class="n">${money(q.minAdj)}</td></tr>` : ''}
+        <tr><td colspan="2">Subtotal</td><td class="n">${money(q.subtotal)}</td></tr>
+        ${q.tax > 0 ? `<tr><td colspan="2">Tax</td><td class="n">${money(q.tax)}</td></tr>` : ''}
+        <tr><td colspan="2"><b>Total</b></td><td class="n total">${money(q.total)}</td></tr>
+      </tfoot>
+    </table>
+
+    <h4>Materials</h4>
+    <div class="mini">${q.totalFeet.toFixed(1)} linear ft · ${q.totalBulbs} bulbs / sockets · ~${q.totalClips} clips
+    ${isCalibrated() ? '' : '<br><b style="color:var(--accent)">Set the scale for real footage.</b>'}</div>
+
+    <label>Notes on the proposal</label>
+    <textarea id="cNotes" rows="3" style="width:100%;background:#0f1420;border:1px solid var(--line);border-radius:6px;padding:6px;color:inherit">${esc(state.customer.notes)}</textarea>
+  `;
+  $('cName').oninput = e => state.customer.name = e.target.value;
+  $('cAddr').oninput = e => state.customer.address = e.target.value;
+  $('cDate').oninput = e => state.customer.date = e.target.value;
+  $('cNotes').oninput = e => state.customer.notes = e.target.value;
+  $('bodyQuote').querySelectorAll('[data-addon]').forEach(inp => {
+    inp.oninput = e => { state.addons[e.target.dataset.addon] = parseFloat(e.target.value)||0; renderQuote(); };
+  });
+}
+
+function renderPricing(){
+  $('bodyPrice').innerHTML = `
+    <div class="mini">These prices live in this browser and apply to every job you open here.</div>
+    <h4>Light products</h4>
+    <table><thead><tr><th>Product</th><th class="n">Spacing"</th><th class="n">$ / ft</th></tr></thead><tbody>
+    ${shop.catalog.map(p => `<tr class="catrow">
+      <td><input type="text" data-cat="${p.id}" data-f="name" value="${esc(p.name)}"></td>
+      <td class="n"><input type="number" step="1" min="1" data-cat="${p.id}" data-f="spacingIn" value="${p.spacingIn}" style="max-width:60px"></td>
+      <td class="n"><input type="number" step="0.05" min="0" data-cat="${p.id}" data-f="pricePerFt" value="${p.pricePerFt}" style="max-width:72px"></td>
+    </tr>`).join('')}
+    </tbody></table>
+
+    <h4>Add-ons</h4>
+    <table><thead><tr><th>Item</th><th class="n">Unit</th><th class="n">Price</th></tr></thead><tbody>
+    ${shop.addons.map(a => `<tr class="catrow">
+      <td><input type="text" data-add="${a.id}" data-f="name" value="${esc(a.name)}"></td>
+      <td class="n mini">${a.unit}</td>
+      <td class="n"><input type="number" step="1" min="0" data-add="${a.id}" data-f="price" value="${a.price}" style="max-width:72px"></td>
+    </tr>`).join('')}
+    </tbody></table>
+
+    <h4>Job settings</h4>
+    <label>Minimum job ($)</label><input type="number" id="setMin" step="25" min="0" value="${shop.settings.minimum}">
+    <label>Tax (%)</label><input type="number" id="setTax" step="0.1" min="0" value="${shop.settings.taxPct}">
+    <label>Company name (on the proposal)</label><input type="text" id="setCo" value="${esc(shop.settings.company)}">
+    <label>Phone / email</label><input type="text" id="setPhone" value="${esc(shop.settings.phone)}">
+    <div class="row" style="margin-top:12px">
+      <button id="priceReset" class="ghost">Reset to defaults</button>
+    </div>`;
+
+  $('bodyPrice').querySelectorAll('[data-cat]').forEach(inp => {
+    inp.oninput = e => {
+      const p = product(e.target.dataset.cat), f = e.target.dataset.f;
+      p[f] = f === 'name' ? e.target.value : (parseFloat(e.target.value)||0);
+      saveShop(); renderDesign(); draw();
+    };
+  });
+  $('bodyPrice').querySelectorAll('[data-add]').forEach(inp => {
+    inp.oninput = e => {
+      const a = shop.addons.find(x => x.id === e.target.dataset.add), f = e.target.dataset.f;
+      a[f] = f === 'name' ? e.target.value : (parseFloat(e.target.value)||0);
+      saveShop();
+    };
+  });
+  $('setMin').oninput   = e => { shop.settings.minimum = parseFloat(e.target.value)||0; saveShop(); };
+  $('setTax').oninput   = e => { shop.settings.taxPct  = parseFloat(e.target.value)||0; saveShop(); };
+  $('setCo').oninput    = e => { shop.settings.company = e.target.value; saveShop(); };
+  $('setPhone').oninput = e => { shop.settings.phone   = e.target.value; saveShop(); };
+  $('priceReset').onclick = () => {
+    if(!confirm('Reset all prices to the built-in defaults?')) return;
+    shop.catalog = structuredClone(DEFAULT_CATALOG);
+    shop.addons = structuredClone(DEFAULT_ADDONS);
+    shop.settings = structuredClone(DEFAULT_SETTINGS);
+    saveShop(); refresh();
+  };
+}
+
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function refresh(){
+  renderDesign();
+  if(ui.tab === 'quote') renderQuote();
+  if(ui.tab === 'price') renderPricing();
+  draw();
+}
+
+/* ---------- export / save / print ------------------------------------- */
+function renderFull(night){
+  const c = document.createElement('canvas');
+  c.width = img.width; c.height = img.height;
+  const cc = c.getContext('2d');
+  const wasNight = state.night;
+  state.night = night;
+  drawScene(cc, {night, chrome:false});
+  state.night = wasNight;
+  return c;
+}
+function downloadBlob(data, name, type){
+  const blob = data instanceof Blob ? data : new Blob([data], {type});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = name; a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 4000);
+}
+function exportPng(){
+  if(!img) return alert('Load a photo first.');
+  renderFull(state.night).toBlob(b => downloadBlob(b, jobName() + (state.night?'-night':'-day') + '.png', 'image/png'));
+}
+function jobName(){
+  const base = (state.customer.name || state.customer.address || 'lighting-design')
+    .toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  return base || 'lighting-design';
+}
+function saveJob(){
+  const job = {
+    version: 1,
+    photoDataUrl: state.photoDataUrl, photoName: state.photoName,
+    calib: state.calib, runs: state.runs, addons: state.addons,
+    customer: state.customer
+  };
+  downloadBlob(JSON.stringify(job), jobName() + '.json', 'application/json');
+}
+function openJob(file){
+  const fr = new FileReader();
+  fr.onload = () => {
+    try{
+      const job = JSON.parse(fr.result);
+      state.calib = job.calib || null;
+      state.runs = job.runs || [];
+      state.addons = job.addons || {};
+      state.customer = Object.assign(state.customer, job.customer || {});
+      ui.sel = null;
+      undoStack.length = 0;
+      if(job.photoDataUrl) setPhoto(job.photoDataUrl, job.photoName);
+      else refresh();
+      if(state.calib) $('calibFt').value = state.calib.feet;
+    }catch(err){ alert('That file could not be read: ' + err.message); }
+  };
+  fr.readAsText(file);
+}
+
+function printProposal(){
+  if(!img) return alert('Load a photo first.');
+  const q = quote();
+  const night = renderFull(true).toDataURL('image/jpeg', 0.9);
+  const day   = renderFull(false).toDataURL('image/jpeg', 0.85);
+  const rows = [...q.lines, ...q.addonLines].map(l =>
+    `<tr><td>${esc(l.desc)}</td><td class="n">${l.qty.toFixed(l.unit==='ft'?1:0)} ${l.unit}</td><td class="n">${money(l.price)}</td></tr>`).join('');
+  const w = window.open('', '_blank');
+  if(!w) return alert('Allow pop-ups to print the proposal.');
+  w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>${esc(jobName())}</title>
+  <style>
+    body{font:13px/1.5 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#15181d;margin:32px;max-width:760px}
+    h1{font-size:22px;margin:0 0 2px} .sub{color:#5b6572;margin-bottom:18px}
+    .imgs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+    .imgs img{width:100%;border-radius:6px;border:1px solid #d8dde4}
+    .cap{font-size:11px;color:#5b6572;text-align:center;margin-top:3px}
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th{text-align:left;font-size:11px;text-transform:uppercase;color:#5b6572;border-bottom:1px solid #c9d0d8;padding:6px 4px}
+    td{padding:7px 4px;border-bottom:1px solid #eceff3} td.n{text-align:right}
+    .tot{font-size:20px;font-weight:700}
+    .notes{margin-top:16px;padding:10px;background:#f6f8fa;border-radius:6px;white-space:pre-wrap}
+    @media print{body{margin:12mm}}
+  </style></head><body>
+    <h1>${esc(shop.settings.company || 'Holiday Lighting Proposal')}</h1>
+    <div class="sub">${esc(shop.settings.phone)}</div>
+    <div><b>${esc(state.customer.name)}</b><br>${esc(state.customer.address)}<br>${esc(state.customer.date)}</div>
+    <div class="imgs">
+      <div><img src="${night}"><div class="cap">Evening view</div></div>
+      <div><img src="${day}"><div class="cap">Daytime layout</div></div>
+    </div>
+    <table>
+      <thead><tr><th>Item</th><th class="n">Qty</th><th class="n">Price</th></tr></thead>
+      <tbody>${rows}</tbody>
+      <tfoot>
+        ${q.minAdj>0?`<tr><td colspan="2">Minimum job adjustment</td><td class="n">${money(q.minAdj)}</td></tr>`:''}
+        <tr><td colspan="2">Subtotal</td><td class="n">${money(q.subtotal)}</td></tr>
+        ${q.tax>0?`<tr><td colspan="2">Tax</td><td class="n">${money(q.tax)}</td></tr>`:''}
+        <tr><td colspan="2"><b>Total</b></td><td class="n tot">${money(q.total)}</td></tr>
+      </tfoot>
+    </table>
+    ${state.customer.notes ? `<div class="notes">${esc(state.customer.notes)}</div>` : ''}
+    <div class="notes" style="background:#fff;border:1px solid #e3e7ec;font-size:11px;color:#5b6572">
+      ${q.totalFeet.toFixed(1)} linear ft · ${q.totalBulbs} bulbs · installation, maintenance through the season, and takedown included.
+    </div>
+  </body></html>`);
+  w.document.close();
+  setTimeout(() => w.print(), 400);
+}
+
+/* ---------- wiring ---------------------------------------------------- */
+$('tSelect').onclick = () => setTool('select');
+$('tDraw').onclick   = () => setTool('draw');
+$('tCalib').onclick  = () => setTool('calib');
+$('tUndo').onclick   = undo;
+$('tDel').onclick    = deleteSelected;
+$('tFit').onclick    = fitView;
+$('zIn').onclick     = () => zoomAt(stage.clientWidth/2, stage.clientHeight/2, 1.2);
+$('zOut').onclick    = () => zoomAt(stage.clientWidth/2, stage.clientHeight/2, 1/1.2);
+
+$('btnNight').onclick = toggleNight;
+$('btnPhoto').onclick = () => $('filePhoto').click();
+$('filePhoto').onchange = e => { if(e.target.files[0]) loadPhoto(e.target.files[0]); e.target.value=''; };
+$('btnOpen').onclick  = () => $('fileOpen').click();
+$('fileOpen').onchange = e => { if(e.target.files[0]) openJob(e.target.files[0]); e.target.value=''; };
+$('btnSave').onclick  = saveJob;
+$('btnPng').onclick   = exportPng;
+$('btnPrint').onclick = printProposal;
+
+$('calibFt').oninput = e => {
+  if(state.calib) state.calib.feet = parseFloat(e.target.value) || 0;
+  refresh();
+};
+$('newType').onchange = e => {
+  ui.newType = e.target.value;
+  const def = runType(ui.newType).product;
+  if(shop.catalog.some(p => p.id === def)) ui.newProduct = def;
+  renderDesign();
+};
+$('newProduct').onchange = e => { ui.newProduct = e.target.value; };
+$('patClear').onclick = () => { ui.newPattern = []; renderDesign(); };
+$('startDraw').onclick = () => setTool('draw');
+
+$('selType').onchange = e => { const r = state.runs.find(x=>x.id===ui.sel); if(r){ snapshot(); r.type = e.target.value; refresh(); } };
+$('selProduct').onchange = e => { const r = state.runs.find(x=>x.id===ui.sel); if(r){ snapshot(); r.productId = e.target.value; refresh(); } };
+$('selStory').onchange = e => { const r = state.runs.find(x=>x.id===ui.sel); if(r){ r.story = e.target.value; refresh(); } };
+$('selClosed').onclick = () => { const r = state.runs.find(x=>x.id===ui.sel); if(r){ snapshot(); r.closed = !r.closed; refresh(); } };
+$('selDel').onclick = deleteSelected;
+
+for(const [btn, name, body] of [['tabDesign','design','bodyDesign'],['tabQuote','quote','bodyQuote'],['tabPrice','price','bodyPrice']]){
+  $(btn).onclick = () => {
+    ui.tab = name;
+    for(const [b,n,bd] of [['tabDesign','design','bodyDesign'],['tabQuote','quote','bodyQuote'],['tabPrice','price','bodyPrice']]){
+      $(b).classList.toggle('on', n === name);
+      $(bd).hidden = n !== name;
+    }
+    refresh();
+  };
+}
+
+/* handle for automation / debugging from the console */
+window.HLD = {state, ui, view, shop, setPhoto, renderFull, quote, runFeet, refresh, get image(){return img;}};
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+setTool('select');
+refresh();
+</script>
+</body>
+</html>
