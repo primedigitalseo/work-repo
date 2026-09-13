@@ -622,20 +622,16 @@ function drawScene(c, opts){
   if(o.night > 0 && img){
     // Enough darkness to read as evening, with the house still legible —
     // a real night shot of a lit house is never black.
+    // The sky goes to night; the house barely moves. A customer wants to see
+    // their own house and the lights on it, not a photoreal dark exposure.
     const n = clamp(o.night, 0, 1);
     c.save();
     c.globalCompositeOperation = 'multiply';
-    c.fillStyle = `rgba(88,102,142,${n})`;
+    c.fillStyle = `rgba(206,214,240,${n})`;
     c.fillRect(0,0,img.width,img.height);
     c.restore();
-    c.fillStyle = `rgba(8,12,32,${0.15*n})`;
+    c.fillStyle = `rgba(18,26,60,${0.07*n})`;
     c.fillRect(0,0,img.width,img.height);
-    // nothing lights the lawn, so the foreground falls away
-    const fg = c.createLinearGradient(0, img.height*0.55, 0, img.height);
-    fg.addColorStop(0, 'rgba(4,7,20,0)');
-    fg.addColorStop(1, `rgba(4,7,20,${0.42*n})`);
-    c.fillStyle = fg;
-    c.fillRect(0, img.height*0.55, img.width, img.height*0.45);
     drawSky(c, n);
   }
 
@@ -703,6 +699,21 @@ function buildSky(){
 
   const pts = [];
   for(let i=0;i<w*h;i++) if(inSky[i]) pts.push(i);
+
+  // Sky shows through gaps in bare branches, and those slivers are all edge,
+  // so the flood never enters them. Anything sky-coloured that sits above the
+  // sky's lower edge in its own column is sky too.
+  for(let x=0;x<w;x++){
+    let lowest = -1;
+    for(let y=0;y<h;y++) if(inSky[y*w+x]) lowest = y;
+    if(lowest < 0) continue;
+    for(let y=0;y<lowest;y++){
+      const i = y*w+x;
+      if(inSky[i]) continue;
+      const r = px[i*4], b = px[i*4+2];
+      if(lum[i] > 0.42 && (b - r) > -14) inSky[i] = 1;
+    }
+  }
 
   let grown = inSky;
   for(let pass=0; pass<3; pass++){

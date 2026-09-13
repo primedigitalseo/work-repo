@@ -61,8 +61,10 @@ and a canopy wrap are priced differently.
 
 ## Night view
 
-The day-to-night slider is continuous. At night the tool finds the sky in the
-photo, darkens it further than the house, and scatters stars through it.
+The day-to-night slider is continuous. At night the sky is replaced — found in
+the photo, taken to deep navy, and filled with stars — while the house itself
+barely moves. A customer wants to see their own house and the lights on it, so
+the render stays legible rather than photoreal-dark.
 
 Each run throws light on the wall behind it — beam length, spread, and
 brightness are per run, square to the run and washing downward unless you flip
