@@ -145,6 +145,20 @@ A price at or below cost cannot be right, so the tool refuses to let one out
 quietly: the SKU is marked in search, the quote lists every affected line with
 its catalog page, and the proposal asks before it prints.
 
+## How complete the pricing is
+
+Three files feed the catalog: the 2025 estimation workbook (cost and retail for
+745 SKUs), the 2026 wholesale scan (cost and retail for 293), and the 2026
+retail catalog (307 names, no prices). The union of the two 2026 files — 490
+SKUs — is the best signal of what Thunder still sells.
+
+Of that 2026 line, **433 (88%) carry a cost and a customer price that make sense
+together**; 277 on 2026 numbers, 156 still on 2025. Sixteen have a pair the scan
+mangled and are guarded. Thirty-nine have no price in any file, mostly Burgundy
+and Red Velvet bows. A further 375 SKUs sit in the 2025 workbook without
+appearing in either 2026 file — likely dropped from the line. They stay
+searchable and are marked.
+
 ## What you charge
 
 The Pricing tab takes a **price basis**. Thunder's suggested retail is the
@@ -154,6 +168,25 @@ anything you typed on a single SKU still winning over both.
 
 Markup is on cost, so 65% markup is a 39% margin. The quote names the basis it
 used and reports margin in dollars and percent.
+
+The category table shows Thunder's own margin beside yours, because their
+suggested retail is nowhere near a flat markup:
+
+| Category | Their margin | | Category | Their margin |
+|---|---|---|---|---|
+| C7/C9 bulbs | 54% | | Hardware | 24% |
+| Bulbs | 49% | | Resin | 23% |
+| C9/C7 wire | 38% | | Lightburst | 19% |
+| Socket cord | 34% | | Mini lights | 17% |
+| Spritzers | 32% | | Bows | 15% |
+| Clips | 28% | | Metal framed | 15% |
+| Bistro | 26% | | RGB | 14% |
+| Coaxial | 26% | | Greenery | 11% |
+
+Quote off their retail and your margin swings with the product mix — a roofline
+job of bulbs, wire and clips lands near 42%, a decor-heavy job near 12%.
+**Match Thunder category by category** fills the table with their own numbers as
+a starting point; move up from there.
 
 Search any SKU on the Pricing tab and type over its cost or customer price. Your
 number wins over both catalogs, is saved in that browser, and the row is marked
