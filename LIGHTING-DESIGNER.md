@@ -35,13 +35,30 @@ real ones. They are saved in that browser, so each computer needs it done once.
 `Esc` cancel · `Del` delete the selected run · `Ctrl+Z` undo ·
 scroll to zoom · drag the background to pan
 
+## Yardsticks
+
+Place as many as the photo needs. One sets the scale everywhere; two or more get
+blended by distance, so a run along the back of the house measures on the
+yardstick nearest it instead of the one by the front door. Every measurement
+walks the path foot by foot as the local scale changes, rather than dividing one
+length by one number.
+
+## Night view
+
+The day-to-night slider is continuous. At night the tool finds the sky in the
+photo, darkens it further than the house, and scatters stars through it.
+
+Each run throws light on the wall behind it — beam length, spread, and
+brightness are per run, square to the run and washing downward unless you flip
+it. Turn the wash off for a run that shouldn't light a surface.
+
 ## Known limits
 
-- One scale reference per photo, so runs much farther from the camera than your
-  reference will measure a little short. Calibrate on something near the runs
-  that matter most.
 - Lights draw on top of everything — a strand cannot pass behind a tree yet.
-- Labor is folded into the per-foot price rather than tracked separately.
+- Single fixtures (uplights, wall washers) aren't placeable yet; everything is
+  a strand.
+- The sky detector wants visible sky in the photo. A tight shot with no sky
+  gets the darkening but no stars.
 
 ## Two ways to run it
 
