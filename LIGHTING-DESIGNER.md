@@ -127,5 +127,21 @@ flat per-foot rate:
 - Yours only, never on the proposal: wholesale cost, margin on materials, crew
   hours, and the electrical load in watts, amps, and circuits.
 
-Rates are editable on the Pricing tab and saved per browser. Prices are 2025;
-swap in a newer list by sending the distributor's spreadsheet.
+Rates are editable on the Pricing tab and saved per browser.
+
+## Where the prices come from
+
+821 items. The 2025 estimation workbook supplies every description and
+category; the 2026 catalog supplies current prices wherever its scan matched a
+SKU — 282 of them, plus 76 SKUs the 2025 workbook never had.
+
+The rest still carry 2025 prices and say so: a **2025** badge follows the SKU in
+every search result and on the quote, and the quote counts how many lines are
+affected. Six rows the scan read badly (a missing price, wholesale above retail,
+a 279% jump) kept their 2025 price and are listed on the Pricing tab with their
+catalog page number.
+
+Search any SKU on the Pricing tab and type over its cost or customer price. Your
+number wins over both catalogs, is saved in that browser, and the row is marked
+**yours**. That is the fastest fix for the SKUs the scan missed — the C9 spools,
+the wreaths, the garland and the warm white C9 bulb among them.
