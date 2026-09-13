@@ -184,6 +184,8 @@
         <select id="selType"></select>
         <label>Product</label>
         <select id="selProduct"></select>
+        <label for="selLabor">Labor line</label>
+        <select id="selLabor"></select>
         <label for="selAccess">Access</label>
         <select id="selAccess">
           <option value="0">Standard</option>
@@ -192,6 +194,29 @@
         <label>Color pattern</label>
         <div class="pattern" id="selPattern"></div>
         <div class="swrow" id="selSwatches"></div>
+        <div id="wrapBox">
+          <h4>Wrap</h4>
+          <div class="row">
+            <button id="selWrap" class="ghost">Wrap this run</button>
+            <select id="selWrapShape">
+              <option value="square">Square post</option>
+              <option value="round">Round post or trunk</option>
+            </select>
+          </div>
+          <div id="wrapSquare" class="row" style="margin-top:8px">
+            <span style="flex:none" class="mini">W×D in</span>
+            <input type="number" id="selWrapW" min="1" step="0.5">
+            <input type="number" id="selWrapL" min="1" step="0.5">
+          </div>
+          <div id="wrapRound" class="row" style="margin-top:8px">
+            <span style="flex:none" class="mini">Girth in</span>
+            <input type="number" id="selWrapCirc" min="1" step="1">
+          </div>
+          <label for="selWrapSp">Spacing between turns (inches)</label>
+          <input type="number" id="selWrapSp" min="1" step="1">
+          <div class="mini" id="wrapOut"></div>
+        </div>
+
         <h4>Light on the wall</h4>
         <div class="row">
           <button id="selSurface" class="ghost">Surface wash</button>
@@ -370,17 +395,14 @@ const labor   = id => shop.labor.find(l => l.id === id) || null;
 
 /* Which labor line a run bills against. */
 function runLaborId(run){
+  if(run.laborId && labor(run.laborId)) return run.laborId;
   const p = product(run.productId);
   if(p.kind === 'mini') return run.type === 'tree' ? 'minibranch' : 'minicanopy';
   if(run.type === 'walkway') return 'c9stake';
   return run.difficult ? 'c9roofx' : 'c9roof';
 }
-function runStrings(run){
-  const p = product(run.productId);
-  return Math.max(1, Math.ceil(runFeet(run) / (p.ftPerString || 25)));
-}
 function runLaborQty(run){
-  return product(run.productId).kind === 'mini' ? runStrings(run) : runFeet(run);
+  return product(run.productId).kind === 'mini' ? runStrings(run) : runStrandFeet(run);
 }
 
 /* ---------- geometry -------------------------------------------------- */
@@ -547,6 +569,46 @@ function bulbColors(run, n){
   return out;
 }
 
+/* ---------- wraps ------------------------------------------------------
+   A column or tree wrap is a spiral, so the strand is several times the
+   height you draw. These are the distributor's own formulas: girth once per
+   turn, plus the height for the climb. */
+const WRAP_DEFAULTS = {on:false, shape:'square', w:8, l:8, circ:36, spacingIn:12};
+const wrapOf = (run, k) => (run.wrap && run.wrap[k] !== undefined) ? run.wrap[k] : WRAP_DEFAULTS[k];
+const isWrapped = run => !!wrapOf(run, 'on');
+function wrapGirthIn(run){
+  return wrapOf(run,'shape') === 'round'
+    ? Math.max(1, wrapOf(run,'circ'))
+    : Math.max(1, (wrapOf(run,'w') + wrapOf(run,'l')) * 2);
+}
+/* Feet of strand a run actually consumes: the drawn length for a straight
+   run, the spiral for a wrapped one. */
+function runStrandFeet(run){
+  const drawn = runFeet(run);
+  if(!isWrapped(run) || drawn <= 0) return drawn;
+  const hIn = drawn * 12;
+  const turns = hIn / Math.max(1, wrapOf(run,'spacingIn')) + 1;
+  return (wrapGirthIn(run) * turns + hIn) / 12;
+}
+function runStrandSockets(run){
+  const p = product(run.productId);
+  if(p.kind === 'mini') return 0;
+  const spacingFt = p.spacingIn / 12;
+  const ft = runStrandFeet(run);
+  return ft > 0 ? Math.max(1, Math.round(ft / spacingFt) + 1) : 0;
+}
+function runStrandBulbs(run){
+  const n = runStrandSockets(run);
+  const pat = (run.pattern && run.pattern.length) ? run.pattern : ['ww'];
+  let lit = 0;
+  for(let i=0;i<n;i++) if(pat[i % pat.length] !== 'off') lit++;
+  return lit;
+}
+function runStrings(run){
+  const p = product(run.productId);
+  return Math.max(1, Math.ceil(runStrandFeet(run) / (p.ftPerString || 25)));
+}
+
 /* Defaults for how a run throws light on the wall behind it. */
 const BEAM_DEFAULTS = {beam:2.2, spread:1.1, opacity:0.55, surface:true, flip:false};
 const beamOf = (run, k) => (run.beam && run.beam[k] !== undefined) ? run.beam[k] : BEAM_DEFAULTS[k];
@@ -558,14 +620,22 @@ function drawScene(c, opts){
   if(img) c.drawImage(img, 0, 0);
 
   if(o.night > 0 && img){
+    // Enough darkness to read as evening, with the house still legible —
+    // a real night shot of a lit house is never black.
     const n = clamp(o.night, 0, 1);
     c.save();
     c.globalCompositeOperation = 'multiply';
-    c.fillStyle = `rgba(43,51,82,${n})`;
+    c.fillStyle = `rgba(88,102,142,${n})`;
     c.fillRect(0,0,img.width,img.height);
     c.restore();
-    c.fillStyle = `rgba(6,10,26,${0.55*n})`;
+    c.fillStyle = `rgba(8,12,32,${0.15*n})`;
     c.fillRect(0,0,img.width,img.height);
+    // nothing lights the lawn, so the foreground falls away
+    const fg = c.createLinearGradient(0, img.height*0.55, 0, img.height);
+    fg.addColorStop(0, 'rgba(4,7,20,0)');
+    fg.addColorStop(1, `rgba(4,7,20,${0.42*n})`);
+    c.fillStyle = fg;
+    c.fillRect(0, img.height*0.55, img.width, img.height*0.45);
     drawSky(c, n);
   }
 
@@ -631,13 +701,26 @@ function buildSky(){
     for(const j of nb) if(!inSky[j] && skyish(j)){ inSky[j] = 1; queue.push(j); }
   }
 
+  const pts = [];
+  for(let i=0;i<w*h;i++) if(inSky[i]) pts.push(i);
+
+  let grown = inSky;
+  for(let pass=0; pass<3; pass++){
+    const next = grown.slice();
+    for(let y=0;y<h;y++) for(let x=0;x<w;x++){
+      const i = y*w+x;
+      if(grown[i]) continue;
+      if((x>0 && grown[i-1]) || (x<w-1 && grown[i+1]) ||
+         (y>0 && grown[i-w]) || (y<h-1 && grown[i+w])) next[i] = 1;
+    }
+    grown = next;
+  }
+
   const mask = oc.createImageData(w,h);
   const m = mask.data;
-  const pts = [];
   for(let i=0;i<w*h;i++){
     m[i*4] = 10; m[i*4+1] = 16; m[i*4+2] = 48;
-    m[i*4+3] = inSky[i] ? 235 : 0;
-    if(inSky[i]) pts.push(i);
+    m[i*4+3] = grown[i] ? 255 : 0;
   }
   oc.putImageData(mask, 0, 0);
 
@@ -667,7 +750,7 @@ function drawSky(c, n){
   if(!skyCache) skyCache = buildSky();
   if(!skyCache || !skyCache.mask) return;
   c.save();
-  c.globalAlpha = 0.85 * n;
+  c.globalAlpha = 0.92 * n;
   c.drawImage(skyCache.mask, 0, 0, img.width, img.height);
   c.globalAlpha = 1;
   c.globalCompositeOperation = 'lighter';
@@ -910,6 +993,7 @@ function commitDraft(){
       pattern: ui.newPattern.slice(),
       difficult: false,
       closed: false,
+      wrap: defaultWrapFor(ui.newType),
       points: ui.draft.points
     };
     state.runs.push(run);
@@ -917,6 +1001,13 @@ function commitDraft(){
   }
   ui.draft = null;
   refresh();
+}
+
+/* A post gets wrapped by default; a tree trunk gets a rounder, wider default. */
+function defaultWrapFor(type){
+  if(type === 'column') return {on:true, shape:'square', w:8, l:8, circ:36, spacingIn:12};
+  if(type === 'tree')   return {on:true, shape:'round', w:8, l:8, circ:36, spacingIn:8};
+  return null;
 }
 
 /* ---------- pointer handling ------------------------------------------ */
@@ -1133,7 +1224,7 @@ function quote(){
   };
 
   for(const run of state.runs){
-    const ft = runFeet(run);
+    const ft = runStrandFeet(run);          // the spiral, when the run is a wrap
     if(ft <= 0) continue;
     const p = product(run.productId);
     addLab(runLaborId(run), runLaborQty(run));
@@ -1146,7 +1237,7 @@ function quote(){
         addMat((p.use4 ? col.mini4 : col.mini) || col.mini || COLORS.ww.mini, 1);
       }
     }else{
-      const sockets = runSockets(run);
+      const sockets = runStrandSockets(run);
       const counts = {};
       for(const c of bulbColors(run, sockets)){          // null = an empty socket
         if(c) counts[c.key] = (counts[c.key] || 0) + 1;
@@ -1210,9 +1301,10 @@ function quote(){
     nextYear: install + takedown + storage,
     hoursInstall: labRows.reduce((t,r) => t + r.minIn, 0) / 60,
     hoursTakedown: labRows.reduce((t,r) => t + r.minTd, 0) / 60,
-    totalFeet: state.runs.reduce((t,r) => t + runFeet(r), 0),
-    totalBulbs: state.runs.reduce((t,r) => t + (product(r.productId).kind === 'mini' ? 0 : runBulbs(r)), 0),
-    totalSockets: state.runs.reduce((t,r) => t + (product(r.productId).kind === 'mini' ? 0 : runSockets(r)), 0),
+    totalFeet: state.runs.reduce((t,r) => t + runStrandFeet(r), 0),
+    totalDrawn: state.runs.reduce((t,r) => t + runFeet(r), 0),
+    totalBulbs: state.runs.reduce((t,r) => t + (product(r.productId).kind === 'mini' ? 0 : runStrandBulbs(r)), 0),
+    totalSockets: state.runs.reduce((t,r) => t + (product(r.productId).kind === 'mini' ? 0 : runStrandSockets(r)), 0),
     watts, amps: watts / 120, circuits: Math.ceil(watts / 1440)
   };
 }
@@ -1314,13 +1406,15 @@ function renderDesign(){
     el.className = 'run' + (run.id === ui.sel ? ' on' : '');
     const dots = (run.pattern.length?run.pattern:['ww'])
       .map(k => `<i style="background:${patColor(k)}"></i>`).join('');
+    const wrapped = isWrapped(run);
     el.innerHTML =
       `<div class="top"><span class="nm">${runType(run.type).label}</span>
-       <span class="ft">${runFeet(run).toFixed(1)} ft</span></div>
+       <span class="ft">${runStrandFeet(run).toFixed(1)} ft</span></div>
        <div class="sub"><span class="dots">${dots}</span>${product(run.productId).name} · ${
          product(run.productId).kind === 'mini'
            ? runStrings(run) + ' strings'
-           : runBulbs(run) + ' bulbs'}${run.difficult ? ' · difficult' : ''}</div>`;
+           : runStrandBulbs(run) + ' bulbs'}${run.difficult ? ' · difficult' : ''}</div>
+       ${wrapped ? `<div class="sub">wrapped · ${runFeet(run).toFixed(1)} ft tall</div>` : ''}`;
     el.onclick = () => { ui.sel = run.id; setTool('select'); refresh(); };
     list.appendChild(el);
   }
@@ -1331,8 +1425,28 @@ function renderDesign(){
     $('selType').innerHTML = optionHtml(RUN_TYPES, run.type, 'id', 'label');
     $('selProduct').innerHTML = optionHtml(shop.products, run.productId, 'id', 'name');
     $('selAccess').value = run.difficult ? '1' : '0';
+    $('selLabor').innerHTML = `<option value="">Automatic — ${esc((labor(runLaborId(run))||{}).name || '')}</option>` +
+      shop.labor.map(l => `<option value="${l.id}"${run.laborId === l.id ? ' selected' : ''}>${esc(l.name)}</option>`).join('');
     patternRow($('selPattern'), run.pattern, () => refresh());
     swatchRow($('selSwatches'), k => { run.pattern.push(k); refresh(); });
+
+    const wrapped = isWrapped(run);
+    $('selWrap').classList.toggle('on', wrapped);
+    $('selWrap').textContent = wrapped ? 'Wrapped' : 'Wrap this run';
+    $('selWrapShape').value = wrapOf(run,'shape');
+    $('selWrapW').value = wrapOf(run,'w');
+    $('selWrapL').value = wrapOf(run,'l');
+    $('selWrapCirc').value = wrapOf(run,'circ');
+    $('selWrapSp').value = wrapOf(run,'spacingIn');
+    $('wrapSquare').hidden = !wrapped || wrapOf(run,'shape') !== 'square';
+    $('wrapRound').hidden  = !wrapped || wrapOf(run,'shape') !== 'round';
+    $('selWrapShape').disabled = !wrapped;
+    $('selWrapSp').disabled = !wrapped;
+    $('wrapOut').innerHTML = wrapped
+      ? `${runFeet(run).toFixed(1)} ft tall, ${wrapGirthIn(run)}" around, a turn every ${wrapOf(run,'spacingIn')}"
+         → <b>${runStrandFeet(run).toFixed(1)} ft of strand</b>${
+           product(run.productId).kind === 'mini' ? ` · ${runStrings(run)} strings` : ` · ${runStrandBulbs(run)} bulbs`}`
+      : 'Turn this on for a column, post, or trunk. The strand spirals, so it runs several times the height you drew.';
 
     $('selSurface').classList.toggle('on', beamOf(run,'surface'));
     $('selSurface').textContent = beamOf(run,'surface') ? 'Surface wash on' : 'Surface wash off';
@@ -1423,7 +1537,9 @@ function renderQuote(){
         <tr><td>Crew hours, install</td><td class="n">${q.hoursInstall.toFixed(1)} h</td></tr>
         <tr><td>Crew hours, takedown</td><td class="n">${q.hoursTakedown.toFixed(1)} h</td></tr>
         <tr><td>Load</td><td class="n">${Math.round(q.watts)} W · ${q.amps.toFixed(1)} A · ${q.circuits} circuit${q.circuits===1?'':'s'}</td></tr>
-        <tr><td>Linear feet drawn</td><td class="n">${q.totalFeet.toFixed(1)} ft</td></tr>
+        <tr><td>Strand feet</td><td class="n">${q.totalFeet.toFixed(1)} ft</td></tr>
+        ${Math.abs(q.totalFeet - q.totalDrawn) > 0.5
+          ? `<tr><td>Length drawn on the photo</td><td class="n">${q.totalDrawn.toFixed(1)} ft</td></tr>` : ''}
       </tbody>
     </table>
     ${isCalibrated() ? '' : '<div class="warn" style="margin-top:10px">Set the scale on the Design tab — every number above is a guess until you do.</div>'}
@@ -1804,7 +1920,8 @@ function jobRecord(){
                                 b:{x:round(r.b.x), y:round(r.b.y)}, feet:r.feet})),
     runs: state.runs.map(r => ({
       id:r.id, type:r.type, productId:r.productId, pattern:r.pattern,
-      difficult:!!r.difficult, closed:r.closed, beam:r.beam || null,
+      difficult:!!r.difficult, closed:r.closed, laborId:r.laborId || null,
+      beam:r.beam || null, wrap:r.wrap || null,
       points: r.points.map(p => ({x:round(p.x), y:round(p.y)}))
     })),
     extras: state.extras,
@@ -2003,6 +2120,23 @@ function setBeam(key, value){
   run.beam[key] = value;
   refresh();
 }
+function setWrap(key, value){
+  const run = state.runs.find(r => r.id === ui.sel);
+  if(!run) return;
+  run.wrap = Object.assign({}, WRAP_DEFAULTS, run.wrap || {});
+  run.wrap[key] = value;
+  refresh();
+}
+$('selWrap').onclick = () => {
+  const run = state.runs.find(r => r.id === ui.sel);
+  if(run) setWrap('on', !isWrapped(run));
+};
+$('selWrapShape').onchange = e => setWrap('shape', e.target.value);
+$('selWrapW').oninput    = e => setWrap('w',    parseFloat(e.target.value)||1);
+$('selWrapL').oninput    = e => setWrap('l',    parseFloat(e.target.value)||1);
+$('selWrapCirc').oninput = e => setWrap('circ', parseFloat(e.target.value)||1);
+$('selWrapSp').oninput   = e => setWrap('spacingIn', parseFloat(e.target.value)||1);
+
 $('selBeam').oninput    = e => setBeam('beam',    (+e.target.value)/10);
 $('selSpread').oninput  = e => setBeam('spread',  (+e.target.value)/10);
 $('selOpacity').oninput = e => setBeam('opacity', (+e.target.value)/100);
@@ -2024,8 +2158,20 @@ $('newProduct').onchange = e => { ui.newProduct = e.target.value; };
 $('patClear').onclick = () => { ui.newPattern = []; renderDesign(); };
 $('startDraw').onclick = () => setTool('draw');
 
-$('selType').onchange = e => { const r = state.runs.find(x=>x.id===ui.sel); if(r){ snapshot(); r.type = e.target.value; refresh(); } };
+$('selType').onchange = e => {
+  const r = state.runs.find(x=>x.id===ui.sel);
+  if(r){
+    snapshot();
+    r.type = e.target.value;
+    if(!r.wrap) r.wrap = defaultWrapFor(r.type);
+    refresh();
+  }
+};
 $('selProduct').onchange = e => { const r = state.runs.find(x=>x.id===ui.sel); if(r){ snapshot(); r.productId = e.target.value; refresh(); } };
+$('selLabor').onchange = e => {
+  const r = state.runs.find(x=>x.id===ui.sel);
+  if(r){ r.laborId = e.target.value || null; refresh(); }
+};
 $('selAccess').onchange = e => { const r = state.runs.find(x=>x.id===ui.sel); if(r){ r.difficult = e.target.value === '1'; refresh(); } };
 $('selClosed').onclick = () => { const r = state.runs.find(x=>x.id===ui.sel); if(r){ snapshot(); r.closed = !r.closed; refresh(); } };
 $('selDel').onclick = deleteSelected;
@@ -2043,7 +2189,7 @@ function switchTab(name){
 for(const [btn, name] of TABS) $(btn).onclick = () => switchTab(name);
 
 /* handle for automation / debugging from the console */
-window.HLD = {state, ui, view, shop, setPhoto, renderFull, quote, runFeet, runSockets, runBulbs,
+window.HLD = {state, ui, view, shop, setPhoto, renderFull, quote, runFeet, runSockets, runBulbs, runStrandFeet, runStrings,
               refresh, skyInfo: () => (skyCache ? skyCache.stars.length : 0), get image(){return img;}};
 
 window.addEventListener('resize', resizeCanvas);
