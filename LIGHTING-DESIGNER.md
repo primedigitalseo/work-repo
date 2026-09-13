@@ -42,3 +42,16 @@ scroll to zoom · drag the background to pan
   that matter most.
 - Lights draw on top of everything — a strand cannot pass behind a tree yet.
 - Labor is folded into the per-foot price rather than tracked separately.
+
+## Two ways to run it
+
+**Hosted link** (easiest) — open the artifact URL. Saved jobs live in a shared
+library everyone on the link can open, photos are stored with the job, and PNG
+and proposal exports save through the browser. Share it from the page's share
+menu to give the crew access.
+
+**The file itself** — download `holiday-lighting-designer.html` and double-click
+it. Full features, works offline, nothing leaves the computer. Jobs save as
+`.json` files to your own drive instead of the shared library.
+
+The page detects which mode it is in and adjusts the Save and Jobs controls.
