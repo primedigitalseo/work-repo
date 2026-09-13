@@ -142,7 +142,11 @@ a 279% jump) kept their 2025 price and are listed on the Pricing tab with their
 catalog page number.
 
 **Fill the gaps** on the Pricing tab lists everything still unknown, grouped by
-the catalog page it sits on, so one pass with the catalog open clears it. Each
+the section of the catalog it belongs to, so one pass with the wholesale
+catalog open clears it. Only the wholesale catalog carries prices; the retail
+one is the same product line with prices removed. The two paginate differently,
+so every page reference names its book, and pages taken from the retail scan
+have been shifted to the printed number rather than the flipbook position. Each
 row takes a typed price or a **Still right** click, which settles it without
 changing anything. Prices barely moved between the 2025 and 2026 catalogs —
 median change zero — so most rows are one click.
