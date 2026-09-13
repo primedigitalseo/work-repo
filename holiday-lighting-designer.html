@@ -122,6 +122,7 @@
     <button id="tSelect" class="on" title="Select / move (V)"><span class="ico">➤</span>Select</button>
     <button id="tDraw" title="Draw a light run (D)"><span class="ico">✎</span>Draw</button>
     <button id="tCalib" title="Set the scale (C)"><span class="ico">📏</span>Scale</button>
+    <button id="tDecor" title="Place decor (E)"><span class="ico">🎀</span>Decor</button>
     <hr>
     <button id="tUndo" title="Undo (Ctrl+Z)"><span class="ico">↶</span>Undo</button>
     <button id="tDel" title="Delete selected (Del)"><span class="ico">🗑</span>Delete</button>
@@ -171,12 +172,19 @@
       <div class="pattern" id="newPattern"></div>
       <div class="swrow" id="newSwatches"></div>
       <div class="row" style="margin-top:8px">
-        <button id="patClear" class="ghost">Clear pattern</button>
+        <button id="patClear" class="ghost">Clear</button>
+        <button id="patRainbow" class="ghost">Rainbow</button>
         <button id="startDraw">Start drawing</button>
       </div>
 
       <h4>Runs on this photo</h4>
       <div class="runlist" id="runlist"></div>
+
+      <h4>Decor on this photo</h4>
+      <div class="swrow" id="decorQuick"></div>
+      <input type="text" id="decorSearch" placeholder="Search the catalog for wreaths, bows, spritzers…" style="margin-top:8px">
+      <div id="decorResults"></div>
+      <div id="decorList"></div>
 
       <div id="selBox" hidden>
         <h4>Selected run</h4>
@@ -221,6 +229,11 @@
         <div class="row">
           <button id="selSurface" class="ghost">Surface wash</button>
           <button id="selFlip" class="ghost">Flip direction</button>
+        </div>
+        <div class="row" style="margin-top:6px">
+          <button id="selWashTight" class="ghost">Tight</button>
+          <button id="selWashWide" class="ghost">Wide wash</button>
+          <button id="selRainbow" class="ghost">Rainbow</button>
         </div>
         <label for="selBeam">Beam length — <span id="selBeamV"></span></label>
         <input type="range" id="selBeam" min="2" max="90" step="1">
@@ -267,9 +280,37 @@ const COLORS = {
   pnk: {name:'Pink',       hex:'#ff6fae', c9:'20119',     c7:null,    mini:'43116'}
 };
 for(const k in COLORS) COLORS[k].key = k;
+/* A pattern slot is a named colour, a raw hex (RGB fixtures make any colour),
+   or 'off' for an empty socket. */
+function colorFor(k){
+  if(COLORS[k]) return COLORS[k];
+  if(typeof k === 'string' && k[0] === '#') return {name:k, hex:k, key:k, rgbOnly:true};
+  return COLORS.ww;
+}
+/* Evenly spaced hues, the way a permanent-lighting controller sweeps them. */
+function rainbowPattern(n){
+  const out = [];
+  for(let i=0;i<n;i++){
+    const h = (i/n)*360;
+    out.push(hslHex(h, 92, 58));
+  }
+  return out;
+}
+function hslHex(h, sPct, lPct){
+  const s = sPct/100, l = lPct/100;
+  const c = (1 - Math.abs(2*l - 1)) * s, x = c * (1 - Math.abs((h/60) % 2 - 1)), m = l - c/2;
+  let r=0, g=0, b=0;
+  if(h < 60){ r=c; g=x; } else if(h < 120){ r=x; g=c; }
+  else if(h < 180){ g=c; b=x; } else if(h < 240){ g=x; b=c; }
+  else if(h < 300){ r=x; b=c; } else { r=c; b=x; }
+  const hx = v => Math.round((v+m)*255).toString(16).padStart(2,'0');
+  return '#' + hx(r) + hx(g) + hx(b);
+}
 
 const RUN_TYPES = [
   {id:'roofline',  label:'Roofline',        product:'c9-12'},
+  {id:'permanent', label:'Permanent / RGB',  product:'rgb-12'},
+  {id:'garland',   label:'Garland',          product:'garland-9'},
   {id:'window',    label:'Window / trim',   product:'mini-6'},
   {id:'column',    label:'Column / post',   product:'mini-6'},
   {id:'walkway',   label:'Ground stakes',   product:'c9-12'},
@@ -319,6 +360,14 @@ const DEFAULT_PRODUCTS = [
   {id:'c9-36', name:'C9 · 36" spacing',  kind:'c9',   labor:'c9roof',     spacingIn:36, bulbIn:2.4, spool:'19436',     spoolFt:1000, clip:'14147'},
   {id:'c7-12', name:'C7 · 12" spacing',  kind:'c7',   labor:'c9roof',     spacingIn:12, bulbIn:1.8, spool:'17412-500', spoolFt:500,  clip:'14147'},
   {id:'c7-6',  name:'C7 · 6" spacing',   kind:'c7',   labor:'c9roof',     spacingIn:6,  bulbIn:1.8, spool:'17406-500', spoolFt:500,  clip:'14147'},
+  {id:'rgb-12',name:'Permanent RGBWW C9 · 12"', kind:'rgb', labor:'c9roof', spacingIn:12, bulbIn:2.4,
+   bulb:'63999', spool:'19412-500', spoolFt:500, clip:'14147', controller:'64511', perController:500},
+  {id:'rgb-8', name:'Permanent RGBWW C9 · 8"',  kind:'rgb', labor:'c9roof', spacingIn:8,  bulbIn:2.4,
+   bulb:'63999', spool:'19412-500', spoolFt:500, clip:'14147', controller:'64511', perController:500},
+  {id:'garland-9', name:"Lit garland · 9' sticks", kind:'garland', labor:'garland9', spacingIn:8, bulbIn:0.55,
+   stick:'50099', ftPerStick:9},
+  {id:'garland-rgb', name:"RGB garland · 9' sticks", kind:'garland', labor:'garland9', spacingIn:8, bulbIn:0.55,
+   stick:'63199', ftPerStick:9},
   {id:'mini-6',name:'5mm mini · 6" spacing', kind:'mini', labor:'minicanopy', spacingIn:6, bulbIn:0.8, ftPerString:25},
   {id:'mini-4',name:'5mm mini · 4" spacing', kind:'mini', labor:'minibranch', spacingIn:4, bulbIn:0.8, ftPerString:17, use4:true}
 ];
@@ -361,6 +410,7 @@ const state = {
   photoName    : '',
   refs         : [],            // yardsticks: {id, a:{x,y}, b:{x,y}, feet}
   runs         : [],            // {id,type,productId,pattern[],story,closed,points[]}
+  decor        : [],            // {id, sku, kind, x, y, sizeFt, laborId} placed on the photo
   extras       : [],            // {sku, qty, labor} lines added by hand
   customer     : {name:'', address:'', date:new Date().toISOString().slice(0,10), notes:''},
   night        : 0,      // 0 = daylight, 1 = full night
@@ -373,6 +423,8 @@ const ui = {
   draft: null,                  // {points:[]} while drawing
   refDraft: null,               // {a, b} while dragging a new yardstick
   selRef: null,                 // the yardstick being edited
+  selDecor: null,               // the placed item being edited
+  decorSku: '50048',            // what the decor tool places next
   newType: 'roofline',
   newProduct: 'c9-12',
   newPattern: ['ww'],
@@ -397,12 +449,16 @@ const labor   = id => shop.labor.find(l => l.id === id) || null;
 function runLaborId(run){
   if(run.laborId && labor(run.laborId)) return run.laborId;
   const p = product(run.productId);
+  if(p.kind === 'garland') return 'garland9';
   if(p.kind === 'mini') return run.type === 'tree' ? 'minibranch' : 'minicanopy';
   if(run.type === 'walkway') return 'c9stake';
   return run.difficult ? 'c9roofx' : 'c9roof';
 }
 function runLaborQty(run){
-  return product(run.productId).kind === 'mini' ? runStrings(run) : runStrandFeet(run);
+  const k = product(run.productId).kind;
+  if(k === 'mini')    return runStrings(run);
+  if(k === 'garland') return runSticks(run);
+  return runStrandFeet(run);
 }
 
 /* ---------- geometry -------------------------------------------------- */
@@ -565,7 +621,10 @@ function bulbRadius(run){
 function bulbColors(run, n){
   const pat = (run.pattern && run.pattern.length) ? run.pattern : ['ww'];
   const out = [];
-  for(let i=0;i<n;i++) out.push(pat[i % pat.length] === 'off' ? null : (COLORS[pat[i % pat.length]] || COLORS.ww));
+  for(let i=0;i<n;i++){
+    const k = pat[i % pat.length];
+    out.push(k === 'off' ? null : colorFor(k));
+  }
   return out;
 }
 
@@ -608,10 +667,21 @@ function runStrings(run){
   const p = product(run.productId);
   return Math.max(1, Math.ceil(runStrandFeet(run) / (p.ftPerString || 25)));
 }
+function runSticks(run){
+  const p = product(run.productId);
+  return Math.max(1, Math.ceil(runStrandFeet(run) / (p.ftPerStick || 9)));
+}
 
 /* Defaults for how a run throws light on the wall behind it. */
 const BEAM_DEFAULTS = {beam:2.2, spread:1.1, opacity:0.55, surface:true, flip:false};
-const beamOf = (run, k) => (run.beam && run.beam[k] !== undefined) ? run.beam[k] : BEAM_DEFAULTS[k];
+/* Permanent RGB fixtures are aimed at the wall and throw much further than a
+   C9 bulb hanging off a clip, so they start with a far wider wash. */
+const BEAM_BY_KIND = {
+  rgb:     {beam:6.0, spread:2.6, opacity:0.85, surface:true, flip:false},
+  garland: {beam:1.4, spread:0.9, opacity:0.45, surface:true, flip:false}
+};
+const beamDefaults = run => BEAM_BY_KIND[product(run.productId).kind] || BEAM_DEFAULTS;
+const beamOf = (run, k) => (run.beam && run.beam[k] !== undefined) ? run.beam[k] : beamDefaults(run)[k];
 
 /* Draws the whole scene in IMAGE coordinates. The caller sets the transform,
    so the same code serves the screen and the full-resolution PNG export. */
@@ -636,6 +706,7 @@ function drawScene(c, opts){
   }
 
   for(const run of state.runs) drawRun(c, run, o);
+  for(const d of state.decor) drawDecor(c, d, o);
   if(o.chrome && ui.draft && ui.draft.points.length) drawDraft(c, o);
 
   if(o.chrome){
@@ -644,6 +715,146 @@ function drawScene(c, opts){
       const run = state.runs.find(r => r.id === ui.sel);
       if(run) drawHandles(c, run);
     }
+  }
+}
+
+/* ---------- decor ------------------------------------------------------
+   Wreaths, bows, mini trees and spritzers sit on the photo as objects rather
+   than runs. Each one carries its catalog SKU, so placing it prices it. */
+const DECOR_QUICK = ['50036','50048','50060','65036','63124','50099'];
+
+function decorKind(sku){
+  const d = skDesc(sku).toLowerCase();
+  if(/wreath/.test(d))              return 'wreath';
+  if(/snowflake|sparkler/.test(d))  return 'snowflake';
+  if(/spritzer/.test(d))            return 'spritzer';
+  if(/\bbow\b/.test(d))             return 'bow';
+  if(/tree|topper/.test(d))         return 'tree';
+  if(/garland/.test(d))             return 'garland';
+  return 'generic';
+}
+/* Most of this catalog names its size in the description. */
+function decorSizeFt(sku){
+  const d = skDesc(sku);
+  const inches = d.match(/(\d{2,3})\s*"/);
+  if(inches) return Math.max(0.5, parseInt(inches[1],10)/12);
+  const feet = d.match(/(\d+(?:\.\d+)?)\s*'/);
+  if(feet) return Math.max(0.5, parseFloat(feet[1]));
+  return 2;
+}
+function addDecor(sku, x, y){
+  const d = {
+    id: uid(), sku, kind: decorKind(sku),
+    x, y, sizeFt: decorSizeFt(sku), laborId: guessLabor(sku)
+  };
+  snapshot();
+  state.decor.push(d);
+  ui.selDecor = d.id;
+  return d;
+}
+function decorAt(p, tol){
+  for(let i=state.decor.length-1;i>=0;i--){
+    const d = state.decor[i];
+    const r = d.sizeFt * pxPerFtAt(d) * 0.5;
+    if(Math.hypot(d.x-p.x, d.y-p.y) <= Math.max(r, tol)) return d;
+  }
+  return null;
+}
+
+function drawDecor(c, d, o){
+  const night = clamp(o.night, 0, 1);
+  const R = Math.max(4, d.sizeFt * pxPerFtAt(d) * 0.5);
+  const warm = '#ffcf8a';
+  c.save();
+  c.translate(d.x, d.y);
+
+  const dots = (count, radius, size) => {
+    for(let i=0;i<count;i++){
+      const a = (i/count)*Math.PI*2 - Math.PI/2;
+      const x = Math.cos(a)*radius, y = Math.sin(a)*radius;
+      if(night > 0.02){
+        c.save();
+        c.globalCompositeOperation = 'lighter';
+        const g = c.createRadialGradient(x, y, 0, x, y, size*5);
+        g.addColorStop(0, hexA(warm, 0.5*night));
+        g.addColorStop(1, hexA(warm, 0));
+        c.fillStyle = g;
+        c.beginPath(); c.arc(x, y, size*5, 0, 7); c.fill();
+        c.restore();
+      }
+      c.fillStyle = night > 0.5 ? '#fff8e6' : warm;
+      c.beginPath(); c.arc(x, y, size, 0, 7); c.fill();
+    }
+  };
+
+  if(d.kind === 'wreath'){
+    c.lineWidth = R*0.5; c.strokeStyle = '#142b1a';
+    c.beginPath(); c.arc(0,0,R*0.72,0,7); c.stroke();
+    c.lineWidth = R*0.34; c.strokeStyle = '#1f4427';
+    c.beginPath(); c.arc(0,0,R*0.72,0,7); c.stroke();
+    c.lineWidth = R*0.12; c.strokeStyle = '#2c5c34';
+    c.beginPath(); c.arc(0,0,R*0.62,0,7); c.stroke();
+    // sprigs, so the ring does not read as a pipe
+    c.lineWidth = Math.max(0.8, R*0.035); c.strokeStyle = '#24502c';
+    for(let i=0;i<26;i++){
+      const a = (i/26)*Math.PI*2, sp = R*(0.48 + (i%3)*0.09);
+      c.beginPath();
+      c.moveTo(Math.cos(a)*sp, Math.sin(a)*sp);
+      c.lineTo(Math.cos(a+0.16)*R*0.98, Math.sin(a+0.16)*R*0.98);
+      c.stroke();
+    }
+    dots(Math.max(8, Math.round(R/5)), R*0.72, Math.max(0.9, R*0.042));
+    c.fillStyle = '#b3202a';                       // bow at the base
+    c.beginPath(); c.ellipse(-R*0.22, R*0.78, R*0.2, R*0.13, -0.5, 0, 7); c.fill();
+    c.beginPath(); c.ellipse( R*0.22, R*0.78, R*0.2, R*0.13,  0.5, 0, 7); c.fill();
+  }else if(d.kind === 'snowflake' || d.kind === 'spritzer'){
+    const arms = d.kind === 'snowflake' ? 6 : 14;
+    c.strokeStyle = night > 0.5 ? hexA(warm, 0.9) : '#d8dee8';
+    c.lineWidth = Math.max(1, R*0.05);
+    for(let i=0;i<arms;i++){
+      const a = (i/arms)*Math.PI*2;
+      c.beginPath(); c.moveTo(0,0);
+      c.lineTo(Math.cos(a)*R, Math.sin(a)*R);
+      c.stroke();
+    }
+    dots(arms, R*0.94, Math.max(1.1, R*0.07));
+    dots(1, 0, Math.max(1.4, R*0.09));
+  }else if(d.kind === 'tree'){
+    c.fillStyle = '#26492f';
+    c.beginPath(); c.moveTo(0,-R); c.lineTo(R*0.62, R*0.78); c.lineTo(-R*0.62, R*0.78); c.closePath(); c.fill();
+    for(let i=0;i<5;i++){
+      const y = -R + (i+0.6)*(R*1.78/5.2);
+      const wd = (y + R)/(R*1.78) * R*0.58;
+      dots(Math.max(2, 5-i), 0, 0);              // spacing handled below
+      for(let j=-1;j<=1;j+=2){
+        const x = wd*j*0.8;
+        c.fillStyle = night > 0.5 ? '#fff8e6' : warm;
+        c.beginPath(); c.arc(x, y, Math.max(1, R*0.06), 0, 7); c.fill();
+      }
+    }
+  }else if(d.kind === 'bow'){
+    c.fillStyle = '#b3202a';
+    c.beginPath(); c.ellipse(-R*0.42, 0, R*0.44, R*0.3, -0.45, 0, 7); c.fill();
+    c.beginPath(); c.ellipse( R*0.42, 0, R*0.44, R*0.3,  0.45, 0, 7); c.fill();
+    c.beginPath(); c.moveTo(-R*0.12, R*0.1); c.lineTo(-R*0.4, R); c.lineTo(0, R*0.55); c.closePath(); c.fill();
+    c.beginPath(); c.moveTo( R*0.12, R*0.1); c.lineTo( R*0.4, R); c.lineTo(0, R*0.55); c.closePath(); c.fill();
+    c.fillStyle = '#8d1720';
+    c.beginPath(); c.arc(0,0,R*0.16,0,7); c.fill();
+  }else{
+    c.strokeStyle = night > 0.5 ? hexA(warm, 0.85) : '#8b97a8';
+    c.lineWidth = Math.max(1, R*0.08);
+    c.beginPath(); c.arc(0,0,R*0.8,0,7); c.stroke();
+    dots(8, R*0.8, Math.max(1.1, R*0.07));
+  }
+  c.restore();
+
+  if(o.chrome && d.id === ui.selDecor){
+    const s2 = 1/view.scale;
+    c.save();
+    c.strokeStyle = '#ffb020'; c.lineWidth = 1.6*s2;
+    c.setLineDash([5*s2, 4*s2]);
+    c.strokeRect(d.x - R, d.y - R, R*2, R*2);
+    c.restore();
   }
 }
 
@@ -782,6 +993,36 @@ function drawRun(c, run, o){
   const cols = bulbColors(run, samples.length);
   const r = bulbRadius(run);
   const night = clamp(o.night, 0, 1);
+
+  if(product(run.productId).kind === 'garland'){
+    const rope = Math.max(3, (14/12) * pxPerFtOn(run));   // 14 in garland
+    c.save();
+    c.lineCap = 'round'; c.lineJoin = 'round';
+    c.strokeStyle = '#1a2f20';
+    c.lineWidth = Math.max(0.8, rope*0.08);
+    for(let i=0;i<pts.length-1;i++){          // ragged needles along the swag
+      const a = pts[i], b2 = pts[i+1];
+      const len = Math.hypot(b2.x-a.x, b2.y-a.y), n = Math.max(2, Math.round(len/(rope*0.35)));
+      for(let k=0;k<n;k++){
+        const t = k/n, x = a.x + (b2.x-a.x)*t, y = a.y + (b2.y-a.y)*t;
+        const ang = Math.atan2(b2.y-a.y, b2.x-a.x) + Math.PI/2;
+        const side = (k % 2 ? 1 : -1) * rope*0.62;
+        c.beginPath(); c.moveTo(x, y);
+        c.lineTo(x + Math.cos(ang)*side, y + Math.sin(ang)*side + rope*0.12);
+        c.stroke();
+      }
+    }
+    for(const [wFrac, col] of [[1, '#16281c'], [0.66, '#22412a'], [0.28, '#2d5634']]){
+      c.lineWidth = rope * wFrac;
+      c.strokeStyle = col;
+      c.beginPath();
+      c.moveTo(pts[0].x, pts[0].y);
+      for(let i=1;i<pts.length;i++) c.lineTo(pts[i].x, pts[i].y);
+      if(run.closed && pts.length > 2) c.closePath();
+      c.stroke();
+    }
+    c.restore();
+  }
 
   // the wire
   c.save();
@@ -964,14 +1205,14 @@ function draw(){
 
 /* ---------- undo ------------------------------------------------------ */
 function snapshot(){
-  undoStack.push(JSON.stringify({runs:state.runs, refs:state.refs}));
+  undoStack.push(JSON.stringify({runs:state.runs, refs:state.refs, decor:state.decor}));
   if(undoStack.length > 60) undoStack.shift();
 }
 function undo(){
   const s = undoStack.pop();
   if(!s) return;
   const prev = JSON.parse(s);
-  state.runs = prev.runs; state.refs = prev.refs || [];
+  state.runs = prev.runs; state.refs = prev.refs || []; state.decor = prev.decor || [];
   if(!state.runs.some(r => r.id === ui.sel)) ui.sel = null;
   refresh();
 }
@@ -980,7 +1221,7 @@ function undo(){
 function setTool(t){
   ui.tool = t;
   if(t !== 'draw') commitDraft();
-  for(const [id,name] of [['tSelect','select'],['tDraw','draw'],['tCalib','calib']])
+  for(const [id,name] of [['tSelect','select'],['tDraw','draw'],['tCalib','calib'],['tDecor','decor']])
     $(id).classList.toggle('on', ui.tool === name);
   stage.style.cursor = t === 'select' ? 'default' : 'crosshair';
   updateHint();
@@ -990,6 +1231,7 @@ function updateHint(){
   const h = $('hint');
   if(!img){ h.textContent = 'Load a photo to start.'; return; }
   if(ui.tool === 'draw')  h.innerHTML = 'Click to drop points along the run · <b>Enter</b> or double-click to finish · <b>Esc</b> cancels · <b>Backspace</b> removes the last point';
+  else if(ui.tool === 'decor') h.innerHTML = `Click to place <b>${esc(skDesc(ui.decorSku))}</b> · pick a different item in the panel`;
   else if(ui.tool === 'calib') h.innerHTML = 'Drag a yardstick across something of known length, then type the length in the panel · add one near each part of the house';
   else h.innerHTML = 'Click a run to select · drag handles to reshape · scroll to zoom · drag the background to pan';
 }
@@ -1062,6 +1304,13 @@ cv.addEventListener('pointerdown', e => {
     return;
   }
 
+  if(ui.tool === 'decor'){
+    addDecor(ui.decorSku, p.x, p.y);
+    setTool('select');
+    refresh();
+    return;
+  }
+
   if(ui.tool === 'draw'){
     if(!ui.draft) ui.draft = {points:[]};
     ui.draft.points.push(p);
@@ -1081,6 +1330,15 @@ cv.addEventListener('pointerdown', e => {
       }
     }
   }
+  const hitD = decorAt(p, tol);
+  if(hitD){
+    snapshot();
+    ui.selDecor = hitD.id; ui.sel = null;
+    drag = {kind:'decor', d:hitD, dx:hitD.x - p.x, dy:hitD.y - p.y};
+    refresh();
+    return;
+  }
+
   const sel = state.runs.find(r => r.id === ui.sel);
   if(sel){
     const vi = hitVertex(sel, p, tol);
@@ -1108,7 +1366,7 @@ cv.addEventListener('pointerdown', e => {
     refresh();
     return;
   }
-  ui.sel = null;
+  ui.sel = null; ui.selDecor = null;
   drag = {kind:'pan', sx:e.clientX, sy:e.clientY, ox:view.ox, oy:view.oy};
   refresh();
 });
@@ -1132,6 +1390,10 @@ cv.addEventListener('pointermove', e => {
     refresh();
   }else if(drag.kind === 'vertex'){
     drag.run.points[drag.i] = evPos(e);
+    refresh();
+  }else if(drag.kind === 'decor'){
+    const q = evPos(e);
+    drag.d.x = q.x + drag.dx; drag.d.y = q.y + drag.dy;
     refresh();
   }
 });
@@ -1167,15 +1429,23 @@ window.addEventListener('keydown', e => {
   if(e.key === 'Enter' && ui.tool === 'draw') commitDraft();
   else if(e.key === 'Escape'){ ui.draft = null; ui.refDraft = null; draw(); }
   else if(e.key === 'Backspace' && ui.draft){ ui.draft.points.pop(); draw(); e.preventDefault(); }
-  else if((e.key === 'Delete' || e.key === 'Backspace') && ui.sel){ deleteSelected(); e.preventDefault(); }
+  else if((e.key === 'Delete' || e.key === 'Backspace') && (ui.sel || ui.selDecor)){ deleteSelected(); e.preventDefault(); }
   else if(e.key.toLowerCase() === 'v') setTool('select');
   else if(e.key.toLowerCase() === 'd') setTool('draw');
   else if(e.key.toLowerCase() === 'c') setTool('calib');
+  else if(e.key.toLowerCase() === 'e') setTool('decor');
   else if(e.key.toLowerCase() === 'n') toggleNight();
   else if((e.ctrlKey||e.metaKey) && e.key.toLowerCase() === 'z'){ undo(); e.preventDefault(); }
 });
 
 function deleteSelected(){
+  if(ui.selDecor){
+    snapshot();
+    state.decor = state.decor.filter(d => d.id !== ui.selDecor);
+    ui.selDecor = null;
+    refresh();
+    return;
+  }
   if(!ui.sel) return;
   snapshot();
   state.runs = state.runs.filter(r => r.id !== ui.sel);
@@ -1223,6 +1493,7 @@ stage.addEventListener('drop', e => {
 function quote(){
   const mats = {};            // key -> {sku, qty, divisor}
   const labs = {};            // laborId -> qty
+  const rgbSockets = {}, rgbPer = {};   // controllers are sized per job, not per run
   const addMat = (id, qty, divisor) => {
     if(!id || qty <= 0) return;
     const k = id + (divisor ? '/' + divisor : '');
@@ -1240,11 +1511,23 @@ function quote(){
     const p = product(run.productId);
     addLab(runLaborId(run), runLaborQty(run));
 
-    if(p.kind === 'mini'){
+    if(p.kind === 'garland'){
+      addMat(p.stick, Math.ceil(ft / (p.ftPerStick || 9)));
+    }else if(p.kind === 'rgb'){
+      // one fixture takes any colour, so the pattern costs nothing extra
+      const sockets = runStrandSockets(run);
+      addMat(p.bulb, runStrandBulbs(run));
+      addMat(p.spool, ft, p.spoolFt);
+      addMat(p.clip, sockets);
+      if(p.controller){
+        rgbSockets[p.controller] = (rgbSockets[p.controller] || 0) + sockets;
+        rgbPer[p.controller] = p.perController || 500;
+      }
+    }else if(p.kind === 'mini'){
       const strings = runStrings(run);
       const pat = (run.pattern && run.pattern.length) ? run.pattern : ['ww'];
       for(let i=0;i<strings;i++){
-        const col = COLORS[pat[i % pat.length]] || COLORS.ww;
+        const col = colorFor(pat[i % pat.length]);
         addMat((p.use4 ? col.mini4 : col.mini) || col.mini || COLORS.ww.mini, 1);
       }
     }else{
@@ -1254,12 +1537,17 @@ function quote(){
         if(c) counts[c.key] = (counts[c.key] || 0) + 1;
       }
       for(const k in counts){
-        const col = COLORS[k] || COLORS.ww;
+        const col = colorFor(k);
         addMat((p.kind === 'c7' ? col.c7 : col.c9) || (p.kind === 'c7' ? COLORS.ww.c7 : COLORS.ww.c9), counts[k]);
       }
       addMat(p.spool, ft, p.spoolFt);      // wire priced off the spool, by the foot
       addMat(p.clip, sockets);             // a clip holds every socket, lit or not
     }
+  }
+
+  for(const d of state.decor){
+    addMat(d.sku, 1);
+    if(d.laborId) addLab(d.laborId, 1);
   }
 
   for(const x of state.extras){
@@ -1268,6 +1556,8 @@ function quote(){
     addMat(x.sku, qty);
     if(x.labor) addLab(x.labor, qty);
   }
+  for(const ctrl in rgbSockets) addMat(ctrl, Math.ceil(rgbSockets[ctrl] / rgbPer[ctrl]));
+
   const trips = parseFloat(shop.settings.travelTrips) || 0;
   if(trips > 0) addLab('travel', trips);
 
@@ -1303,6 +1593,7 @@ function quote(){
   const total     = contract + tax;
   const deposit   = total * (parseFloat(shop.settings.depositPct) || 0) / 100;
   const watts     = matRows.reduce((t,r) => t + r.watts, 0);
+  const unrated   = matRows.filter(r => r.unitLabel === 'ea' && !skWatts(r.sku) && /bulb|light|wreath|garland|snowflake|spritzer|tree/i.test(r.desc)).length;
 
   return {
     matRows, labRows,
@@ -1316,7 +1607,7 @@ function quote(){
     totalDrawn: state.runs.reduce((t,r) => t + runFeet(r), 0),
     totalBulbs: state.runs.reduce((t,r) => t + (product(r.productId).kind === 'mini' ? 0 : runStrandBulbs(r)), 0),
     totalSockets: state.runs.reduce((t,r) => t + (product(r.productId).kind === 'mini' ? 0 : runStrandSockets(r)), 0),
-    watts, amps: watts / 120, circuits: Math.ceil(watts / 1440)
+    watts, amps: watts / 120, circuits: watts > 0 ? Math.max(1, Math.ceil(watts / 1440)) : 0, unrated
   };
 }
 
@@ -1341,7 +1632,7 @@ function swatchRow(el, onPick){
 }
 const patColor = k => k === 'off'
   ? 'repeating-conic-gradient(#39414f 0% 25%, #1b212b 0% 50%) 50%/6px 6px'
-  : (COLORS[k] || COLORS.ww).hex;
+  : colorFor(k).hex;
 function patternRow(el, pattern, onChange){
   el.innerHTML = '';
   if(!pattern.length){ el.innerHTML = '<span class="empty">click a color below</span>'; return; }
@@ -1349,7 +1640,7 @@ function patternRow(el, pattern, onChange){
     const d = document.createElement('div');
     d.className = 'dot';
     d.style.background = patColor(k);
-    d.title = (k === 'off' ? 'Empty socket' : (COLORS[k]||COLORS.ww).name) + ' — click to remove';
+    d.title = (k === 'off' ? 'Empty socket' : colorFor(k).name) + ' — click to remove';
     d.onclick = () => { pattern.splice(i,1); onChange(); };
     el.appendChild(d);
   });
@@ -1422,13 +1713,84 @@ function renderDesign(){
       `<div class="top"><span class="nm">${runType(run.type).label}</span>
        <span class="ft">${runStrandFeet(run).toFixed(1)} ft</span></div>
        <div class="sub"><span class="dots">${dots}</span>${product(run.productId).name} · ${
-         product(run.productId).kind === 'mini'
-           ? runStrings(run) + ' strings'
-           : runStrandBulbs(run) + ' bulbs'}${run.difficult ? ' · difficult' : ''}</div>
+         product(run.productId).kind === 'mini'    ? runStrings(run) + ' strings' :
+         product(run.productId).kind === 'garland' ? runSticks(run) + " 9' sticks" :
+         runStrandBulbs(run) + ' bulbs'}${run.difficult ? ' · difficult' : ''}</div>
        ${wrapped ? `<div class="sub">wrapped · ${runFeet(run).toFixed(1)} ft tall</div>` : ''}`;
     el.onclick = () => { ui.sel = run.id; setTool('select'); refresh(); };
     list.appendChild(el);
   }
+
+  const quick = $('decorQuick');
+  quick.innerHTML = '';
+  for(const q of DECOR_QUICK){
+    if(!sk(q)) continue;
+    const b = document.createElement('button');
+    b.className = 'ghost' + (ui.decorSku === q ? ' on' : '');
+    b.style.flex = 'none'; b.style.fontSize = '11px';
+    b.textContent = skDesc(q).replace(/ Noble| Warm White| Sparkle/g,'').slice(0, 20);
+    b.onclick = () => { ui.decorSku = q; setTool('decor'); refresh(); };
+    quick.appendChild(b);
+  }
+  const dsearch = $('decorSearch');
+  dsearch.oninput = () => {
+    const t = dsearch.value.trim().toLowerCase();
+    const box = $('decorResults');
+    if(t.length < 2){ box.innerHTML = ''; return; }
+    const hits = TLS.filter(i => i[3].toLowerCase().includes(t) || i[0].toLowerCase().includes(t)).slice(0, 10);
+    box.innerHTML = hits.length ? hits.map(i => `
+      <div class="job" data-decor="${esc(i[0])}">
+        <div class="top"><b>${esc(i[3])}</b><span class="when">${money(i[2])}</span></div>
+        <div class="sub">${esc(i[0])} · place on the photo</div>
+      </div>`).join('') : '<div class="mini">Nothing matches.</div>';
+    box.querySelectorAll('[data-decor]').forEach(n => {
+      n.onclick = () => { ui.decorSku = n.dataset.decor; setTool('decor'); refresh(); };
+    });
+  };
+
+  const dl = $('decorList');
+  dl.innerHTML = state.decor.length ? '' : '<div class="mini" style="margin-top:8px">Pick an item above, then click the photo.</div>';
+  state.decor.forEach(d => {
+    const row = document.createElement('div');
+    row.className = 'job' + (d.id === ui.selDecor ? ' on' : '');
+    row.style.marginTop = '5px';
+    row.innerHTML = `<div class="top"><b>${esc(skDesc(d.sku))}</b><span class="when">${money(skRetail(d.sku))}</span></div>
+      <div class="row" style="margin-top:5px">
+        <input type="number" step="0.5" min="0.5" value="${d.sizeFt}" data-dsize="${d.id}" style="max-width:68px">
+        <span class="mini" style="flex:none">ft</span>
+        <select data-dlab="${d.id}" style="flex:1">
+          <option value="">no labor</option>
+          ${shop.labor.map(l => `<option value="${l.id}"${l.id===d.laborId?' selected':''}>${esc(l.name)}</option>`).join('')}
+        </select>
+        <button class="ghost" data-ddel="${d.id}" style="flex:none">✕</button>
+      </div>`;
+    row.onclick = e => {
+      if(e.target.dataset.ddel || e.target.dataset.dsize || e.target.dataset.dlab) return;
+      ui.selDecor = d.id; ui.sel = null; refresh();
+    };
+    dl.appendChild(row);
+  });
+  dl.querySelectorAll('[data-dsize]').forEach(inp => {
+    inp.oninput = e => {
+      const d = state.decor.find(x => x.id === e.target.dataset.dsize);
+      if(d){ d.sizeFt = Math.max(0.5, parseFloat(e.target.value) || 1); refresh(); }
+    };
+  });
+  dl.querySelectorAll('[data-dlab]').forEach(selEl => {
+    selEl.onchange = e => {
+      const d = state.decor.find(x => x.id === e.target.dataset.dlab);
+      if(d){ d.laborId = e.target.value || null; refresh(); }
+    };
+  });
+  dl.querySelectorAll('[data-ddel]').forEach(btn => {
+    btn.onclick = e => {
+      e.stopPropagation();
+      snapshot();
+      state.decor = state.decor.filter(x => x.id !== e.target.dataset.ddel);
+      if(ui.selDecor === e.target.dataset.ddel) ui.selDecor = null;
+      refresh();
+    };
+  });
 
   const run = state.runs.find(r => r.id === ui.sel);
   $('selBox').hidden = !run;
@@ -1547,7 +1909,10 @@ function renderQuote(){
         <tr><td>Margin on materials</td><td class="n">${money(q.netMaterials)}</td></tr>
         <tr><td>Crew hours, install</td><td class="n">${q.hoursInstall.toFixed(1)} h</td></tr>
         <tr><td>Crew hours, takedown</td><td class="n">${q.hoursTakedown.toFixed(1)} h</td></tr>
-        <tr><td>Load</td><td class="n">${Math.round(q.watts)} W · ${q.amps.toFixed(1)} A · ${q.circuits} circuit${q.circuits===1?'':'s'}</td></tr>
+        <tr><td>Load</td><td class="n">${q.watts > 0
+          ? `${Math.round(q.watts)} W · ${q.amps.toFixed(1)} A · ${q.circuits} circuit${q.circuits===1?'':'s'}`
+          : 'not rated'}</td></tr>
+        ${q.unrated ? `<tr><td colspan="2" class="mini">${q.unrated} item${q.unrated===1?'':'s'} carry no wattage in the price list, so the load above is low. Check those on the box.</td></tr>` : ''}
         <tr><td>Strand feet</td><td class="n">${q.totalFeet.toFixed(1)} ft</td></tr>
         ${Math.abs(q.totalFeet - q.totalDrawn) > 0.5
           ? `<tr><td>Length drawn on the photo</td><td class="n">${q.totalDrawn.toFixed(1)} ft</td></tr>` : ''}
@@ -1659,7 +2024,7 @@ async function renderJobs(){
     if(!confirm('Clear the canvas and start a new job?')) return;
     state.jobId = null; state.photoAssetId = null; state.photoDataUrl = null;
     state.isSample = false;
-    state.runs = []; state.refs = []; state.extras = [];
+    state.runs = []; state.refs = []; state.extras = []; state.decor = [];
     state.customer = {name:'', address:'', date:new Date().toISOString().slice(0,10), notes:''};
     img = null; ui.sel = null; undoStack.length = 0;
     refresh();
@@ -1823,6 +2188,7 @@ function clearSample(){
   state.isSample = false;
   state.runs = [];
   state.refs = [];
+  state.decor = [];
   state.extras = [];
   state.customer.name = '';
   ui.sel = null;
@@ -1935,6 +2301,7 @@ function jobRecord(){
       beam:r.beam || null, wrap:r.wrap || null,
       points: r.points.map(p => ({x:round(p.x), y:round(p.y)}))
     })),
+    decor: state.decor.map(d => ({...d, x:Math.round(d.x*10)/10, y:Math.round(d.y*10)/10})),
     extras: state.extras,
     feet: Math.round(quote().totalFeet*10)/10,
     total: Math.round(quote().total*100)/100,
@@ -1949,6 +2316,7 @@ function applyRecord(rec){
   state.refs = refsFrom(rec);
   state.runs = rec.runs || [];
   state.extras = rec.extras || [];
+  state.decor = rec.decor || [];
   state.photoName = rec.photoName || '';
   ui.sel = null;
   undoStack.length = 0;
@@ -2004,7 +2372,7 @@ function saveJobToFile(){
   const job = {
     version: 1,
     photoDataUrl: state.photoDataUrl, photoName: state.photoName,
-    refs: state.refs, runs: state.runs, extras: state.extras,
+    refs: state.refs, runs: state.runs, decor: state.decor, extras: state.extras,
     customer: state.customer
   };
   offerFile(jobName() + '.json', JSON.stringify(job), 'application/json');
@@ -2018,6 +2386,7 @@ function openJob(file){
       state.refs = refsFrom(job);
       state.runs = job.runs || [];
       state.extras = job.extras || [];
+      state.decor = job.decor || [];
       state.customer = Object.assign(state.customer, job.customer || {});
       ui.sel = null;
       undoStack.length = 0;
@@ -2107,6 +2476,7 @@ function printProposal(){
 $('tSelect').onclick = () => setTool('select');
 $('tDraw').onclick   = () => setTool('draw');
 $('tCalib').onclick  = () => setTool('calib');
+$('tDecor').onclick  = () => setTool('decor');
 $('tUndo').onclick   = undo;
 $('tDel').onclick    = deleteSelected;
 $('tFit').onclick    = fitView;
@@ -2127,7 +2497,7 @@ $('addRef').onclick = () => setTool('calib');
 function setBeam(key, value){
   const run = state.runs.find(r => r.id === ui.sel);
   if(!run) return;
-  run.beam = Object.assign({}, BEAM_DEFAULTS, run.beam || {});
+  run.beam = Object.assign({}, beamDefaults(run), run.beam || {});
   run.beam[key] = value;
   refresh();
 }
@@ -2151,6 +2521,18 @@ $('selWrapSp').oninput   = e => setWrap('spacingIn', parseFloat(e.target.value)|
 $('selBeam').oninput    = e => setBeam('beam',    (+e.target.value)/10);
 $('selSpread').oninput  = e => setBeam('spread',  (+e.target.value)/10);
 $('selOpacity').oninput = e => setBeam('opacity', (+e.target.value)/100);
+$('selWashTight').onclick = () => {
+  const run = state.runs.find(r => r.id === ui.sel);
+  if(run){ run.beam = {beam:1.6, spread:0.8, opacity:0.5, surface:true, flip:beamOf(run,'flip')}; refresh(); }
+};
+$('selWashWide').onclick = () => {
+  const run = state.runs.find(r => r.id === ui.sel);
+  if(run){ run.beam = {beam:6.5, spread:2.8, opacity:0.9, surface:true, flip:beamOf(run,'flip')}; refresh(); }
+};
+$('selRainbow').onclick = () => {
+  const run = state.runs.find(r => r.id === ui.sel);
+  if(run){ run.pattern = rainbowPattern(12); refresh(); }
+};
 $('selSurface').onclick = () => {
   const run = state.runs.find(r => r.id === ui.sel);
   if(run) setBeam('surface', !beamOf(run,'surface'));
@@ -2167,6 +2549,7 @@ $('newType').onchange = e => {
 };
 $('newProduct').onchange = e => { ui.newProduct = e.target.value; };
 $('patClear').onclick = () => { ui.newPattern = []; renderDesign(); };
+$('patRainbow').onclick = () => { ui.newPattern = rainbowPattern(12); renderDesign(); };
 $('startDraw').onclick = () => setTool('draw');
 
 $('selType').onchange = e => {
@@ -2200,7 +2583,7 @@ function switchTab(name){
 for(const [btn, name] of TABS) $(btn).onclick = () => switchTab(name);
 
 /* handle for automation / debugging from the console */
-window.HLD = {state, ui, view, shop, setPhoto, renderFull, quote, runFeet, runSockets, runBulbs, runStrandFeet, runStrings,
+window.HLD = {state, ui, view, shop, setPhoto, renderFull, quote, runFeet, runSockets, runBulbs, runStrandFeet, runStrings, rainbowPattern, addDecor,
               refresh, skyInfo: () => (skyCache ? skyCache.stars.length : 0), get image(){return img;}};
 
 window.addEventListener('resize', resizeCanvas);

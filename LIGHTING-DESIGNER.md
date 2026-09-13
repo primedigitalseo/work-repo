@@ -43,6 +43,23 @@ yardstick nearest it instead of the one by the front door. Every measurement
 walks the path foot by foot as the local scale changes, rather than dividing one
 length by one number.
 
+## What you can draw
+
+| Product | Bills as | Notes |
+|---|---|---|
+| C9 12/15/18/24/36", C7 6/12" | bulbs + spool wire by the foot + a clip per socket | colour per socket from the pattern |
+| Permanent RGBWW C9 8/12" | one fixture SKU for every colour, plus a 500-count controller per job | wash starts wide, since these are aimed at the wall |
+| 5mm mini 4/6" | 50-count strings, 17 ft and 25 ft of coverage | |
+| Lit garland, warm white or RGB | 9 ft sticks | |
+
+Placed decor — wreaths, sparkler snowflakes, spritzers, bows, mini trees — goes
+on with the Decor tool and prices from its catalog SKU. Anything else in the
+745-item list can be searched and placed the same way.
+
+Pattern slots take a named colour, a raw hex, or an empty socket. **Rainbow**
+fills twelve evenly spaced hues, which is what a permanent-lighting controller
+sweeps. **Tight** and **Wide wash** set the whole beam group in one click.
+
 ## Wraps
 
 Draw a column, post, or trunk as a line up its height and turn on **Wrap**. The
