@@ -145,6 +145,16 @@ A price at or below cost cannot be right, so the tool refuses to let one out
 quietly: the SKU is marked in search, the quote lists every affected line with
 its catalog page, and the proposal asks before it prints.
 
+## What you charge
+
+The Pricing tab takes a **price basis**. Thunder's suggested retail is the
+default. Switch to **my markup on cost** and the quote prices everything off
+your own number — one markup for the job, or a different one per category, with
+anything you typed on a single SKU still winning over both.
+
+Markup is on cost, so 65% markup is a 39% margin. The quote names the basis it
+used and reports margin in dollars and percent.
+
 Search any SKU on the Pricing tab and type over its cost or customer price. Your
 number wins over both catalogs, is saved in that browser, and the row is marked
 **yours**. That is the fastest fix for the SKUs the scan missed — the C9 spools,
