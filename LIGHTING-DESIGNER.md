@@ -59,6 +59,12 @@ it. Turn the wash off for a run that shouldn't light a surface.
   a strand.
 - The sky detector wants visible sky in the photo. A tight shot with no sky
   gets the darkening but no stars.
+- **Column and tree wraps measure short.** A wrap is a spiral, so the strand is
+  several times the height you draw. Thunder's Mini-Garland sheet does this
+  properly: for a square column it is
+  `((width + length) x 2 x (height / spacing + 1) + height) / 12` feet. An 8 in
+  column 15.5 ft tall wrapped at 12 in spacing needs about 60 ft of strand, not
+  the 15.5 ft the drawn line reports. Quote wraps by hand until this is built.
 
 ## Two ways to run it
 
