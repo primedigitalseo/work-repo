@@ -55,3 +55,23 @@ it. Full features, works offline, nothing leaves the computer. Jobs save as
 `.json` files to your own drive instead of the shared library.
 
 The page detects which mode it is in and adjusts the Save and Jobs controls.
+
+## Pricing model
+
+The quote follows the Thunder Lighting Supply estimation sheet rather than a
+flat per-foot rate:
+
+- **Materials** come out of the geometry at retail — bulbs by color, socket wire
+  by the foot off the spool price, one clip per socket, mini strings by coverage
+  (25 ft per 50-count at 6", 17 ft at 4"). The 745-item 2025 price list is built
+  in, and the Quote tab searches it for anything else you want on the job.
+- **Labor** bills per line with separate install, takedown, and storage rates,
+  plus the crew minutes each takes. A run marked *difficult* moves to the higher
+  roof-line rate.
+- **Contract total** = materials + install + takedown + storage. Tax and a
+  deposit percentage sit on top, and next season quotes at labor alone.
+- Yours only, never on the proposal: wholesale cost, margin on materials, crew
+  hours, and the electrical load in watts, amps, and circuits.
+
+Rates are editable on the Pricing tab and saved per browser. Prices are 2025;
+swap in a newer list by sending the distributor's spreadsheet.
