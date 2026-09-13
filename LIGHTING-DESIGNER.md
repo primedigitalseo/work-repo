@@ -141,6 +141,12 @@ affected. Six rows the scan read badly (a missing price, wholesale above retail,
 a 279% jump) kept their 2025 price and are listed on the Pricing tab with their
 catalog page number.
 
+**Fill the gaps** on the Pricing tab lists everything still unknown, grouped by
+the catalog page it sits on, so one pass with the catalog open clears it. Each
+row takes a typed price or a **Still right** click, which settles it without
+changing anything. Prices barely moved between the 2025 and 2026 catalogs —
+median change zero — so most rows are one click.
+
 A price at or below cost cannot be right, so the tool refuses to let one out
 quietly: the SKU is marked in search, the quote lists every affected line with
 its catalog page, and the proposal asks before it prints.
