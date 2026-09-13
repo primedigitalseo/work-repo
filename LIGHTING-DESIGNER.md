@@ -141,6 +141,10 @@ affected. Six rows the scan read badly (a missing price, wholesale above retail,
 a 279% jump) kept their 2025 price and are listed on the Pricing tab with their
 catalog page number.
 
+A price at or below cost cannot be right, so the tool refuses to let one out
+quietly: the SKU is marked in search, the quote lists every affected line with
+its catalog page, and the proposal asks before it prints.
+
 Search any SKU on the Pricing tab and type over its cost or customer price. Your
 number wins over both catalogs, is saved in that browser, and the row is marked
 **yours**. That is the fastest fix for the SKUs the scan missed — the C9 spools,

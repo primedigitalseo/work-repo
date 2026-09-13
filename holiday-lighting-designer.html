@@ -333,6 +333,15 @@ const ovr       = id => (shop.overrides && shop.overrides[id]) || null;
 const skRetail  = id => { const o = ovr(id); return (o && o.r != null) ? o.r : (sk(id) ? sk(id)[2] : 0); };
 const skCost    = id => { const o = ovr(id); return (o && o.w != null) ? o.w : (sk(id) ? sk(id)[1] : 0); };
 const skEdited  = id => !!ovr(id);
+/* Retail at or below cost is either an OCR misread or a typo in the source
+   workbook. Either way it must not price a job without saying so. */
+function priceSuspect(id){
+  if(skEdited(id)) return false;
+  const r = skRetail(id), w = skCost(id);
+  if(!(r > 0)) return 'no retail price';
+  if(w > 0 && r < w) return 'retail below cost';
+  return false;
+}
 const skWatts   = id => (sk(id) ? sk(id)[5] : 0);
 const skYear    = id => (sk(id) ? sk(id)[6] : 2025);
 const skPage    = id => (sk(id) ? sk(id)[7] : null);
@@ -1596,6 +1605,7 @@ function quote(){
   }).filter(Boolean);
 
   const staleLines = matRows.filter(r => stalePrice(r.sku)).length;
+  const badRows = matRows.filter(r => priceSuspect(r.sku));
   const materials = matRows.reduce((t,r) => t + r.total, 0);
   const matCost   = matRows.reduce((t,r) => t + r.costTotal, 0);
   const install   = labRows.reduce((t,r) => t + r.install, 0);
@@ -1610,7 +1620,7 @@ function quote(){
 
   return {
     matRows, labRows,
-    materials, matCost, netMaterials: materials - matCost, staleLines,
+    materials, matCost, netMaterials: materials - matCost, staleLines, badRows,
     install, takedown, storage, contract, tax, total,
     deposit, dueAtInstall: total - deposit,
     nextYear: install + takedown + storage,
@@ -2118,6 +2128,14 @@ function renderPricing(){
       ${TLS.filter(i => i[6] !== 2026).length} still on 2025 because the 2026 catalog scan never reached them${
       Object.keys(shop.overrides).length ? `, ${Object.keys(shop.overrides).length} you have priced yourself` : ''}.
       Search below and type over any price — yours wins and is saved in this browser.</div>
+    ${(() => { const bad = TLS.filter(i => priceSuspect(i[0]));
+      return bad.length ? `<div class="warn" style="margin-top:8px">
+        <b>${bad.length} items have a price that cannot be right</b> — retail at or below cost, mostly
+        rows the 2026 scan misread. They are safe to leave until you use one; the quote will stop you.
+        ${bad.slice(0,10).map(i => `<div class="mini" style="margin-top:3px">${esc(i[0])} — ${esc(i[3].slice(0,44))}:
+          cost ${money(i[1])}, retail ${money(i[2])}${i[7] ? ' · p.' + i[7] : ''}</div>`).join('')}
+        ${bad.length > 10 ? `<div class="mini">…and ${bad.length-10} more</div>` : ''}
+      </div>` : ''; })()}
     ${PRICE_FLAGS.length ? `<div class="warn" style="margin-top:8px">
       <b>${PRICE_FLAGS.length} rows held back.</b> The 2026 scan read these badly, so they kept their 2025 price.
       Check them against the catalog page and correct by hand if it matters.
@@ -2164,6 +2182,7 @@ function renderPricing(){
         <div class="top"><b>${esc(i[3])}</b><span class="when">${
           skEdited(i[0]) ? '<span class="yr" style="background:#0d2c16;color:var(--ok);border-color:#1d5230">yours</span>'
           : i[6] === 2026 ? '2026' : '<span class="yr">2025</span>'}${i[7] ? ' p.' + i[7] : ''}</span></div>
+        ${priceSuspect(i[0]) ? `<div class="mini" style="color:var(--danger)">${esc(priceSuspect(i[0]))} — type the real one below</div>` : ''}
         <div class="row" style="margin-top:5px">
           <span class="mini" style="flex:none">${esc(i[0])}</span>
           <input type="number" step="0.01" min="0" data-ow="${esc(i[0])}" value="${skCost(i[0])}" style="max-width:74px" title="your cost">
@@ -2452,6 +2471,10 @@ function openJob(file){
 function printProposal(){
   if(!img) return alert('Load a photo first.');
   const q = quote();
+  if(q.badRows.length && !confirm(
+      q.badRows.length + ' line' + (q.badRows.length === 1 ? ' has' : 's have') +
+      ' a price that cannot be right (' + q.badRows.map(r => r.sku).join(', ') +
+      '). Send the proposal anyway?')) return;
   const night = renderFull(true).toDataURL('image/jpeg', 0.9);
   const day   = renderFull(false).toDataURL('image/jpeg', 0.85);
 
@@ -2634,7 +2657,7 @@ function switchTab(name){
 for(const [btn, name] of TABS) $(btn).onclick = () => switchTab(name);
 
 /* handle for automation / debugging from the console */
-window.HLD = {state, ui, view, shop, setPhoto, renderFull, quote, runFeet, runSockets, runBulbs, runStrandFeet, runStrings, rainbowPattern, addDecor,
+window.HLD = {state, ui, view, shop, setPhoto, renderFull, quote, runFeet, runSockets, runBulbs, runStrandFeet, runStrings, runStrandSockets, runStrandBulbs, rainbowPattern, addDecor, pxPerFtAt,
               refresh, skyInfo: () => (skyCache ? skyCache.stars.length : 0), get image(){return img;}};
 
 window.addEventListener('resize', resizeCanvas);
