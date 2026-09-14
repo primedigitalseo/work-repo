@@ -155,19 +155,24 @@ A price at or below cost cannot be right, so the tool refuses to let one out
 quietly: the SKU is marked in search, the quote lists every affected line with
 its catalog page, and the proposal asks before it prints.
 
-## How complete the pricing is
+## Where the prices come from
 
-Three files feed the catalog: the 2025 estimation workbook (cost and retail for
-745 SKUs), the 2026 wholesale scan (cost and retail for 293), and the 2026
-retail catalog (307 names, no prices). The union of the two 2026 files — 490
-SKUs — is the best signal of what Thunder still sells.
+Thunder's 2026 estimation workbook carries its own price list sheet — 831 SKUs
+with cost, customer price, wattage, voltage and colour temperature. Every line
+is cross-checked against the 2026 wholesale PDF, which agrees on all but one
+row and adds catalog pages plus bulk-buy pricing for 55 items.
 
-Of that 2026 line, **433 (88%) carry a cost and a customer price that make sense
-together**; 277 on 2026 numbers, 156 still on 2025. Sixteen have a pair the scan
-mangled and are guarded. Thirty-nine have no price in any file, mostly Burgundy
-and Red Velvet bows. A further 375 SKUs sit in the 2025 workbook without
-appearing in either 2026 file — likely dropped from the line. They stay
-searchable and are marked.
+That is the whole catalog now: no OCR, no guesses, no placeholder names. A
+further 147 SKUs are held over from the 2025 workbook because the 2026 list
+drops them; they stay searchable and are marked **dropped**.
+
+## Which bulbs you stock
+
+The 2026 list prices each bulb colour by LED series — **SPK** at 2600K, **MIN**
+at 2850–2950K, **HBL** at 3000K — where older lists used one bare SKU. Greenery
+splits the same way, as -27 or -30. Pick your series on the Pricing tab and
+every quote resolves to it: red C9 becomes 20309-SPK, a 48 in wreath becomes
+50048-27.
 
 ## What you charge
 
