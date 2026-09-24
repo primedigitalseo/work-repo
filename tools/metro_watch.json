@@ -1,0 +1,80 @@
+{
+  "categories": [
+    "Air conditioning contractor", "Air conditioning repair service", "Air duct cleaning service",
+    "Antique furniture restoration service", "Appliance repair service", "Arborist service",
+    "Asbestos testing service", "Asphalt contractor", "Bathroom remodeler", "Bird control service",
+    "Blast cleaning service", "Building firm", "Building inspector", "Building restoration service",
+    "Cabinet maker", "Carpenter", "Carpet cleaning service", "Carpet installer",
+    "Carport and pergola builder", "Chimney services", "Chimney sweep", "Concrete contractor",
+    "Construction company", "Contractor", "Countertop contractor", "Custom home builder",
+    "Debris removal service", "Deck builder", "Demolition contractor", "Drainage service",
+    "Dry wall contractor", "Dryer vent cleaning service", "Dumpster rental service",
+    "Electrical installation service", "Electrician", "Excavating contractor", "Fence contractor",
+    "Fire damage restoration service", "Floor refinishing service",
+    "Floor sanding and polishing service", "Flooring contractor", "Fountain contractor",
+    "Garage door supplier", "Gardener", "General contractor", "Gutter cleaning service",
+    "Gutter service", "HVAC contractor", "Handyman/Handywoman/Handyperson", "Heating contractor",
+    "Home automation company", "Home builder", "Home inspector", "Hot tub repair service",
+    "Insulation contractor", "Interior construction contractor", "Iron works",
+    "Junk removal service", "Kitchen remodeler", "Landscape architect", "Landscape designer",
+    "Landscape lighting designer", "Landscaper", "Lawn care service",
+    "Lawn sprinkler system contractor", "Lighting contractor", "Locksmith", "Masonry contractor",
+    "Painter", "Painting", "Paving contractor", "Pest control service", "Plasterer", "Plumber",
+    "Pool cleaning service", "Pressure washing service", "Refrigerator repair service",
+    "Remodeler", "Roofing contractor", "Sandblasting service",
+    "Security system installation service", "Septic system service", "Sheet metal contractor",
+    "Siding contractor", "Snow removal service", "Solar energy company",
+    "Steel construction company", "Stucco contractor", "Swimming pool contractor",
+    "Swimming pool repair service", "Tile contractor", "Tree service", "Utility contractor",
+    "Wallpaper installer", "Water damage restoration service", "Waterproofing service", "Welder",
+    "Well drilling contractor", "Window cleaning service", "Window installation service",
+    "Wood floor installation service", "Wood floor refinishing service"
+  ],
+  "markets": {
+    "bedrock": {
+      "client": "Bedrock Restoration", "location": "St Louis Park, MN",
+      "counties": ["27053", "27123", "27003", "27037", "27163", "27139", "27019"],
+      "exclude": "water damage|fire damage|building restoration"
+    },
+    "bluepeaks": {
+      "client": "Blue Peaks Roofing", "location": "Littleton, CO",
+      "counties": ["08005", "08059", "08035", "08031", "08001", "08014"],
+      "exclude": "roof"
+    },
+    "conner": {
+      "client": "Conner Roofing", "location": "St. Louis, MO",
+      "counties": ["29510", "29189", "29183", "29099", "17163", "17119"],
+      "exclude": "roof"
+    },
+    "ddb": {
+      "client": "DD&B Custom Home & Pool Builders", "location": "Gulf Shores, AL",
+      "counties": ["01003", "01097"],
+      "exclude": "pool|hot tub|home builder"
+    },
+    "dsh": {
+      "client": "DSH Homes and Pools", "location": "McKinney, TX",
+      "counties": ["48085", "48121", "48113"],
+      "exclude": "pool|hot tub|home builder"
+    },
+    "everclear": {
+      "client": "EverClear Pools & Spas", "location": "Paterson, NJ",
+      "counties": ["34031", "34003", "34013", "34027"],
+      "exclude": "pool|hot tub"
+    },
+    "meigel": {
+      "client": "Meigel Home Improvements", "location": "Hauppauge, NY",
+      "counties": ["36103", "36059"],
+      "exclude": "remodel"
+    },
+    "redefined": {
+      "client": "Redefined Restoration", "location": "Chicago, IL",
+      "counties": ["17031", "17043", "17097", "17197", "17089"],
+      "exclude": "water damage|fire damage|building restoration"
+    },
+    "powells": {
+      "client": "Powell's Plumbing & Air", "location": "Wilmington, NC",
+      "counties": ["37129", "37019", "37141"],
+      "exclude": "plumb|hvac|heating|air conditioning|air duct"
+    }
+  }
+}

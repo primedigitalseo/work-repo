@@ -64,6 +64,28 @@ their links first seen between March and September 2026. Buying from a static
 export means arriving after them. A weekly `watch` puts you in the window before
 the blast lands.
 
+### `metro_watch.py` — weekly drops for every client metro
+
+`watch` keyed to the client markets in `tools/metro_watch.json`: each market is
+a set of county GEOIDs, pulled with `geoKind=county`, limited to
+home-improvement categories minus the client's own niche (no roofers for a
+roofing client, no pool builders for a pool client).
+
+```bash
+python3 tools/metro_watch.py              # all markets, ~3,400 units
+python3 tools/metro_watch.py dsh          # one market
+python3 tools/metro_watch.py --dry-run    # URLs only, free
+```
+
+Snapshots are written to `watch-state/` and new domains to
+`watch-reports/<date>.csv`. Both are committed: a cloud container does not
+survive between weekly runs, and a lost snapshot turns the next run into a new
+baseline instead of a diff. The baseline was seeded from the 2026-09-24 pull.
+
+Screen the new domains with Ahrefs' free `public-domain-rating-free` first (up
+to 1,000 per call, 0 units), then pull referring domains only for DR 7+,
+capped at 5 per market.
+
 ## Guardrails
 
 The client enforces the account limits so a caller cannot trip them: one request
@@ -108,5 +130,9 @@ matter more than location.
 tools/hsb.py           entry point
 tools/hsb/client.py    HTTP, rate limiting, paging, unit accounting
 tools/hsb/cli.py       commands and output formatting
+tools/metro_watch.py   weekly drop watch across client metros
+tools/metro_watch.json client markets, county GEOIDs, category list
+watch-state/           metro_watch snapshots (committed)
+watch-reports/         metro_watch new-drop CSVs (committed)
 .hsb-state/            watch snapshots (gitignored)
 ```
