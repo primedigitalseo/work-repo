@@ -1,0 +1,296 @@
+trade,rank,county,population,competition_score,competition_label,companies,residents_per_company,median_reviews,pct_running_ads,lsa_cost_per_lead,median_household_income,owner_occupied_pct,hsb_report_url
+Water damage restoration,1,"San Joaquin County, CA",797334,22,Low,24,33222,15,37.5,42.4,92179,62,https://homeservicebase.com/market/research?kind=county&loc=06077&areas=06077&cats=c1696
+Water damage restoration,2,"Tulare County, CA",478693,25,Low,9,53188,13,33.3,64.46,71300,58.5,https://homeservicebase.com/market/research?kind=county&loc=06107&areas=06107&cats=c1696
+Water damage restoration,3,"Santa Clara County, CA",1902047,25,Low,93,20452,11,35.5,97.5,164281,55.1,https://homeservicebase.com/market/research?kind=county&loc=06085&areas=06085&cats=c1696
+Water damage restoration,4,"Northampton County, PA",318580,26,Low,11,28962,17,45.5,79.24,89184,71.1,https://homeservicebase.com/market/research?kind=county&loc=42095&areas=42095&cats=c1696
+Water damage restoration,5,"Placer County, CA",419156,26,Low,15,27944,25.5,53.3,37.74,115998,74.8,https://homeservicebase.com/market/research?kind=county&loc=06061&areas=06061&cats=c1696
+Water damage restoration,6,"Contra Costa County, CA",1165012,27,Low,53,21981,14,39.6,94.7,127229,68,https://homeservicebase.com/market/research?kind=county&loc=06013&areas=06013&cats=c1696
+Water damage restoration,7,"Nassau County, NY",1389591,27,Low,109,12749,15,19.3,100,146202,81.9,https://homeservicebase.com/market/research?kind=county&loc=36059&areas=36059&cats=c1696
+Water damage restoration,8,"San Mateo County, CA",742340,28,Low,44,16871,10,31.8,98.26,158855,58.5,https://homeservicebase.com/market/research?kind=county&loc=06081&areas=06081&cats=c1696
+Water damage restoration,9,"Dakota County, MN",445771,29,Low,14,31841,39.5,57.1,112.5,106318,74.9,https://homeservicebase.com/market/research?kind=county&loc=27037&areas=27037&cats=c1696
+Water damage restoration,10,"Chester County, PA",547840,29,Low,25,21914,50,48,78.54,127208,75.1,https://homeservicebase.com/market/research?kind=county&loc=42029&areas=42029&cats=c1696
+Water damage restoration,11,"York County, PA",462924,30,Low,16,28933,45,50,48,84829,76.3,https://homeservicebase.com/market/research?kind=county&loc=42133&areas=42133&cats=c1696
+Water damage restoration,12,"Berks County, PA",433015,32,Low,13,33309,25.5,61.5,74.07,79777,71.3,https://homeservicebase.com/market/research?kind=county&loc=42011&areas=42011&cats=c1696
+Water damage restoration,13,"Ottawa County, MI",301203,32,Low,12,25100,34,41.7,85,90502,79.3,https://homeservicebase.com/market/research?kind=county&loc=26139&areas=26139&cats=c1696
+Water damage restoration,14,"Norfolk County, MA",730082,32,Low,35,20859,36,51.4,42.73,130739,68.7,https://homeservicebase.com/market/research?kind=county&loc=25021&areas=25021&cats=c1696
+Water damage restoration,15,"Prince William County, VA",488880,32,Low,26,18803,23.5,46.2,161.5,131402,74.3,https://homeservicebase.com/market/research?kind=county&loc=51153&areas=51153&cats=c1696
+Water damage restoration,16,"Honolulu County, HI",1001146,33,Low,40,25029,35,40,41.5,106195,59.8,https://homeservicebase.com/market/research?kind=county&loc=15003&areas=15003&cats=c1696
+Water damage restoration,17,"Middlesex County, MA",1638365,33,Low,82,19980,29,34.1,41.5,130847,61.3,https://homeservicebase.com/market/research?kind=county&loc=25017&areas=25017&cats=c1696
+Water damage restoration,18,"Stanislaus County, CA",553990,34,Low,22,25181,6.5,40.9,41.86,81468,61.2,https://homeservicebase.com/market/research?kind=county&loc=06099&areas=06099&cats=c1696
+Water damage restoration,19,"Pinal County, AZ",469006,34,Low,23,20392,26,26.1,106.65,80266,81.7,https://homeservicebase.com/market/research?kind=county&loc=04021&areas=04021&cats=c1696
+Water damage restoration,20,"Hamilton County, IN",365056,34,Low,20,18253,15.5,50,94,121530,76.1,https://homeservicebase.com/market/research?kind=county&loc=18057&areas=18057&cats=c1696
+Water damage restoration,21,"Gloucester County, NJ",306954,36,Low,16,19185,28,37.5,81.5,105115,80.1,https://homeservicebase.com/market/research?kind=county&loc=34015&areas=34015&cats=c1696
+Water damage restoration,22,"Loudoun County, VA",432998,36,Low,40,10825,18,45,161.5,181765,77.9,https://homeservicebase.com/market/research?kind=county&loc=51107&areas=51107&cats=c1696
+Water damage restoration,23,"Lorain County, OH",317129,37,Low,11,28830,76.5,36.4,49,73347,74,https://homeservicebase.com/market/research?kind=county&loc=39093&areas=39093&cats=c1696
+Water damage restoration,24,"Brazoria County, TX",391255,37,Low,28,13973,8,17.9,161.5,97993,74.1,https://homeservicebase.com/market/research?kind=county&loc=48039&areas=48039&cats=c1696
+Water damage restoration,25,"Erie County, NY",950622,38,Low,34,27959,33,38.2,41.5,72839,65.8,https://homeservicebase.com/market/research?kind=county&loc=36029&areas=36029&cats=c1696
+Water damage restoration,26,"New Castle County, DE",577961,38,Low,29,19930,20,31,83.43,91166,69,https://homeservicebase.com/market/research?kind=county&loc=10003&areas=10003&cats=c1696
+Water damage restoration,27,"Rockingham County, NH",319082,38,Low,20,15954,14,45,41.5,118331,78.4,https://homeservicebase.com/market/research?kind=county&loc=33015&areas=33015&cats=c1696
+Water damage restoration,28,"Somerset County, NJ",349846,38,Low,25,13994,31.5,32,99.3,140374,74.3,https://homeservicebase.com/market/research?kind=county&loc=34035&areas=34035&cats=c1696
+Water damage restoration,29,"Fairfax County, VA",1147837,39,Low,88,13044,41,37.5,161.5,153637,68.6,https://homeservicebase.com/market/research?kind=county&loc=51059&areas=51059&cats=c1696
+Water damage restoration,30,"Bristol County, MA",582270,40,Moderate,21,27727,20.5,47.6,56.37,85625,62.3,https://homeservicebase.com/market/research?kind=county&loc=25005&areas=25005&cats=c1696
+Water damage restoration,31,"Greater Bridgeport Planning Region, CT",329259,40,Moderate,12,27438,42,50,93.15,89667,65.3,https://homeservicebase.com/market/research?kind=county&loc=09120&areas=09120&cats=c1696
+Water damage restoration,32,"Solano County, CA",451918,40,Moderate,22,20542,16.5,40.9,61.54,100401,63,https://homeservicebase.com/market/research?kind=county&loc=06095&areas=06095&cats=c1696
+Water damage restoration,33,"Chesterfield County, VA",377869,40,Moderate,20,18893,42,55,89,101931,76.7,https://homeservicebase.com/market/research?kind=county&loc=51041&areas=51041&cats=c1696
+Water damage restoration,34,"Stark County, OH",373713,41,Moderate,12,31143,35,41.7,49,67934,69.2,https://homeservicebase.com/market/research?kind=county&loc=39151&areas=39151&cats=c1696
+Water damage restoration,35,"Essex County, MA",813054,41,Moderate,42,19358,25,35.7,41.5,101883,63.5,https://homeservicebase.com/market/research?kind=county&loc=25009&areas=25009&cats=c1696
+Water damage restoration,36,"Plymouth County, MA",535075,41,Moderate,31,17260,31,54.8,45.06,114201,77.6,https://homeservicebase.com/market/research?kind=county&loc=25023&areas=25023&cats=c1696
+Water damage restoration,37,"Fort Bend County, TX",893767,41,Moderate,64,13965,12.5,29.7,161.5,114041,77,https://homeservicebase.com/market/research?kind=county&loc=48157&areas=48157&cats=c1696
+Water damage restoration,38,"McHenry County, IL",312591,42,Moderate,18,17366,68,50,123.12,104802,82.7,https://homeservicebase.com/market/research?kind=county&loc=17111&areas=17111&cats=c1696
+Water damage restoration,39,"Anne Arundel County, MD",598166,42,Moderate,45,13293,18.5,28.9,111.39,124911,75.1,https://homeservicebase.com/market/research?kind=county&loc=24003&areas=24003&cats=c1696
+Water damage restoration,40,"Lake County, IN",500379,43,Moderate,19,26336,32.5,57.9,136.5,71493,71.7,https://homeservicebase.com/market/research?kind=county&loc=18089&areas=18089&cats=c1696
+Water damage restoration,41,"Kane County, IL",517255,43,Moderate,33,15674,28.5,30.3,136.5,103163,76,https://homeservicebase.com/market/research?kind=county&loc=17089&areas=17089&cats=c1696
+Water damage restoration,42,"Bucks County, PA",647461,43,Moderate,43,15057,32,44.2,82.64,114764,77.8,https://homeservicebase.com/market/research?kind=county&loc=42017&areas=42017&cats=c1696
+Water damage restoration,43,"Rockland County, NY",341883,44,Moderate,21,16280,30,47.6,100,109959,67.9,https://homeservicebase.com/market/research?kind=county&loc=36087&areas=36087&cats=c1696
+Water damage restoration,44,"Will County, IL",701462,44,Moderate,60,11691,13,35,136.5,109984,82.8,https://homeservicebase.com/market/research?kind=county&loc=17197&areas=17197&cats=c1696
+Water damage restoration,45,"Hillsborough County, NH",426378,45,Moderate,23,18538,22.5,52.2,41.5,103545,67.4,https://homeservicebase.com/market/research?kind=county&loc=33011&areas=33011&cats=c1696
+Water damage restoration,46,"Clackamas County, OR",423975,45,Moderate,27,15703,17,37,41.5,103517,70.7,https://homeservicebase.com/market/research?kind=county&loc=41005&areas=41005&cats=c1696
+Water damage restoration,47,"Lancaster County, PA",557931,46,Moderate,24,23247,48,62.5,49.6,86959,69.8,https://homeservicebase.com/market/research?kind=county&loc=42071&areas=42071&cats=c1696
+Water damage restoration,48,"Anoka County, MN",370349,46,Moderate,18,20575,87.5,83.3,112.5,101869,80.2,https://homeservicebase.com/market/research?kind=county&loc=27003&areas=27003&cats=c1696
+Water damage restoration,49,"Mercer County, NJ",385864,46,Moderate,20,19293,20,50,85.73,100645,62.2,https://homeservicebase.com/market/research?kind=county&loc=34021&areas=34021&cats=c1696
+Water damage restoration,50,"Camden County, NJ",527257,46,Moderate,29,18181,38,27.6,81.5,88755,64.7,https://homeservicebase.com/market/research?kind=county&loc=34007&areas=34007&cats=c1696
+Water damage restoration,51,"Cumberland County, ME",308827,46,Moderate,17,18166,23,41.2,41.5,95677,69.8,https://homeservicebase.com/market/research?kind=county&loc=23005&areas=23005&cats=c1696
+Water damage restoration,52,"Westchester County, NY",999677,46,Moderate,71,14080,24,29.6,100,118976,61.8,https://homeservicebase.com/market/research?kind=county&loc=36119&areas=36119&cats=c1696
+Water damage restoration,53,"Naugatuck Valley Planning Region, CT",454969,47,Moderate,25,18199,29.5,44,53.33,86191,68.6,https://homeservicebase.com/market/research?kind=county&loc=09140&areas=09140&cats=c1696
+Water damage restoration,54,"Howard County, MD",336328,47,Moderate,33,10192,20,33.3,113.67,149763,71.5,https://homeservicebase.com/market/research?kind=county&loc=24027&areas=24027&cats=c1696
+Water damage restoration,55,"Delaware County, PA",579222,48,Moderate,29,19973,47,51.7,81.5,89546,69.6,https://homeservicebase.com/market/research?kind=county&loc=42045&areas=42045&cats=c1696
+Water damage restoration,56,"St. Charles County, MO",414535,48,Moderate,26,15944,49.5,61.5,41.5,104692,80.5,https://homeservicebase.com/market/research?kind=county&loc=29183&areas=29183&cats=c1696
+Water damage restoration,57,"Lake County, IL",714223,49,Moderate,51,14004,17,35.3,127.83,110416,74.8,https://homeservicebase.com/market/research?kind=county&loc=17097&areas=17097&cats=c1696
+Water damage restoration,58,"Lancaster County, NE",326696,50,Moderate,14,23335,23,42.9,41.5,74793,58.9,https://homeservicebase.com/market/research?kind=county&loc=31109&areas=31109&cats=c1696
+Water damage restoration,59,"Hennepin County, MN",1269496,50,Moderate,64,19836,31,50,112.5,97653,62.7,https://homeservicebase.com/market/research?kind=county&loc=27053&areas=27053&cats=c1696
+Water damage restoration,60,"Capitol Planning Region, CT",977290,50,Moderate,54,18098,21,46.3,48.21,93394,65.7,https://homeservicebase.com/market/research?kind=county&loc=09110&areas=09110&cats=c1696
+Water damage restoration,61,"Orange County, NY",406616,50,Moderate,23,17679,25,56.5,100,97178,67.8,https://homeservicebase.com/market/research?kind=county&loc=36071&areas=36071&cats=c1696
+Water damage restoration,62,"Prince George's County, MD",959754,50,Moderate,69,13909,13,29,154.37,101798,62.3,https://homeservicebase.com/market/research?kind=county&loc=24033&areas=24033&cats=c1696
+Water damage restoration,63,"Douglas County, CO",377150,50,Moderate,47,8024,19.5,36.2,115.43,149594,77.4,https://homeservicebase.com/market/research?kind=county&loc=08035&areas=08035&cats=c1696
+Water damage restoration,64,"Lehigh County, PA",378792,51,Moderate,17,22282,27,52.9,77.06,80079,65.6,https://homeservicebase.com/market/research?kind=county&loc=42077&areas=42077&cats=c1696
+Water damage restoration,65,"Worcester County, MA",867788,51,Moderate,59,14708,17,32.2,42.94,95939,65.8,https://homeservicebase.com/market/research?kind=county&loc=25027&areas=25027&cats=c1696
+Water damage restoration,66,"Montgomery County, PA",867573,51,Moderate,64,13556,26.5,50,81.5,113915,71.4,https://homeservicebase.com/market/research?kind=county&loc=42091&areas=42091&cats=c1696
+Water damage restoration,67,"Montgomery County, MD",1065949,51,Moderate,100,10659,24,31,154.67,132450,65.3,https://homeservicebase.com/market/research?kind=county&loc=24031&areas=24031&cats=c1696
+Water damage restoration,68,"Sacramento County, CA",1594006,52,Moderate,92,17326,11,37,37.5,92175,59,https://homeservicebase.com/market/research?kind=county&loc=06067&areas=06067&cats=c1696
+Water damage restoration,69,"Spartanburg County, SC",347852,53,Moderate,13,26758,28,69.2,57.5,66234,73,https://homeservicebase.com/market/research?kind=county&loc=45083&areas=45083&cats=c1696
+Water damage restoration,70,"Kern County, CA",915075,53,Moderate,42,21788,12,35.7,143.09,70210,60.1,https://homeservicebase.com/market/research?kind=county&loc=06029&areas=06029&cats=c1696
+Water damage restoration,71,"Pierce County, WA",930319,53,Moderate,59,15768,23.5,42.4,135.2,99564,64.7,https://homeservicebase.com/market/research?kind=county&loc=53053&areas=53053&cats=c1696
+Water damage restoration,72,"Bergen County, NJ",962316,53,Moderate,85,11321,23,23.5,100,124884,65.3,https://homeservicebase.com/market/research?kind=county&loc=34003&areas=34003&cats=c1696
+Water damage restoration,73,"Denton County, TX",979561,54,Moderate,82,11946,22.5,36.6,92.51,111498,65.5,https://homeservicebase.com/market/research?kind=county&loc=48121&areas=48121&cats=c1696
+Water damage restoration,74,"Monmouth County, NJ",645353,54,Moderate,57,11322,38,42.1,98.81,124845,75.6,https://homeservicebase.com/market/research?kind=county&loc=34025&areas=34025&cats=c1696
+Water damage restoration,75,"Henrico County, VA",335744,55,Moderate,20,16787,28,45,89,88783,64.5,https://homeservicebase.com/market/research?kind=county&loc=51087&areas=51087&cats=c1696
+Water damage restoration,76,"Polk County, FL",790694,56,Moderate,47,16823,17.5,23.4,165.98,65978,70.5,https://homeservicebase.com/market/research?kind=county&loc=12105&areas=12105&cats=c1696
+Water damage restoration,77,"Waukesha County, WI",411762,56,Moderate,30,13725,32,60,71.5,106076,76,https://homeservicebase.com/market/research?kind=county&loc=55133&areas=55133&cats=c1696
+Water damage restoration,78,"Morris County, NJ",514528,56,Moderate,55,9355,21,36.4,100,137326,74.3,https://homeservicebase.com/market/research?kind=county&loc=34027&areas=34027&cats=c1696
+Water damage restoration,79,"Jefferson Parish, LA",430920,57,Moderate,17,25348,44,52.9,41.5,65252,62.6,https://homeservicebase.com/market/research?kind=county&loc=22051&areas=22051&cats=c1696
+Water damage restoration,80,"Sedgwick County, KS",528226,57,Moderate,22,24010,33,63.6,41.5,69365,63.1,https://homeservicebase.com/market/research?kind=county&loc=20173&areas=20173&cats=c1696
+Water damage restoration,81,"Westmoreland County, PA",352500,57,Moderate,23,15326,12,47.8,56.85,74109,78.4,https://homeservicebase.com/market/research?kind=county&loc=42129&areas=42129&cats=c1696
+Water damage restoration,82,"Johnson County, KS",620631,57,Moderate,42,14777,45,52.4,41.5,109208,68.5,https://homeservicebase.com/market/research?kind=county&loc=20091&areas=20091&cats=c1696
+Water damage restoration,83,"Lake County, FL",412924,57,Moderate,33,12513,12.5,24.2,116.69,73161,77.6,https://homeservicebase.com/market/research?kind=county&loc=12069&areas=12069&cats=c1696
+Water damage restoration,84,"Onondaga County, NY",471129,58,Moderate,23,20484,24,47.8,41.5,76945,65.9,https://homeservicebase.com/market/research?kind=county&loc=36067&areas=36067&cats=c1696
+Water damage restoration,85,"Summit County, OH",537864,58,Moderate,28,19209,27,39.3,49,71622,67.5,https://homeservicebase.com/market/research?kind=county&loc=39153&areas=39153&cats=c1696
+Water damage restoration,86,"Middlesex County, NJ",871290,58,Moderate,67,13004,32.5,34.3,99.01,111549,63.6,https://homeservicebase.com/market/research?kind=county&loc=34023&areas=34023&cats=c1696
+Water damage restoration,87,"Ocean County, NJ",654362,58,Moderate,59,11091,18,30.5,97.36,89863,80.7,https://homeservicebase.com/market/research?kind=county&loc=34029&areas=34029&cats=c1696
+Water damage restoration,88,"St. Louis County, MO",995569,59,Moderate,59,16874,28.5,47.5,41.5,82936,69.2,https://homeservicebase.com/market/research?kind=county&loc=29189&areas=29189&cats=c1696
+Water damage restoration,89,"Washington County, OR",603947,59,Moderate,37,16323,25,67.6,41.5,107772,60.8,https://homeservicebase.com/market/research?kind=county&loc=41067&areas=41067&cats=c1696
+Water damage restoration,90,"Montgomery County, OH",536096,60,High,27,19855,21,40.7,49.28,66139,62.5,https://homeservicebase.com/market/research?kind=county&loc=39113&areas=39113&cats=c1696
+Water damage restoration,91,"Allegheny County, PA",1238177,60,High,71,17439,16,45.1,57.5,78548,65.2,https://homeservicebase.com/market/research?kind=county&loc=42003&areas=42003&cats=c1696
+Water damage restoration,92,"Sonoma County, CA",485040,60,High,39,12437,11.5,43.6,100,104674,62.6,https://homeservicebase.com/market/research?kind=county&loc=06097&areas=06097&cats=c1696
+Water damage restoration,93,"Jefferson County, CO",579377,60,High,51,11360,28.5,45.1,119,110656,70.7,https://homeservicebase.com/market/research?kind=county&loc=08059&areas=08059&cats=c1696
+Water damage restoration,94,"Western Connecticut Planning Region, CT",627071,61,High,57,11001,25,49.1,90.63,128188,66.4,https://homeservicebase.com/market/research?kind=county&loc=09190&areas=09190&cats=c1696
+Water damage restoration,95,"Cleveland County, OK",300047,62,High,16,18753,48,43.8,41.5,77068,63.9,https://homeservicebase.com/market/research?kind=county&loc=40027&areas=40027&cats=c1696
+Water damage restoration,96,"Davis County, UT",370924,62,High,31,11965,58,54.8,119,110884,77.3,https://homeservicebase.com/market/research?kind=county&loc=49011&areas=49011&cats=c1696
+Water damage restoration,97,"Williamson County, TX",672688,62,High,63,10678,12.5,33.3,91.14,111340,66.4,https://homeservicebase.com/market/research?kind=county&loc=48491&areas=48491&cats=c1696
+Water damage restoration,98,"Suffolk County, NY",1530146,62,High,220,6955,16,28.2,100,130686,82.2,https://homeservicebase.com/market/research?kind=county&loc=36103&areas=36103&cats=c1696
+Water damage restoration,99,"Monroe County, NY",753753,63,High,40,18844,55,42.5,54.52,76382,63.7,https://homeservicebase.com/market/research?kind=county&loc=36055&areas=36055&cats=c1696
+Water damage restoration,100,"Maricopa County, AZ",4559748,63,High,327,13944,25,30.6,117.56,89300,65.2,https://homeservicebase.com/market/research?kind=county&loc=04013&areas=04013&cats=c1696
+Water damage restoration,101,"Butler County, OH",392876,64,High,29,13547,17,41.4,81.58,81590,69.9,https://homeservicebase.com/market/research?kind=county&loc=39017&areas=39017&cats=c1696
+Water damage restoration,102,"Collin County, TX",1163337,64,High,102,11405,36.5,42.2,91.43,121600,64.5,https://homeservicebase.com/market/research?kind=county&loc=48085&areas=48085&cats=c1696
+Water damage restoration,103,"St. Johns County, FL",306934,64,High,33,9301,12.5,45.5,81,109839,82.2,https://homeservicebase.com/market/research?kind=county&loc=12109&areas=12109&cats=c1696
+Water damage restoration,104,"Hampden County, MA",462815,65,High,24,19284,21,45.8,52.52,71306,62.2,https://homeservicebase.com/market/research?kind=county&loc=25013&areas=25013&cats=c1696
+Water damage restoration,105,"Bernalillo County, NM",673930,65,High,35,19255,29.5,45.7,41.5,69473,64.5,https://homeservicebase.com/market/research?kind=county&loc=35001&areas=35001&cats=c1696
+Water damage restoration,106,"Washoe County, NV",497200,65,High,31,16039,26,35.5,41.42,88096,59.9,https://homeservicebase.com/market/research?kind=county&loc=32031&areas=32031&cats=c1696
+Water damage restoration,107,"San Bernardino County, CA",2197104,66,High,198,11096,11,19.7,156.82,85478,62.1,https://homeservicebase.com/market/research?kind=county&loc=06071&areas=06071&cats=c1696
+Water damage restoration,108,"Nueces County, TX",352955,67,High,19,18577,18,31.6,41.5,66897,59.7,https://homeservicebase.com/market/research?kind=county&loc=48355&areas=48355&cats=c1696
+Water damage restoration,109,"Fresno County, CA",1016725,67,High,63,16138,12,31.7,45.12,74201,55.5,https://homeservicebase.com/market/research?kind=county&loc=06019&areas=06019&cats=c1696
+Water damage restoration,110,"Dane County, WI",572674,68,High,37,15478,17,51.4,57.09,89975,57.1,https://homeservicebase.com/market/research?kind=county&loc=55025&areas=55025&cats=c1696
+Water damage restoration,111,"Virginia Beach city, VA",456349,68,High,34,13422,22,41.2,57.5,92968,65.1,https://homeservicebase.com/market/research?kind=county&loc=51810&areas=51810&cats=c1696
+Water damage restoration,112,"Pasco County, FL",611444,69,High,46,13292,22,39.1,174,70492,75.7,https://homeservicebase.com/market/research?kind=county&loc=12101&areas=12101&cats=c1696
+Water damage restoration,113,"Kent County, MI",663150,70,High,48,13816,25,41.7,85,82631,70.3,https://homeservicebase.com/market/research?kind=county&loc=26081&areas=26081&cats=c1696
+Water damage restoration,114,"Boulder County, CO",328961,70,High,27,12184,23.5,44.4,119,103994,62,https://homeservicebase.com/market/research?kind=county&loc=08013&areas=08013&cats=c1696
+Water damage restoration,115,"Orange County, CA",3165820,70,High,358,8843,16,18.7,161.04,116289,56.4,https://homeservicebase.com/market/research?kind=county&loc=06059&areas=06059&cats=c1696
+Water damage restoration,116,"Lexington County, SC",304887,71,High,18,16938,25.5,72.2,41.5,77408,77.4,https://homeservicebase.com/market/research?kind=county&loc=45063&areas=45063&cats=c1696
+Water damage restoration,117,"Benton County, AR",303632,71,High,22,13801,16,50,45.25,93506,67,https://homeservicebase.com/market/research?kind=county&loc=05007&areas=05007&cats=c1696
+Water damage restoration,118,"Riverside County, CA",2478600,71,High,265,9353,13,27.2,141.53,93074,69.1,https://homeservicebase.com/market/research?kind=county&loc=06065&areas=06065&cats=c1696
+Water damage restoration,119,"Durham County, NC",332353,72,High,20,16618,17,45,61.5,82316,55.5,https://homeservicebase.com/market/research?kind=county&loc=37063&areas=37063&cats=c1696
+Water damage restoration,120,"Weld County, CO",350396,72,High,37,9470,25,37.8,115.06,97097,76,https://homeservicebase.com/market/research?kind=county&loc=08123&areas=08123&cats=c1696
+Water damage restoration,121,"Macomb County, MI",879853,73,High,69,12751,28.5,42,100,77837,75,https://homeservicebase.com/market/research?kind=county&loc=26099&areas=26099&cats=c1696
+Water damage restoration,122,"Oakland County, MI",1279825,73,High,123,10405,32,35,98.11,97760,72.7,https://homeservicebase.com/market/research?kind=county&loc=26125&areas=26125&cats=c1696
+Water damage restoration,123,"King County, WA",2287171,73,High,237,9651,22,34.6,132.02,124746,55.4,https://homeservicebase.com/market/research?kind=county&loc=53033&areas=53033&cats=c1696
+Water damage restoration,124,"Ventura County, CA",837469,73,High,103,8131,16.5,22.3,158.64,109797,64.6,https://homeservicebase.com/market/research?kind=county&loc=06111&areas=06111&cats=c1696
+Water damage restoration,125,"Ramsey County, MN",542945,74,High,31,17514,25.5,54.8,112.5,81568,60.6,https://homeservicebase.com/market/research?kind=county&loc=27123&areas=27123&cats=c1696
+Water damage restoration,126,"Baltimore County, MD",850796,74,High,72,11817,37,36.1,97.42,91768,66.4,https://homeservicebase.com/market/research?kind=county&loc=24005&areas=24005&cats=c1696
+Water damage restoration,127,"Lane County, OR",384207,75,High,18,21345,24,66.7,41.67,71544,59.7,https://homeservicebase.com/market/research?kind=county&loc=41039&areas=41039&cats=c1696
+Water damage restoration,128,"Bexar County, TX",2067341,75,High,124,16672,30.5,37.9,49,72341,58.8,https://homeservicebase.com/market/research?kind=county&loc=48029&areas=48029&cats=c1696
+Water damage restoration,129,"Providence County, RI",664854,75,High,50,13297,32,28,56.7,78787,56.9,https://homeservicebase.com/market/research?kind=county&loc=44007&areas=44007&cats=c1696
+Water damage restoration,130,"South Central Connecticut Planning Region, CT",570598,75,High,48,11887,21,27.1,51.34,88197,60.5,https://homeservicebase.com/market/research?kind=county&loc=09170&areas=09170&cats=c1696
+Water damage restoration,131,"Polk County, IA",503175,76,High,36,13977,49,50,47.5,83576,67.4,https://homeservicebase.com/market/research?kind=county&loc=19153&areas=19153&cats=c1696
+Water damage restoration,132,"Galveston County, TX",358990,76,High,33,10878,13,27.3,161.5,86105,67.6,https://homeservicebase.com/market/research?kind=county&loc=48167&areas=48167&cats=c1696
+Water damage restoration,133,"Douglas County, NE",590736,78,High,39,15147,31,48.7,41.5,80391,61.5,https://homeservicebase.com/market/research?kind=county&loc=31055&areas=31055&cats=c1696
+Water damage restoration,134,"DuPage County, IL",930024,78,High,108,8611,26,37,136.5,112096,73.1,https://homeservicebase.com/market/research?kind=county&loc=17043&areas=17043&cats=c1696
+Water damage restoration,135,"Utah County, UT",705400,81,Very high,77,9161,25.5,35.1,119,100671,68.3,https://homeservicebase.com/market/research?kind=county&loc=49049&areas=49049&cats=c1696
+Water damage restoration,136,"Forsyth County, NC",389977,82,Very high,21,18570,68,52.4,55,67165,63.6,https://homeservicebase.com/market/research?kind=county&loc=37067&areas=37067&cats=c1696
+Water damage restoration,137,"Hamilton County, OH",830774,82,Very high,58,14324,9.5,41.4,84,72470,59.3,https://homeservicebase.com/market/research?kind=county&loc=39061&areas=39061&cats=c1696
+Water damage restoration,138,"Marion County, OR",349244,83,Very high,25,13970,19,44,41.69,77351,62.3,https://homeservicebase.com/market/research?kind=county&loc=41047&areas=41047&cats=c1696
+Water damage restoration,139,"Pima County, AZ",1060490,83,Very high,77,13773,24,41.6,53.38,70315,65.2,https://homeservicebase.com/market/research?kind=county&loc=04019&areas=04019&cats=c1696
+Water damage restoration,140,"Brevard County, FL",632780,83,Very high,65,9735,18,26.2,115.33,78476,76.7,https://homeservicebase.com/market/research?kind=county&loc=12009&areas=12009&cats=c1696
+Water damage restoration,141,"Allen County, IN",392378,84,Very high,25,15695,47,60,52.6,70737,68.9,https://homeservicebase.com/market/research?kind=county&loc=18003&areas=18003&cats=c1696
+Water damage restoration,142,"Knox County, TN",494148,86,Very high,31,15940,53.5,67.7,41.5,74222,65.2,https://homeservicebase.com/market/research?kind=county&loc=47093&areas=47093&cats=c1696
+Water damage restoration,143,"Madison County, AL",405718,86,Very high,35,11592,23.5,54.3,41.5,86499,68.3,https://homeservicebase.com/market/research?kind=county&loc=01089&areas=01089&cats=c1696
+Water damage restoration,144,"Salt Lake County, UT",1196523,87,Very high,123,9728,40.5,35.8,119,97494,66.1,https://homeservicebase.com/market/research?kind=county&loc=49035&areas=49035&cats=c1696
+Water damage restoration,145,"Jefferson County, AL",667755,88,Very high,41,16287,33,56.1,41.5,66388,63.9,https://homeservicebase.com/market/research?kind=county&loc=01073&areas=01073&cats=c1696
+Water damage restoration,146,"Tarrant County, TX",2167390,88,Very high,186,11653,24,36.6,95,84207,59.3,https://homeservicebase.com/market/research?kind=county&loc=48439&areas=48439&cats=c1696
+Water damage restoration,147,"Wake County, NC",1178653,88,Very high,130,9067,30,42.3,61.5,105768,64.1,https://homeservicebase.com/market/research?kind=county&loc=37183&areas=37183&cats=c1696
+Water damage restoration,148,"Snohomish County, WA",844430,88,Very high,103,8198,25,43.7,136.5,111246,68.2,https://homeservicebase.com/market/research?kind=county&loc=53061&areas=53061&cats=c1696
+Water damage restoration,149,"Montgomery County, TX",684432,90,Very high,89,7690,16,29.2,161.5,97701,71.8,https://homeservicebase.com/market/research?kind=county&loc=48339&areas=48339&cats=c1696
+Water damage restoration,150,"Jefferson County, KY",783022,91,Very high,59,13272,21,35.6,45,69866,62.1,https://homeservicebase.com/market/research?kind=county&loc=21111&areas=21111&cats=c1696
+Water damage restoration,151,"Albany County, NY",317018,91,Very high,24,13209,18,58.3,52.5,85333,56.6,https://homeservicebase.com/market/research?kind=county&loc=36001&areas=36001&cats=c1696
+Water damage restoration,152,"Washtenaw County, MI",369822,91,Very high,29,12752,20.5,65.5,87.72,89180,61.6,https://homeservicebase.com/market/research?kind=county&loc=26161&areas=26161&cats=c1696
+Water damage restoration,153,"Bell County, TX",386897,93,Very high,26,14881,30,42.3,45.83,68865,56.5,https://homeservicebase.com/market/research?kind=county&loc=48027&areas=48027&cats=c1696
+Water damage restoration,154,"Escambia County, FL",325923,93,Very high,28,11640,15,39.3,41.5,67500,64.8,https://homeservicebase.com/market/research?kind=county&loc=12033&areas=12033&cats=c1696
+Water damage restoration,155,"Volusia County, FL",579622,93,Very high,60,9660,13.5,35,111.58,70044,73.7,https://homeservicebase.com/market/research?kind=county&loc=12127&areas=12127&cats=c1696
+Water damage restoration,156,"Clark County, NV",2329548,95,Very high,198,11765,22,31.8,89.49,76472,57.8,https://homeservicebase.com/market/research?kind=county&loc=32003&areas=32003&cats=c1696
+Water damage restoration,157,"Manatee County, FL",429792,95,Very high,45,9551,22,44.4,174,78457,74.3,https://homeservicebase.com/market/research?kind=county&loc=12081&areas=12081&cats=c1696
+Water damage restoration,158,"Arapahoe County, CO",659844,99,Very high,84,7855,28.5,42.9,119,101087,64.7,https://homeservicebase.com/market/research?kind=county&loc=08005&areas=08005&cats=c1696
+Water damage restoration,159,"Burlington County, NJ",467805,99,Very high,83,5636,19,27.7,83.56,108111,76.1,https://homeservicebase.com/market/research?kind=county&loc=34005&areas=34005&cats=c1696
+Water damage restoration,160,"Hamilton County, TN",376192,100,Very high,28,13435,36,60.7,95,76183,63.9,https://homeservicebase.com/market/research?kind=county&loc=47065&areas=47065&cats=c1696
+Water damage restoration,161,"Chatham County, GA",300879,100,Very high,24,12537,16,62.5,41.5,71097,56.8,https://homeservicebase.com/market/research?kind=county&loc=13051&areas=13051&cats=c1696
+Water damage restoration,162,"Jackson County, MO",719976,100,Very high,59,12203,28,32.2,41.5,68577,59.1,https://homeservicebase.com/market/research?kind=county&loc=29095&areas=29095&cats=c1696
+Water damage restoration,163,"Guilford County, NC",547940,100,Very high,46,11912,23,37,55,68642,59.9,https://homeservicebase.com/market/research?kind=county&loc=37081&areas=37081&cats=c1696
+Water damage restoration,164,"Tulsa County, OK",680794,100,Very high,61,11161,18,45.9,41.5,69009,59.7,https://homeservicebase.com/market/research?kind=county&loc=40143&areas=40143&cats=c1696
+Water damage restoration,165,"Greenville County, SC",548166,100,Very high,51,10748,38,49,57.5,76932,68.9,https://homeservicebase.com/market/research?kind=county&loc=45045&areas=45045&cats=c1696
+Water damage restoration,166,"Horry County, SC",383016,100,Very high,37,10352,31,40.5,46.84,66880,77.3,https://homeservicebase.com/market/research?kind=county&loc=45051&areas=45051&cats=c1696
+Water damage restoration,167,"Oklahoma County, OK",806199,100,Very high,78,10336,30,44.9,41.5,66679,58.2,https://homeservicebase.com/market/research?kind=county&loc=40109&areas=40109&cats=c1696
+Water damage restoration,168,"Larimer County, CO",367368,100,Very high,36,10205,38,55.6,116.5,93765,64,https://homeservicebase.com/market/research?kind=county&loc=08069&areas=08069&cats=c1696
+Water damage restoration,169,"Marion County, IN",975809,100,Very high,97,10060,28,42.3,94,66346,56.5,https://homeservicebase.com/market/research?kind=county&loc=18097&areas=18097&cats=c1696
+Water damage restoration,170,"Rutherford County, TN",360646,100,Very high,37,9747,32,43.2,41.5,85470,64.8,https://homeservicebase.com/market/research?kind=county&loc=47149&areas=47149&cats=c1696
+Water damage restoration,171,"Spokane County, WA",549056,100,Very high,58,9466,15,41.4,47.5,78582,64.5,https://homeservicebase.com/market/research?kind=county&loc=53063&areas=53063&cats=c1696
+Water damage restoration,172,"Mecklenburg County, NC",1154681,100,Very high,122,9465,36,41,94,87005,55.1,https://homeservicebase.com/market/research?kind=county&loc=37119&areas=37119&cats=c1696
+Water damage restoration,173,"Duval County, FL",1023153,100,Very high,111,9218,21.5,31.5,77.5,71277,58.2,https://homeservicebase.com/market/research?kind=county&loc=12031&areas=12031&cats=c1696
+Water damage restoration,174,"Pinellas County, FL",963481,100,Very high,110,8759,24,34.5,174,72646,69.5,https://homeservicebase.com/market/research?kind=county&loc=12103&areas=12103&cats=c1696
+Water damage restoration,175,"Seminole County, FL",481470,100,Very high,57,8447,13,40.4,112.5,85761,66.2,https://homeservicebase.com/market/research?kind=county&loc=12117&areas=12117&cats=c1696
+Water damage restoration,176,"DeKalb County, GA",765351,100,Very high,96,7972,22,29.2,94,80644,58.8,https://homeservicebase.com/market/research?kind=county&loc=13089&areas=13089&cats=c1696
+Water damage restoration,177,"Charleston County, SC",420264,100,Very high,54,7783,35,51.9,42.5,88494,63.9,https://homeservicebase.com/market/research?kind=county&loc=45019&areas=45019&cats=c1696
+Water damage restoration,178,"Hillsborough County, FL",1522748,100,Very high,197,7730,27,29.9,174,79540,61.5,https://homeservicebase.com/market/research?kind=county&loc=12057&areas=12057&cats=c1696
+Water damage restoration,179,"Osceola County, FL",427415,100,Very high,56,7632,15.5,32.1,124.98,72637,65.3,https://homeservicebase.com/market/research?kind=county&loc=12097&areas=12097&cats=c1696
+Water damage restoration,180,"St. Lucie County, FL",360500,100,Very high,48,7510,17,27.1,134,71457,78.6,https://homeservicebase.com/market/research?kind=county&loc=12111&areas=12111&cats=c1696
+Water damage restoration,181,"Adams County, CO",530225,100,Very high,74,7165,24.5,40.5,119,94571,68.6,https://homeservicebase.com/market/research?kind=county&loc=08001&areas=08001&cats=c1696
+Water damage restoration,182,"Gwinnett County, GA",979864,100,Very high,147,6666,34,32.7,94,87890,66.3,https://homeservicebase.com/market/research?kind=county&loc=13135&areas=13135&cats=c1696
+Water damage restoration,183,"Orange County, FL",1471937,100,Very high,221,6660,19,26.7,112.5,79719,56.8,https://homeservicebase.com/market/research?kind=county&loc=12095&areas=12095&cats=c1696
+Water damage restoration,184,"Clark County, WA",516959,100,Very high,80,6462,28,42.5,41.5,97536,66.4,https://homeservicebase.com/market/research?kind=county&loc=53011&areas=53011&cats=c1696
+Water damage restoration,185,"El Paso County, CO",742999,100,Very high,116,6405,35,50.9,95.96,90363,66.2,https://homeservicebase.com/market/research?kind=county&loc=08041&areas=08041&cats=c1696
+Water damage restoration,186,"Sarasota County, FL",459547,100,Very high,72,6383,23,34.7,174,83416,76.7,https://homeservicebase.com/market/research?kind=county&loc=12115&areas=12115&cats=c1696
+Water damage restoration,187,"Ada County, ID",518935,100,Very high,85,6105,33,42.4,41.5,91502,70.8,https://homeservicebase.com/market/research?kind=county&loc=16001&areas=16001&cats=c1696
+Water damage restoration,188,"Cobb County, GA",775208,100,Very high,132,5873,30,36.4,94,102738,67,https://homeservicebase.com/market/research?kind=county&loc=13067&areas=13067&cats=c1696
+Water damage restoration,189,"Palm Beach County, FL",1533806,100,Very high,282,5439,18,20.2,133.21,83581,70.1,https://homeservicebase.com/market/research?kind=county&loc=12099&areas=12099&cats=c1696
+Water damage restoration,190,"Collier County, FL",398291,100,Very high,77,5173,11.5,23.4,169.93,90045,76.6,https://homeservicebase.com/market/research?kind=county&loc=12021&areas=12021&cats=c1696
+Water damage restoration,191,"Lee County, FL",817666,100,Very high,165,4956,20,32.1,174,76107,74.3,https://homeservicebase.com/market/research?kind=county&loc=12071&areas=12071&cats=c1696
+Water damage restoration,192,"Broward County, FL",1977129,100,Very high,481,4110,14,18.1,121.64,77633,63.6,https://homeservicebase.com/market/research?kind=county&loc=12011&areas=12011&cats=c1696
+Pool builders,1,"Solano County, CA",451918,16,Very low,18,25107,5,22.2,48.81,100401,63,https://homeservicebase.com/market/research?kind=county&loc=06095&areas=06095&cats=c1537
+Pool builders,2,"San Joaquin County, CA",797334,20,Low,37,21550,6,16.2,44.98,92179,62,https://homeservicebase.com/market/research?kind=county&loc=06077&areas=06077&cats=c1537
+Pool builders,3,"Contra Costa County, CA",1165012,21,Low,68,17133,3,20.6,55.44,127229,68,https://homeservicebase.com/market/research?kind=county&loc=06013&areas=06013&cats=c1537
+Pool builders,4,"Sonoma County, CA",485040,23,Low,28,17323,3,10.7,56.5,104674,62.6,https://homeservicebase.com/market/research?kind=county&loc=06097&areas=06097&cats=c1537
+Pool builders,5,"Wake County, NC",1178653,28,Low,53,22239,13,30.2,17.5,105768,64.1,https://homeservicebase.com/market/research?kind=county&loc=37183&areas=37183&cats=c1537
+Pool builders,6,"Brazoria County, TX",391255,30,Low,18,21736,13,27.8,81.5,97993,74.1,https://homeservicebase.com/market/research?kind=county&loc=48039&areas=48039&cats=c1537
+Pool builders,7,"Ventura County, CA",837469,30,Low,64,13085,4.5,15.6,69.31,109797,64.6,https://homeservicebase.com/market/research?kind=county&loc=06111&areas=06111&cats=c1537
+Pool builders,8,"Cobb County, GA",775208,31,Low,41,18908,12.5,29.3,30,102738,67,https://homeservicebase.com/market/research?kind=county&loc=13067&areas=13067&cats=c1537
+Pool builders,9,"Pinal County, AZ",469006,32,Low,20,23450,13,50,56.97,80266,81.7,https://homeservicebase.com/market/research?kind=county&loc=04021&areas=04021&cats=c1537
+Pool builders,10,"Gwinnett County, GA",979864,32,Low,44,22270,12,29.5,30,87890,66.3,https://homeservicebase.com/market/research?kind=county&loc=13135&areas=13135&cats=c1537
+Pool builders,11,"Cleveland County, OK",300047,35,Low,12,25004,16,25,25,77068,63.9,https://homeservicebase.com/market/research?kind=county&loc=40027&areas=40027&cats=c1537
+Pool builders,12,"Lexington County, SC",304887,36,Low,18,16938,8,11.1,11.5,77408,77.4,https://homeservicebase.com/market/research?kind=county&loc=45063&areas=45063&cats=c1537
+Pool builders,13,"Benton County, AR",303632,38,Low,16,18977,4.5,31.3,27.09,93506,67,https://homeservicebase.com/market/research?kind=county&loc=05007&areas=05007&cats=c1537
+Pool builders,14,"Fort Bend County, TX",893767,38,Low,64,13965,18,31.3,81.5,114041,77,https://homeservicebase.com/market/research?kind=county&loc=48157&areas=48157&cats=c1537
+Pool builders,15,"San Bernardino County, CA",2197104,39,Low,158,13906,4,13.9,71.66,85478,62.1,https://homeservicebase.com/market/research?kind=county&loc=06071&areas=06071&cats=c1537
+Pool builders,16,"Kern County, CA",915075,41,Moderate,63,14525,8,9.5,23.95,70210,60.1,https://homeservicebase.com/market/research?kind=county&loc=06029&areas=06029&cats=c1537
+Pool builders,17,"Madison County, AL",405718,42,Moderate,20,20286,24,35,20.37,86499,68.3,https://homeservicebase.com/market/research?kind=county&loc=01089&areas=01089&cats=c1537
+Pool builders,18,"Stanislaus County, CA",553990,43,Moderate,33,16788,6,30.3,41.91,81468,61.2,https://homeservicebase.com/market/research?kind=county&loc=06099&areas=06099&cats=c1537
+Pool builders,19,"Hamilton County, TN",376192,44,Moderate,20,18810,9,25,17.5,76183,63.9,https://homeservicebase.com/market/research?kind=county&loc=47065&areas=47065&cats=c1537
+Pool builders,20,"Charleston County, SC",420264,46,Moderate,24,17511,15,50,21.5,88494,63.9,https://homeservicebase.com/market/research?kind=county&loc=45019&areas=45019&cats=c1537
+Pool builders,21,"Denton County, TX",979561,48,Moderate,68,14405,16,32.4,50.38,111498,65.5,https://homeservicebase.com/market/research?kind=county&loc=48121&areas=48121&cats=c1537
+Pool builders,22,"Placer County, CA",419156,48,Moderate,45,9315,9,26.7,42.5,115998,74.8,https://homeservicebase.com/market/research?kind=county&loc=06061&areas=06061&cats=c1537
+Pool builders,23,"Maricopa County, AZ",4559748,49,Moderate,296,15405,17,26.4,65.39,89300,65.2,https://homeservicebase.com/market/research?kind=county&loc=04013&areas=04013&cats=c1537
+Pool builders,24,"Williamson County, TX",672688,50,Moderate,56,12012,13,30.4,44.09,111340,66.4,https://homeservicebase.com/market/research?kind=county&loc=48491&areas=48491&cats=c1537
+Pool builders,25,"Rutherford County, TN",360646,53,Moderate,21,17174,13,47.6,34,85470,64.8,https://homeservicebase.com/market/research?kind=county&loc=47149&areas=47149&cats=c1537
+Pool builders,26,"Collin County, TX",1163337,55,Moderate,107,10872,15,29.9,49.9,121600,64.5,https://homeservicebase.com/market/research?kind=county&loc=48085&areas=48085&cats=c1537
+Pool builders,27,"Riverside County, CA",2478600,55,Moderate,248,9994,7,21,68.55,93074,69.1,https://homeservicebase.com/market/research?kind=county&loc=06065&areas=06065&cats=c1537
+Pool builders,28,"Pima County, AZ",1060490,58,Moderate,75,14140,9,25.3,15.88,70315,65.2,https://homeservicebase.com/market/research?kind=county&loc=04019&areas=04019&cats=c1537
+Pool builders,29,"Greenville County, SC",548166,58,Moderate,39,14056,11,33.3,25,76932,68.9,https://homeservicebase.com/market/research?kind=county&loc=45045&areas=45045&cats=c1537
+Pool builders,30,"Osceola County, FL",427415,59,Moderate,28,15265,17,28.6,37.71,72637,65.3,https://homeservicebase.com/market/research?kind=county&loc=12097&areas=12097&cats=c1537
+Pool builders,31,"Galveston County, TX",358990,59,Moderate,26,13807,9,30.8,81.5,86105,67.6,https://homeservicebase.com/market/research?kind=county&loc=48167&areas=48167&cats=c1537
+Pool builders,32,"Knox County, TN",494148,61,High,35,14119,29,28.6,17.5,74222,65.2,https://homeservicebase.com/market/research?kind=county&loc=47093&areas=47093&cats=c1537
+Pool builders,33,"St. Johns County, FL",306934,61,High,41,7486,8.5,29.3,20.85,109839,82.2,https://homeservicebase.com/market/research?kind=county&loc=12109&areas=12109&cats=c1537
+Pool builders,34,"Lake County, FL",412924,63,High,37,11160,16,24.3,37.43,73161,77.6,https://homeservicebase.com/market/research?kind=county&loc=12069&areas=12069&cats=c1537
+Pool builders,35,"Brevard County, FL",632780,64,High,59,10725,12,23.7,38.36,78476,76.7,https://homeservicebase.com/market/research?kind=county&loc=12009&areas=12009&cats=c1537
+Pool builders,36,"Pasco County, FL",611444,68,High,52,11759,16,26.9,36.5,70492,75.7,https://homeservicebase.com/market/research?kind=county&loc=12101&areas=12101&cats=c1537
+Pool builders,37,"Broward County, FL",1977129,71,High,175,11298,16,23.4,35.83,77633,63.6,https://homeservicebase.com/market/research?kind=county&loc=12011&areas=12011&cats=c1537
+Pool builders,38,"Montgomery County, TX",684432,74,High,73,9376,17,35.6,81.5,97701,71.8,https://homeservicebase.com/market/research?kind=county&loc=48339&areas=48339&cats=c1537
+Pool builders,39,"St. Lucie County, FL",360500,80,Very high,47,7670,8,25.5,44,71457,78.6,https://homeservicebase.com/market/research?kind=county&loc=12111&areas=12111&cats=c1537
+Pool builders,40,"Hillsborough County, FL",1522748,84,Very high,132,11536,17,40.2,36.5,79540,61.5,https://homeservicebase.com/market/research?kind=county&loc=12057&areas=12057&cats=c1537
+Pool builders,41,"Palm Beach County, FL",1533806,85,Very high,173,8866,14,32.9,43.1,83581,70.1,https://homeservicebase.com/market/research?kind=county&loc=12099&areas=12099&cats=c1537
+Pool builders,42,"Volusia County, FL",579622,95,Very high,73,7940,9,27.4,37.01,70044,73.7,https://homeservicebase.com/market/research?kind=county&loc=12127&areas=12127&cats=c1537
+Pool builders,43,"Pinellas County, FL",963481,100,Very high,104,9264,23,27.9,36.5,72646,69.5,https://homeservicebase.com/market/research?kind=county&loc=12103&areas=12103&cats=c1537
+Pool builders,44,"Seminole County, FL",481470,100,Very high,57,8447,22.5,29.8,37.5,85761,66.2,https://homeservicebase.com/market/research?kind=county&loc=12117&areas=12117&cats=c1537
+Pool builders,45,"Lee County, FL",817666,100,Very high,135,6057,15,27.4,41.5,76107,74.3,https://homeservicebase.com/market/research?kind=county&loc=12071&areas=12071&cats=c1537
+Pool builders,46,"Manatee County, FL",429792,100,Very high,76,5655,16,31.6,36.68,78457,74.3,https://homeservicebase.com/market/research?kind=county&loc=12081&areas=12081&cats=c1537
+Pool builders,47,"Collier County, FL",398291,100,Very high,87,4578,9,24.1,41.02,90045,76.6,https://homeservicebase.com/market/research?kind=county&loc=12021&areas=12021&cats=c1537
+Pool builders,48,"Sarasota County, FL",459547,100,Very high,104,4419,11.5,32.7,37.21,83416,76.7,https://homeservicebase.com/market/research?kind=county&loc=12115&areas=12115&cats=c1537
+Kitchen remodeling,1,"Tulare County, CA",478693,11,Very low,16,29918,6,6.3,34.34,71300,58.5,https://homeservicebase.com/market/research?kind=county&loc=06107&areas=06107&cats=c1352%2Cc914
+Kitchen remodeling,2,"Honolulu County, HI",1001146,18,Very low,44,22753,2,11.4,12.5,106195,59.8,https://homeservicebase.com/market/research?kind=county&loc=15003&areas=15003&cats=c1352%2Cc914
+Kitchen remodeling,3,"San Joaquin County, CA",797334,25,Low,39,20444,4.5,17.9,46.96,92179,62,https://homeservicebase.com/market/research?kind=county&loc=06077&areas=06077&cats=c1352%2Cc914
+Kitchen remodeling,4,"Pinal County, AZ",469006,26,Low,36,13028,2.5,8.3,34.29,80266,81.7,https://homeservicebase.com/market/research?kind=county&loc=04021&areas=04021&cats=c1352%2Cc914
+Kitchen remodeling,5,"Kern County, CA",915075,28,Low,42,21788,5,7.1,30.81,70210,60.1,https://homeservicebase.com/market/research?kind=county&loc=06029&areas=06029&cats=c1352%2Cc914
+Kitchen remodeling,6,"Santa Clara County, CA",1902047,28,Low,135,14089,6,20,68.36,164281,55.1,https://homeservicebase.com/market/research?kind=county&loc=06085&areas=06085&cats=c1352%2Cc914
+Kitchen remodeling,7,"Stanislaus County, CA",553990,30,Low,28,19785,6,14.3,44.74,81468,61.2,https://homeservicebase.com/market/research?kind=county&loc=06099&areas=06099&cats=c1352%2Cc914
+Kitchen remodeling,8,"Fresno County, CA",1016725,31,Low,62,16399,4.5,4.8,34.73,74201,55.5,https://homeservicebase.com/market/research?kind=county&loc=06019&areas=06019&cats=c1352%2Cc914
+Kitchen remodeling,9,"Nassau County, NY",1389591,33,Low,187,7431,6,9.6,45,146202,81.9,https://homeservicebase.com/market/research?kind=county&loc=36059&areas=36059&cats=c1352%2Cc914
+Kitchen remodeling,10,"Washoe County, NV",497200,34,Low,30,16573,3,13.3,29.67,88096,59.9,https://homeservicebase.com/market/research?kind=county&loc=32031&areas=32031&cats=c1352%2Cc914
+Kitchen remodeling,11,"San Bernardino County, CA",2197104,34,Low,153,14360,4,5.9,59.68,85478,62.1,https://homeservicebase.com/market/research?kind=county&loc=06071&areas=06071&cats=c1352%2Cc914
+Kitchen remodeling,12,"Solano County, CA",451918,34,Low,38,11893,3,7.9,54.62,100401,63,https://homeservicebase.com/market/research?kind=county&loc=06095&areas=06095&cats=c1352%2Cc914
+Kitchen remodeling,13,"San Mateo County, CA",742340,34,Low,80,9279,6,17.5,68.6,158855,58.5,https://homeservicebase.com/market/research?kind=county&loc=06081&areas=06081&cats=c1352%2Cc914
+Kitchen remodeling,14,"Sonoma County, CA",485040,35,Low,42,11549,4,7.1,70,104674,62.6,https://homeservicebase.com/market/research?kind=county&loc=06097&areas=06097&cats=c1352%2Cc914
+Kitchen remodeling,15,"Contra Costa County, CA",1165012,35,Low,118,9873,8,16.1,67.88,127229,68,https://homeservicebase.com/market/research?kind=county&loc=06013&areas=06013&cats=c1352%2Cc914
+Kitchen remodeling,16,"Riverside County, CA",2478600,37,Low,224,11065,5,13.4,56.11,93074,69.1,https://homeservicebase.com/market/research?kind=county&loc=06065&areas=06065&cats=c1352%2Cc914
+Kitchen remodeling,17,"Brazoria County, TX",391255,37,Low,44,8892,4,4.5,39,97993,74.1,https://homeservicebase.com/market/research?kind=county&loc=48039&areas=48039&cats=c1352%2Cc914
+Kitchen remodeling,18,"Fort Bend County, TX",893767,37,Low,102,8762,9,9.8,39,114041,77,https://homeservicebase.com/market/research?kind=county&loc=48157&areas=48157&cats=c1352%2Cc914
+Kitchen remodeling,19,"Will County, IL",701462,38,Low,86,8157,8,10.5,40,109984,82.8,https://homeservicebase.com/market/research?kind=county&loc=17197&areas=17197&cats=c1352%2Cc914
+Kitchen remodeling,20,"Cumberland County, ME",308827,41,Moderate,29,10649,3,6.9,22.5,95677,69.8,https://homeservicebase.com/market/research?kind=county&loc=23005&areas=23005&cats=c1352%2Cc914
+Kitchen remodeling,21,"Clark County, NV",2329548,42,Moderate,129,18059,8.5,18.6,40.24,76472,57.8,https://homeservicebase.com/market/research?kind=county&loc=32003&areas=32003&cats=c1352%2Cc914
+Kitchen remodeling,22,"Allen County, IN",392378,44,Moderate,31,12657,8.5,6.5,24.06,70737,68.9,https://homeservicebase.com/market/research?kind=county&loc=18003&areas=18003&cats=c1352%2Cc914
+Kitchen remodeling,23,"Lake County, IN",500379,44,Moderate,41,12204,6,12.2,40,71493,71.7,https://homeservicebase.com/market/research?kind=county&loc=18089&areas=18089&cats=c1352%2Cc914
+Kitchen remodeling,24,"Lorain County, OH",317129,45,Moderate,32,9910,7.5,6.3,39,73347,74,https://homeservicebase.com/market/research?kind=county&loc=39093&areas=39093&cats=c1352%2Cc914
+Kitchen remodeling,25,"Hamilton County, IN",365056,45,Moderate,38,9607,6,28.9,34,121530,76.1,https://homeservicebase.com/market/research?kind=county&loc=18057&areas=18057&cats=c1352%2Cc914
+Kitchen remodeling,26,"Cleveland County, OK",300047,46,Moderate,32,9376,4.5,9.4,24,77068,63.9,https://homeservicebase.com/market/research?kind=county&loc=40027&areas=40027&cats=c1352%2Cc914
+Kitchen remodeling,27,"Benton County, AR",303632,46,Moderate,44,6901,4,6.8,19.48,93506,67,https://homeservicebase.com/market/research?kind=county&loc=05007&areas=05007&cats=c1352%2Cc914
+Kitchen remodeling,28,"Ottawa County, MI",301203,47,Moderate,24,12550,15,37.5,30,90502,79.3,https://homeservicebase.com/market/research?kind=county&loc=26139&areas=26139&cats=c1352%2Cc914
+Kitchen remodeling,29,"Orange County, NY",406616,47,Moderate,42,9681,6,11.9,45,97178,67.8,https://homeservicebase.com/market/research?kind=county&loc=36071&areas=36071&cats=c1352%2Cc914
+Kitchen remodeling,30,"Denton County, TX",979561,47,Moderate,103,9510,7,11.7,38.19,111498,65.5,https://homeservicebase.com/market/research?kind=county&loc=48121&areas=48121&cats=c1352%2Cc914
+Kitchen remodeling,31,"Anoka County, MN",370349,47,Moderate,46,8051,3,13,52.5,101869,80.2,https://homeservicebase.com/market/research?kind=county&loc=27003&areas=27003&cats=c1352%2Cc914
+Kitchen remodeling,32,"Lexington County, SC",304887,48,Moderate,31,9835,6,12.9,31.91,77408,77.4,https://homeservicebase.com/market/research?kind=county&loc=45063&areas=45063&cats=c1352%2Cc914
+Kitchen remodeling,33,"Sacramento County, CA",1594006,50,Moderate,148,10770,6,14.9,45,92175,59,https://homeservicebase.com/market/research?kind=county&loc=06067&areas=06067&cats=c1352%2Cc914
+Kitchen remodeling,34,"Howard County, MD",336328,50,Moderate,43,7822,11.5,30.2,60.06,149763,71.5,https://homeservicebase.com/market/research?kind=county&loc=24027&areas=24027&cats=c1352%2Cc914
+Kitchen remodeling,35,"Bristol County, MA",582270,51,Moderate,52,11198,4,9.6,44.69,85625,62.3,https://homeservicebase.com/market/research?kind=county&loc=25005&areas=25005&cats=c1352%2Cc914
+Kitchen remodeling,36,"Dakota County, MN",445771,51,Moderate,49,9097,10,16.3,52.5,106318,74.9,https://homeservicebase.com/market/research?kind=county&loc=27037&areas=27037&cats=c1352%2Cc914
+Kitchen remodeling,37,"Gloucester County, NJ",306954,51,Moderate,35,8770,13.5,22.9,51.5,105115,80.1,https://homeservicebase.com/market/research?kind=county&loc=34015&areas=34015&cats=c1352%2Cc914
+Kitchen remodeling,38,"Prince William County, VA",488880,51,Moderate,79,6188,5,10.1,69,131402,74.3,https://homeservicebase.com/market/research?kind=county&loc=51153&areas=51153&cats=c1352%2Cc914
+Kitchen remodeling,39,"Collin County, TX",1163337,54,Moderate,148,7860,13,15.5,37.83,121600,64.5,https://homeservicebase.com/market/research?kind=county&loc=48085&areas=48085&cats=c1352%2Cc914
+Kitchen remodeling,40,"Maricopa County, AZ",4559748,56,Moderate,426,10704,8,14.3,36.24,89300,65.2,https://homeservicebase.com/market/research?kind=county&loc=04013&areas=04013&cats=c1352%2Cc914
+Kitchen remodeling,41,"Galveston County, TX",358990,56,Moderate,52,6904,4,7.7,39,86105,67.6,https://homeservicebase.com/market/research?kind=county&loc=48167&areas=48167&cats=c1352%2Cc914
+Kitchen remodeling,42,"McHenry County, IL",312591,59,Moderate,49,6379,4,14.3,37.94,104802,82.7,https://homeservicebase.com/market/research?kind=county&loc=17111&areas=17111&cats=c1352%2Cc914
+Kitchen remodeling,43,"Onondaga County, NY",471129,62,High,53,8889,5.5,5.7,21.5,76945,65.9,https://homeservicebase.com/market/research?kind=county&loc=36067&areas=36067&cats=c1352%2Cc914
+Kitchen remodeling,44,"Kane County, IL",517255,65,High,78,6631,7,11.5,40,103163,76,https://homeservicebase.com/market/research?kind=county&loc=17089&areas=17089&cats=c1352%2Cc914
+Kitchen remodeling,45,"Williamson County, TX",672688,65,High,107,6287,7,8.4,39.09,111340,66.4,https://homeservicebase.com/market/research?kind=county&loc=48491&areas=48491&cats=c1352%2Cc914
+Kitchen remodeling,46,"Prince George's County, MD",959754,67,High,153,6273,5,3.9,67.67,101798,62.3,https://homeservicebase.com/market/research?kind=county&loc=24033&areas=24033&cats=c1352%2Cc914
+Kitchen remodeling,47,"Jefferson County, AL",667755,69,High,96,6956,5,4.2,24,66388,63.9,https://homeservicebase.com/market/research?kind=county&loc=01073&areas=01073&cats=c1352%2Cc914
+Kitchen remodeling,48,"Tarrant County, TX",2167390,71,High,267,8118,6,6,39,84207,59.3,https://homeservicebase.com/market/research?kind=county&loc=48439&areas=48439&cats=c1352%2Cc914
+Kitchen remodeling,49,"Boulder County, CO",328961,71,High,52,6326,8,13.5,47.5,103994,62,https://homeservicebase.com/market/research?kind=county&loc=08013&areas=08013&cats=c1352%2Cc914
+Kitchen remodeling,50,"Sedgwick County, KS",528226,76,High,60,8804,4,8.3,31.5,69365,63.1,https://homeservicebase.com/market/research?kind=county&loc=20173&areas=20173&cats=c1352%2Cc914
+Kitchen remodeling,51,"Weld County, CO",350396,85,Very high,81,4326,8,8.6,46.05,97097,76,https://homeservicebase.com/market/research?kind=county&loc=08123&areas=08123&cats=c1352%2Cc914
+Kitchen remodeling,52,"Marion County, OR",349244,89,Very high,50,6985,6.5,8,46.33,77351,62.3,https://homeservicebase.com/market/research?kind=county&loc=41047&areas=41047&cats=c1352%2Cc914
+Kitchen remodeling,53,"Bell County, TX",386897,92,Very high,58,6671,4,6.9,34.44,68865,56.5,https://homeservicebase.com/market/research?kind=county&loc=48027&areas=48027&cats=c1352%2Cc914
+Kitchen remodeling,54,"Lake County, FL",412924,97,Very high,86,4801,6,9.3,44.93,73161,77.6,https://homeservicebase.com/market/research?kind=county&loc=12069&areas=12069&cats=c1352%2Cc914
+Kitchen remodeling,55,"Hamilton County, TN",376192,98,Very high,76,4950,5,7.9,27.5,76183,63.9,https://homeservicebase.com/market/research?kind=county&loc=47065&areas=47065&cats=c1352%2Cc914
