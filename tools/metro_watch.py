@@ -97,6 +97,15 @@ def main(argv=None):
             print("[watch] %s: %s - snapshot left unchanged" % (m, exc), file=sys.stderr)
             continue
 
+        # The API never returns more rows than the account has units left, so
+        # a pull that drains the balance may be silently cut short. Saving it
+        # would drop every unfetched domain from the snapshot and report them
+        # all as new next time.
+        if client.units_remaining == 0:
+            print("[watch] %s: unit balance hit 0 during the pull - result may be "
+                  "truncated, snapshot left unchanged; stopping" % m, file=sys.stderr)
+            break
+
         current, fresh = {}, {}
         for row in rows:
             domain = (row.get("websiteDomain") or "").lower()
