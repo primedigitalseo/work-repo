@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "catchdoms": {
+      "type": "sse",
+      "url": "https://catchdoms.com/mcp/catchdoms",
+      "headers": { "Authorization": "Bearer ${685|xJ8vONqbEYWGVDIz7cnA81tcy6lDW540v3Zk7mIk2aed88ef}" }
+    }
+  }
+}
