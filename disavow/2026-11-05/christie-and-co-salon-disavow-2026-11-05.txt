@@ -3,7 +3,7 @@
 # Domain: christiesalon.com
 # Generated: 2026-11-05
 # Source: Ahrefs MCP via Claude
-# Total domains disavowed: 1129
+# Total domains disavowed: 1132
 
 # --- High-DR Spam (DR 50+, Ahrefs spam-flagged) ---
 domain:c99.nl
@@ -16,8 +16,10 @@ domain:goooogla.com
 domain:kompromat100.info
 domain:linksnatcher.com
 domain:moviesrock.nl
+domain:officialsite.com
 domain:onlyhealthydeals.com
 domain:urentmy.com
+domain:woowholocal.com
 domain:ycm.info
 
 # --- Low-DR Spam (DR <10, Ahrefs spam-flagged) ---
@@ -34,6 +36,7 @@ domain:domainsc.com
 domain:fashionclothingnews.com
 domain:globalecommerce.org
 domain:greatseolinks.info
+domain:igolocal.app
 domain:indexaward.com
 domain:indians.cc
 domain:intriguevideoproduction.com

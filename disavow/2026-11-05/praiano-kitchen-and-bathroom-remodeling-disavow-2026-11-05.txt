@@ -3,7 +3,7 @@
 # Domain: praianohomes.com
 # Generated: 2026-11-05
 # Source: Ahrefs MCP via Claude
-# Total domains disavowed: 1130
+# Total domains disavowed: 1131
 
 # --- High-DR Spam (DR 50+, Ahrefs spam-flagged) ---
 domain:awe.sm
@@ -41,6 +41,7 @@ domain:globalecommerce.org
 domain:indexaward.com
 domain:indians.cc
 domain:musweb.org
+domain:nassaupros.com
 domain:prashikshan.in
 domain:primenewsartical.com
 domain:psicododia.com.br

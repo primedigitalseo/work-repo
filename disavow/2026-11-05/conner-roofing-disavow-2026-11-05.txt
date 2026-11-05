@@ -3,7 +3,7 @@
 # Domain: connerroofing.com
 # Generated: 2026-11-05
 # Source: Ahrefs MCP via Claude
-# Total domains disavowed: 1625
+# Total domains disavowed: 1652
 
 # --- High-DR Spam (DR 50+, Ahrefs spam-flagged) ---
 domain:authoritybacklinks.shop
@@ -13,11 +13,13 @@ domain:blogfreely.net
 domain:bunero.shop
 domain:buybacklinks.agency
 domain:buyseobacklinks.shop
+domain:contractornearyou.com
 domain:couponler.com
 domain:dsnylu.com
 domain:example3.com
 domain:factmags.com
 domain:itxoft.com
+domain:linkcentre.com
 domain:linkrankboost.shop
 domain:linkrankpro.shop
 domain:linkrankseo.shop
@@ -44,6 +46,7 @@ domain:writeablog.net
 domain:zenwriting.net
 
 # --- Mid-DR Spam (DR 10-49, Ahrefs spam-flagged) ---
+domain:a-1roofingnow.com
 domain:acquire.co.in
 domain:addurl.in
 domain:agentelibredigital.com
@@ -84,6 +87,7 @@ domain:getwebsiteworth.com
 domain:globalskyafricaonline.com
 domain:goooogla.com
 domain:graficmaster.com
+domain:homeservicelookup.com
 domain:homesforsaleoldgreenwichct.com
 domain:hspmassage.nl
 domain:hwnerds.com
@@ -94,6 +98,7 @@ domain:informel.es
 domain:international-mindfulness-institute.com
 domain:jacobverghese.info
 domain:jake.eu
+domain:jazminsbeautysalon.be
 domain:jornalalef.com.br
 domain:kgzxkf.com
 domain:kkinsider.com
@@ -112,6 +117,7 @@ domain:moneygame.pro
 domain:moviesrock.nl
 domain:multistyle.work
 domain:mundotecnologia.info
+domain:nearmelisting.com
 domain:obmain.com
 domain:oimeliga.com.br
 domain:onlyhealthydeals.com
@@ -131,6 +137,9 @@ domain:rechtsanwalt-erbrecht-in-essen.de
 domain:repairhit.com
 domain:resonancelabjo.com
 domain:riferimenti.org
+domain:roof.info
+domain:rooflists.com
+domain:roofs.wiki
 domain:roselanemarketing.com
 domain:rowanmangan.com
 domain:screenshots.wiki
@@ -150,6 +159,7 @@ domain:softtech-engr.com
 domain:soluna.co
 domain:sovereignmedia.co.za
 domain:spottedcow.media
+domain:stlouistoprated.com
 domain:talajalisco.gob.mx
 domain:theasianread.com
 domain:theburnward.com
@@ -180,6 +190,7 @@ domain:4-girls.com
 domain:4catspictures.com
 domain:a405.lt
 domain:aalstmaritiem.nl
+domain:abetterroofer.com
 domain:achtstein.com
 domain:adanadogusanayisitesi.org
 domain:advancedrivingskills.com
@@ -204,6 +215,7 @@ domain:around29.com
 domain:art-de-lhair.fr
 domain:as-hildebrand.de
 domain:asidep.org.pe
+domain:asphaltroofingnationwide.com
 domain:atechsur.org
 domain:audiovisualeslahuerta.com
 domain:aussie4wd.com
@@ -248,6 +260,7 @@ domain:chouette-jecouds.fr
 domain:citra-nusa.com
 domain:coboplus.com
 domain:conacentoenlaa.com
+domain:constructionconsultant.co.za
 domain:coomersander.com
 domain:corporacioncopacabana.com
 domain:coruzants.com
@@ -299,6 +312,7 @@ domain:donela-autocom.ci
 domain:draximene.com.br
 domain:dupurgeniefr.com
 domain:duvinaucameroun.com
+domain:electriciansdaily.news
 domain:electrocruise.com
 domain:elenamachado.com
 domain:elrawdalighting.com
@@ -341,6 +355,7 @@ domain:hillvaninews.com
 domain:homefinance.co.in
 domain:homeserviceranking.com
 domain:ideaxtremegood.com
+domain:iknowaroofer.com
 domain:ikore.co.uk
 domain:indexaward.com
 domain:indians.cc
@@ -348,6 +363,7 @@ domain:irkktv.info
 domain:itsyourgold.com
 domain:janeredmont.com
 domain:jirkatoman.cz
+domain:jomtien-realty.com
 domain:justinebonvarlet.cloud
 domain:k3manufacturing.com
 domain:kamadobono.se
@@ -414,6 +430,7 @@ domain:productionfunctionusa.com
 domain:projetovidamaringa.com.br
 domain:protechza.com
 domain:prothor-ing.com
+domain:provenroofer.com
 domain:pudhe.com
 domain:pylonworks.com
 domain:qa-animals.info
@@ -422,6 +439,7 @@ domain:radiolibre939.com
 domain:radioselva.org.pe
 domain:rankvanceedge.pro
 domain:raquelracionero.com
+domain:ratingsnearme.com
 domain:read.org.in
 domain:ready.pro
 domain:rebelhealth.net
@@ -430,19 +448,25 @@ domain:reiseevent.no
 domain:revan-me.com
 domain:rezalu.com
 domain:robuta.com
+domain:rooferbutler.com
+domain:rooferssearch.com
+domain:roofreplacementnationwide.com
 domain:rpvalenzuelanetwork.com
 domain:ruhrfarm.de
 domain:s-tribe.net
 domain:sacrez-immobilier.com
 domain:sahammurah.com
+domain:saintlouispros.com
 domain:samiramira.de
 domain:sanantoniohailclaims.com
 domain:saoluizhotel.com.br
 domain:sblmerchant.com
 domain:seolexo.com
+domain:servicefinderamerica.com
 domain:servicework.co.uk
 domain:shoplogist.com
 domain:siddhienterprises.net
+domain:sidingcontractorbenchmark.com
 domain:sitewebseo.com
 domain:skycarry.gg
 domain:smashprnews.com
@@ -482,6 +506,9 @@ domain:truffes-sans-toit.fr
 domain:tunca.org
 domain:tyre.pro
 domain:uncledspizza.com
+domain:united-local.com
+domain:usaresidentialroofingcompanies.com
+domain:usaroofleakrepaircontractors.com
 domain:usaskylightinstallationcompanies.com
 domain:vamostogether.com
 domain:vip-tourist.sk

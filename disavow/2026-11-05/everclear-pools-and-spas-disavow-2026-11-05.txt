@@ -3,15 +3,17 @@
 # Domain: everclearpoolsnj.com
 # Generated: 2026-11-05
 # Source: Ahrefs MCP via Claude
-# Total domains disavowed: 1057
+# Total domains disavowed: 1059
 
 # --- High-DR Spam (DR 50+, Ahrefs spam-flagged) ---
 domain:awe.sm
 domain:couponler.com
+domain:linkcentre.com
 
 # --- Mid-DR Spam (DR 10-49, Ahrefs spam-flagged) ---
 domain:bikerentalbali.com
 domain:housemagazine.com
+domain:lantern.llc
 domain:lmcordoba.com.ar
 domain:raidersfanteamshop.com
 domain:theburnward.com

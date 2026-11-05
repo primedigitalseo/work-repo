@@ -3,10 +3,11 @@
 # Domain: careroofingsolutions.com
 # Generated: 2026-11-05
 # Source: Ahrefs MCP via Claude
-# Total domains disavowed: 1101
+# Total domains disavowed: 1106
 
 # --- High-DR Spam (DR 50+, Ahrefs spam-flagged) ---
 domain:couponler.com
+domain:golocalezservices.com
 
 # --- Mid-DR Spam (DR 10-49, Ahrefs spam-flagged) ---
 domain:accesstolondon.co.uk
@@ -17,6 +18,7 @@ domain:lassori.com.br
 domain:lmcordoba.com.ar
 domain:nearme.tel
 domain:ondamarketinglab.com
+domain:sitgespoolparty.com
 domain:theburnward.com
 domain:tourflag.com
 domain:whitefieldhotels.com
@@ -24,6 +26,7 @@ domain:wpsuo.com
 
 # --- Low-DR Spam (DR <10, Ahrefs spam-flagged) ---
 domain:abdesenvolvimento.com.br
+domain:abetterroofer.com
 domain:abobarska.pl
 domain:alpasoarg.com
 domain:bhpjablonna.pl
@@ -53,11 +56,13 @@ domain:ombre.com.sg
 domain:palace-pailin.com
 domain:rajeshdaikojokes.com
 domain:ratheil.info
+domain:roofs.fyi
 domain:sdbcameroon.com
 domain:sosanimalprea.com
 domain:tate.africa
 domain:tressguide.com
 domain:trucosabuela.com
+domain:usaresidentialroofingcompanies.com
 domain:usaskylightinstallationcompanies.com
 domain:viralnewsage.com
 domain:vodeq.com

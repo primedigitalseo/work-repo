@@ -3,10 +3,11 @@
 # Domain: rembrandtroofing.com
 # Generated: 2026-11-05
 # Source: Ahrefs MCP via Claude
-# Total domains disavowed: 1058
+# Total domains disavowed: 1061
 
 # --- Mid-DR Spam (DR 10-49, Ahrefs spam-flagged) ---
 domain:alljobs.info
+domain:diyprojectsforhome.com
 domain:raidersfanteamshop.com
 domain:theburnward.com
 domain:wpsuo.com
@@ -16,7 +17,9 @@ domain:domainanalysis.org
 domain:globalecommerce.org
 domain:itrabocchi.it
 domain:literallyeveryfont.com
+domain:profixdirectory.com
 domain:robuta.com
+domain:rooferssearch.com
 domain:theservicenews.com
 domain:warnindex.com
 

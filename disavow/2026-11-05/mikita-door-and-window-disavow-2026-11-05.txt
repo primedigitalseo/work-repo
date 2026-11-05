@@ -3,7 +3,7 @@
 # Domain: mikitadoorandwindow.com
 # Generated: 2026-11-05
 # Source: Ahrefs MCP via Claude
-# Total domains disavowed: 1154
+# Total domains disavowed: 1156
 
 # --- High-DR Spam (DR 50+, Ahrefs spam-flagged) ---
 domain:awe.sm
@@ -12,6 +12,7 @@ domain:cheaperseeker.com
 domain:couponler.com
 domain:dreevoo.com
 domain:dsnylu.com
+domain:linkcentre.com
 domain:starcourts.com
 domain:zaubee.com
 
@@ -24,6 +25,7 @@ domain:frine.org
 domain:gamingcenter.ly
 domain:ondamarketinglab.com
 domain:raidersfanteamshop.com
+domain:sitgespoolparty.com
 domain:theburnward.com
 domain:tourflag.com
 domain:whitefieldhotels.com

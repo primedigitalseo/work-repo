@@ -3,29 +3,37 @@
 # Domain: exteriorsplusmn.com
 # Generated: 2026-11-05
 # Source: Ahrefs MCP via Claude
-# Total domains disavowed: 1103
+# Total domains disavowed: 1118
 
 # --- High-DR Spam (DR 50+, Ahrefs spam-flagged) ---
 domain:awe.sm
 domain:blogfreely.net
 domain:couponler.com
+domain:linkcentre.com
 
 # --- Mid-DR Spam (DR 10-49, Ahrefs spam-flagged) ---
+domain:acebizlistings.com
 domain:alljobs.info
+domain:developmentmi.com
 domain:getwebsiteworth.com
+domain:jazminsbeautysalon.be
 domain:linksnatcher.com
 domain:lmcordoba.com.ar
 domain:raidersfanteamshop.com
+domain:roof.info
 domain:signalnewsindianapolis.com
 domain:signalnewsmiami.com
 domain:sjmfoundation.com
 domain:theburnward.com
+domain:usametalroofingcontractors.com
 domain:wpsuo.com
 domain:ycm.info
 
 # --- Low-DR Spam (DR <10, Ahrefs spam-flagged) ---
+domain:abetterroofer.com
 domain:agepym.com.sv
 domain:allwebsitesdirectory.com
+domain:asphaltroofingnationwide.com
 domain:bestwebstats.com
 domain:blogerreviewers.com
 domain:booksreadr.org
@@ -36,16 +44,23 @@ domain:domainanalysis.org
 domain:domainsc.com
 domain:getonline.co.in
 domain:globalecommerce.org
+domain:guttercleaningnationwide.com
 domain:indexaward.com
 domain:indians.cc
 domain:pagesearch.net
 domain:pudhe.com
 domain:read.org.in
+domain:repairhomeexperts.com
+domain:rooferssearch.com
+domain:roofreplacementnationwide.com
+domain:roofs.fyi
 domain:s-tribe.net
 domain:signalnewslosangeles.com
 domain:signalnewsminneapolis.com
 domain:tunca.org
 domain:uncledspizza.com
+domain:usaresidentialroofingcompanies.com
+domain:usaroofleakrepaircontractors.com
 domain:usaskylightinstallationcompanies.com
 domain:wallpapers.pro
 domain:way2check.cv

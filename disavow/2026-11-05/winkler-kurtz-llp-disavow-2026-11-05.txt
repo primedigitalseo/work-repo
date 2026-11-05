@@ -3,9 +3,10 @@
 # Domain: winklerkurtz.com
 # Generated: 2026-11-05
 # Source: Ahrefs MCP via Claude
-# Total domains disavowed: 1056
+# Total domains disavowed: 1057
 
 # --- High-DR Spam (DR 50+, Ahrefs spam-flagged) ---
+domain:apsense.com
 domain:awe.sm
 domain:couponler.com
 

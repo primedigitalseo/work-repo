@@ -3,23 +3,27 @@
 # Domain: bedrockrestoration.com
 # Generated: 2026-11-05
 # Source: Ahrefs MCP via Claude
-# Total domains disavowed: 1054
+# Total domains disavowed: 1058
 
 # --- High-DR Spam (DR 50+, Ahrefs spam-flagged) ---
 domain:couponler.com
 
 # --- Mid-DR Spam (DR 10-49, Ahrefs spam-flagged) ---
+domain:acebizlistings.com
 domain:mysys.pt
 domain:raidersfanteamshop.com
 domain:theburnward.com
 domain:wpsuo.com
 
 # --- Low-DR Spam (DR <10, Ahrefs spam-flagged) ---
+domain:abatelocal.com
 domain:atachin.es
 domain:bloodsharks.net
 domain:bridalroomsmagazine.com
 domain:fatorrnoticias.com.br
 domain:hieuvi.com
+domain:moldguide.com
+domain:waterrestoring.com
 
 # --- Wiki Farms / Spammy TLDs ---
 domain:ace-wiki.win

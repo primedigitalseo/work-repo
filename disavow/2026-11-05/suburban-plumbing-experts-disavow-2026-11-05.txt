@@ -3,15 +3,19 @@
 # Domain: suburbanplumbingexperts.com
 # Generated: 2026-11-05
 # Source: Ahrefs MCP via Claude
-# Total domains disavowed: 1063
+# Total domains disavowed: 1072
 
 # --- High-DR Spam (DR 50+, Ahrefs spam-flagged) ---
+domain:apsense.com
 domain:couponler.com
+domain:linkcentre.com
 
 # --- Mid-DR Spam (DR 10-49, Ahrefs spam-flagged) ---
 domain:alljobs.info
 domain:chicago-future.com
+domain:lantern.llc
 domain:lmcordoba.com.ar
+domain:plumbersbyzip.com
 domain:raidersfanteamshop.com
 domain:signalnewsindianapolis.com
 domain:signalnewsmiami.com
@@ -19,15 +23,20 @@ domain:theburnward.com
 domain:wpsuo.com
 
 # --- Low-DR Spam (DR <10, Ahrefs spam-flagged) ---
+domain:afterhourbooking.com
 domain:allwebsitesdirectory.com
 domain:booksreadr.org
 domain:domainanalysis.org
 domain:globalecommerce.org
 domain:greatinflux.com
+domain:needseptic.com
+domain:plumberdirectory.info
 domain:read.org.in
+domain:septic.fyi
 domain:signalnewsminneapolis.com
 domain:signalnewsportlandor.com
 domain:tsfind.com
+domain:vendorroster.com
 
 # --- Wiki Farms / Spammy TLDs ---
 domain:ace-wiki.win

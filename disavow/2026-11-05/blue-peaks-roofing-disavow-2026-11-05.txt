@@ -3,7 +3,7 @@
 # Domain: bluepeaksroofing.com
 # Generated: 2026-11-05
 # Source: Ahrefs MCP via Claude
-# Total domains disavowed: 1063
+# Total domains disavowed: 1064
 
 # --- High-DR Spam (DR 50+, Ahrefs spam-flagged) ---
 domain:couponler.com
@@ -18,6 +18,7 @@ domain:wpsuo.com
 domain:ycm.info
 
 # --- Low-DR Spam (DR <10, Ahrefs spam-flagged) ---
+domain:fixhubs.net
 domain:indexaward.com
 domain:pagesearch.net
 domain:smellhoney.com

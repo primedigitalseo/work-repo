@@ -39,7 +39,7 @@ portfolio-wide spam networks:
 ## Files
 
 - `2026-11-05/*-disavow-2026-11-05.txt` — one per client, GSC-ready
-- `2026-11-05/flagged-for-review-2026-11-05.csv` — 106 rows held back for review
+- `2026-11-05/flagged-for-review-2026-11-05.csv` — empty after 2026-11-05 review
 - `2026-11-05/excluded-whitelist-2026-11-05.csv` — whitelisted domains removed
 - `2026-11-05/summary-2026-11-05.csv` — per-client counts
 
@@ -49,11 +49,19 @@ portfolio-wide spam networks:
 clients each are a known link exchange. Approved to keep on 2026-11-05: they are in
 `LINK_EXCHANGE_KEEP` in the build script and listed in the excluded CSV, never in a disavow file.
 
-## Before uploading
+## Review decisions (2026-11-05)
 
-`flagged-for-review-2026-11-05.csv` still holds 106 rows, mostly niche directories and
-lookalike roofing/plumbing listing sites (`linkcentre.com`, `viesearch.com`, `roofs.fyi`,
-`rooferssearch.com`). They are left out of the disavow files until someone decides on them.
+The remaining 75 flagged domains were decided in `build_disavow.py`:
+
+- **Disavowed (59, `REVIEWED_DISAVOW`)**: auto-generated "nationwide"/city lookalike directories
+  (`roofs.fyi`, `rooferssearch.com`, `usaresidentialroofingcompanies.com`, `ratingsnearme.com`),
+  sitewide-link spam (`officialsite.com`, `waterrestoring.com`), and unrelated foreign sites.
+- **Kept (16, `REVIEWED_KEEP`)**: real small-business sites that look like more link-exchange
+  partners, plus legit platforms (`downtobid.com`, `trustfeed.com`, `allstarpros.com`, `viesearch.com`).
+
+The flagged CSV is now empty. All files are ready to upload.
+
+## Upload
 
 Upload at https://search.google.com/search-console/disavow-links for both `https://` and
 `https://www.` properties, then log date, count and file link in ClickUp.

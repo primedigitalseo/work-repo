@@ -3,7 +3,7 @@
 # Domain: bedrockplumbers.com
 # Generated: 2026-11-05
 # Source: Ahrefs MCP via Claude
-# Total domains disavowed: 1092
+# Total domains disavowed: 1096
 
 # --- High-DR Spam (DR 50+, Ahrefs spam-flagged) ---
 domain:couponler.com
@@ -15,6 +15,7 @@ domain:gamingcenter.ly
 domain:mytrueguard.com
 domain:ondamarketinglab.com
 domain:raidersfanteamshop.com
+domain:sitgespoolparty.com
 domain:theburnward.com
 domain:tourflag.com
 domain:whitefieldhotels.com
@@ -25,12 +26,15 @@ domain:abdesenvolvimento.com.br
 domain:abobarska.pl
 domain:arshhsolutions.com
 domain:atlantametrogazette.com
+domain:basementlocal.com
 domain:divymurti.com
 domain:dmcarselections.co.uk
 domain:ecunationedirne.com
 domain:edufinancezone.com
 domain:faunafables.com
 domain:fillopack.com
+domain:fixhubs.net
+domain:getgrizz.com
 domain:glmidnight.co.uk
 domain:grabxyz.com
 domain:grannyeasyrecipes.com

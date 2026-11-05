@@ -96,6 +96,36 @@ REVIEW_EXACT = {
     "moldguide.com", "abatelocal.com", "basementlocal.com", "fixhubs.net", "getgrizz.com",
     "afterhourbooking.com", "vendorroster.com", "innovatedblindsconcepts.com",
 }
+# Review decisions (2026-11-05).
+# Keep: real small-business sites (likely more link-exchange partners) and legit platforms.
+REVIEWED_KEEP = {
+    "allstarpros.com", "downtobid.com", "trustfeed.com", "viesearch.com",
+    "innovatedblindsconcepts.com", "jaybirdphotography.com", "lynleephoto.com",
+    "thachphotography.com", "msmklawfirm.com", "sunnydayconcrete.com", "standrewsbuilders.net",
+    "propanespecialty.com", "doctorsathome.com", "njinspectors.com", "beforeattorney.com",
+    "ailegalcounsel.org",
+}
+# Disavow: auto-generated "nationwide"/city lookalike directories, sitewide-link spam,
+# and unrelated foreign sites. No citation or referral value.
+REVIEWED_DISAVOW = {
+    "a-1roofingnow.com", "abetterroofer.com", "abatelocal.com", "acebizlistings.com",
+    "afterhourbooking.com", "asphaltroofingnationwide.com", "basementlocal.com",
+    "chicago-directory.com", "contractornearyou.com", "electriciansdaily.news", "fixhubs.net",
+    "getgrizz.com", "guttercleaningnationwide.com", "homeservicelookup.com", "igolocal.app",
+    "iknowaroofer.com", "localbizindex.com", "moldguide.com", "nassaupros.com",
+    "nearmelisting.com", "needseptic.com", "officialsite.com", "plumberdirectory.info",
+    "plumbersbyzip.com", "profixdirectory.com", "provenroofer.com", "ratingsnearme.com",
+    "repairhomeexperts.com", "rocklandcounty.info", "roof.info", "rooferbutler.com",
+    "rooferssearch.com", "rooflists.com", "roofreplacementnationwide.com", "roofs.fyi",
+    "roofs.wiki", "saintlouispros.com", "septic.fyi", "servicefinderamerica.com",
+    "sidingcontractorbenchmark.com", "stlouistoprated.com", "united-local.com",
+    "usametalroofingcontractors.com", "usaresidentialroofingcompanies.com",
+    "usaroofleakrepaircontractors.com", "vendorroster.com", "woowholocal.com",
+    "golocalezservices.com", "linkcentre.com", "apsense.com", "sitgespoolparty.com",
+    "jazminsbeautysalon.be", "jomtien-realty.com", "constructionconsultant.co.za",
+    "lawyerinjeddah.com", "waterrestoring.com", "diyprojectsforhome.com", "developmentmi.com",
+    "lantern.llc",
+}
 TRADE_RX = re.compile(
     r"(roof|plumb|septic|construct|contract|builder|law|attorney|legal|dds|dental|landscap|"
     r"electric|restor|blinds|salon|florist|photo|automotive|hvac|siding|window|door|remodel|"
@@ -123,6 +153,8 @@ def dr(row):
 def whitelisted(d):
     if d in LINK_EXCHANGE_KEEP:
         return "approved link exchange (keep)"
+    if d in REVIEWED_KEEP:
+        return "reviewed 2026-11-05: real business or legit platform, keep"
     if d in WHITELIST_EXACT or d in CLIENT_DOMAINS:
         return "client domain" if d in CLIENT_DOMAINS else "whitelisted directory/platform"
     for p in WHITELIST_PATTERNS:
@@ -132,6 +164,8 @@ def whitelisted(d):
 
 
 def needs_review(d):
+    if d in REVIEWED_DISAVOW:
+        return None
     if d in REVIEW_EXACT:
         return "recurring real-business / niche-directory domain with dofollow links"
     if TRADE_RX.search(d) and not d.endswith(SPAMMY_TLDS) and not NETWORK_RX.search(d):

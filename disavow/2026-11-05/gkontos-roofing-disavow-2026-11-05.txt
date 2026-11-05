@@ -3,7 +3,7 @@
 # Domain: gkontosinc.com
 # Generated: 2026-11-05
 # Source: Ahrefs MCP via Claude
-# Total domains disavowed: 1072
+# Total domains disavowed: 1074
 
 # --- High-DR Spam (DR 50+, Ahrefs spam-flagged) ---
 domain:awe.sm
@@ -23,6 +23,8 @@ domain:ycm.info
 domain:blogerreviewers.com
 domain:indexaward.com
 domain:pagesearch.net
+domain:rocklandcounty.info
+domain:roofs.fyi
 domain:signalnewsminneapolis.com
 domain:tunca.org
 domain:uncledspizza.com

@@ -3,7 +3,7 @@
 # Domain: longislandcustomblinds.com
 # Generated: 2026-11-05
 # Source: Ahrefs MCP via Claude
-# Total domains disavowed: 1125
+# Total domains disavowed: 1126
 
 # --- High-DR Spam (DR 50+, Ahrefs spam-flagged) ---
 domain:awe.sm
@@ -43,6 +43,7 @@ domain:homedecor4u.biz
 domain:indexaward.com
 domain:indians.cc
 domain:kc4ydp.com
+domain:lawyerinjeddah.com
 domain:oisbeauty.com
 domain:pagesearch.net
 domain:primenewsartical.com

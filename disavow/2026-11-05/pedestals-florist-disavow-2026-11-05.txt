@@ -3,11 +3,12 @@
 # Domain: pedestalsflorist.com
 # Generated: 2026-11-05
 # Source: Ahrefs MCP via Claude
-# Total domains disavowed: 1082
+# Total domains disavowed: 1084
 
 # --- High-DR Spam (DR 50+, Ahrefs spam-flagged) ---
 domain:awe.sm
 domain:couponler.com
+domain:linkcentre.com
 
 # --- Mid-DR Spam (DR 10-49, Ahrefs spam-flagged) ---
 domain:alljobs.info
@@ -32,6 +33,7 @@ domain:eurasier-veitsburg.de
 domain:eyko-jacomo.de
 domain:globalecommerce.org
 domain:indexaward.com
+domain:localbizindex.com
 domain:morningmistmeditations.com
 domain:musweb.org
 domain:paulandjulia.com
