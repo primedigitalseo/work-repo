@@ -58,6 +58,18 @@ WHITELIST_EXACT = {
 }
 WHITELIST_PATTERNS = [r"newswire", r"presswire", r"chamber"]
 
+# Link exchange network, approved to keep (2026-11-05). Never disavow.
+LINK_EXCHANGE_KEEP = {
+    "campanelloconstruction.com", "northarundelconstruction.com", "nataliegoldsteindds.com",
+    "drshadidds.com", "mwberglaw.com", "woodard1law.com", "promedimagining.com",
+    "livingstonelandscaping.com", "acacialandscapeservices.com", "pearlstreetautomotive.com",
+    "hcdsurgical.com", "massercontractors.com", "villasofestancia.com", "sunwaterweb.com",
+    "mixoncci.com", "c4web.net", "garycutler.info", "productivepractice.net", "whosmypro.com",
+    "thebestnewsplace.com", "netforumondemand.com", "holzconstruction.com", "handymaxphoenix.com",
+    "dunlopelectrical.com", "assurehomehealth.org", "ckframing.com", "expresskitchendesigns.com",
+    "brightstaryouth.org", "annikabansal.com", "operation-infinitejustice.org", "find-us-here.com",
+}
+
 # --- Flag for Mike's review: real-business-looking domains with dofollow links that recur
 # across many clients (possible vendor/partner network or hacked SMB sites), plus
 # niche directories that may be citations. ---
@@ -109,6 +121,8 @@ def dr(row):
 
 
 def whitelisted(d):
+    if d in LINK_EXCHANGE_KEEP:
+        return "approved link exchange (keep)"
     if d in WHITELIST_EXACT or d in CLIENT_DOMAINS:
         return "client domain" if d in CLIENT_DOMAINS else "whitelisted directory/platform"
     for p in WHITELIST_PATTERNS:

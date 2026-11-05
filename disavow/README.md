@@ -39,17 +39,21 @@ portfolio-wide spam networks:
 ## Files
 
 - `2026-11-05/*-disavow-2026-11-05.txt` — one per client, GSC-ready
-- `2026-11-05/flagged-for-review-2026-11-05.csv` — 366 rows held back for Mike
+- `2026-11-05/flagged-for-review-2026-11-05.csv` — 106 rows held back for review
 - `2026-11-05/excluded-whitelist-2026-11-05.csv` — whitelisted domains removed
 - `2026-11-05/summary-2026-11-05.csv` — per-client counts
 
+## Link exchange (approved, keep)
+
+31 real-business domains (law firms, dentists, contractors, landscapers) that link to 5–16
+clients each are a known link exchange. Approved to keep on 2026-11-05: they are in
+`LINK_EXCHANGE_KEEP` in the build script and listed in the excluded CSV, never in a disavow file.
+
 ## Before uploading
 
-Review the flagged CSV first. A cluster of real-business domains (law firms, dentists,
-contractors, landscapers) sends dofollow links to 5–16 clients each, e.g. `find-us-here.com`,
-`annikabansal.com`, `nataliegoldsteindds.com`, `woodard1law.com`, `campanelloconstruction.com`.
-That pattern looks like a link exchange or vendor network. Confirm whether Prime Digital or a
-vendor placed these before disavowing them.
+`flagged-for-review-2026-11-05.csv` still holds 106 rows, mostly niche directories and
+lookalike roofing/plumbing listing sites (`linkcentre.com`, `viesearch.com`, `roofs.fyi`,
+`rooferssearch.com`). They are left out of the disavow files until someone decides on them.
 
 Upload at https://search.google.com/search-console/disavow-links for both `https://` and
 `https://www.` properties, then log date, count and file link in ClickUp.
