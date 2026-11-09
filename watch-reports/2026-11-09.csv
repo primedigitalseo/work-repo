@@ -1,0 +1,2 @@
+market,client,domain,name,primaryCategory,city,state,rating,reviewsCount,mapsUrl,DR,verdict
+redefined,Redefined Restoration,tfsullvan.com,TF Sullivan Plumbing Inc.,Plumber,Tinley Park,Illinois,5,22,https://www.google.com/maps?cid=16609528838472022249,0.0,PASS (DR < 7)
