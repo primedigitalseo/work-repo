@@ -1,0 +1,2 @@
+market,client,domain,name,primaryCategory,city,state,rating,reviewsCount,mapsUrl,DR,verdict
+bedrock,Bedrock Restoration,northwisesesepestcontrol.us,Northwise Pest Control,Pest control service,Minneapolis,Minnesota,,,https://www.google.com/maps?cid=14246555581899167607,0.0,PASS (DR < 7)
